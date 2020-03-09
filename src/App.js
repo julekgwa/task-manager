@@ -1,23 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import Navbar from 'components/navigation/navbar';
+import Container from 'containers/container';
+import React from 'react';
+import { Provider } from 'react-redux';
+import { store } from 'redux/store';
+import GlobalStyle from 'styles/globalStyle';
 
 function App() {
   return (
-    <div className='App'>
-      <Navbar>
-        <a href='#home' class='active'>
-          Home
-        </a>
-        <a href='#news'>News</a>
-        <a href='#contact'>Contact</a>
-        <a href='#about'>About</a>
-        <a href='javascript:void(0);' class='icon' onclick='myFunction()'>
-          <i class='fa fa-bars'></i>
-        </a>
-      </Navbar>
-    </div>
+    <Provider store={store}>
+      <>
+        <GlobalStyle />
+        <Container>
+          <Navbar>
+            
+          </Navbar>
+        </Container>
+      </>
+    </Provider>
   );
 }
 

@@ -1,8 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Navbar = styled.nav`
   background-color: #333;
   overflow: hidden;
+  position: relative;
 
   a {
     float: left;
@@ -36,21 +37,25 @@ const Navbar = styled.nav`
       float: right;
       display: block;
     }
-
-    .responsive {
-      position: relative;
-    }
-    .responsive a.icon {
-      position: absolute;
-      right: 0;
-      top: 0;
-    }
-    .responsive a {
-      float: none;
-      display: block;
-      text-align: left;
-    }
   }
+
+  ${props =>
+    props.active &&
+    css`
+      a:not(:first-child) {
+        display: block;
+      }
+      a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+      a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+    `}
 `;
 
 export default Navbar;
