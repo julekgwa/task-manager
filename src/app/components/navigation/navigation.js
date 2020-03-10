@@ -1,10 +1,11 @@
 
-import Edit from 'containers/edit';
-import Home from 'containers/home';
-import PageNotFound from 'containers/pageNotFound';
-import Reminders from 'containers/reminders';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Edit from 'app/containers/edit';
+import Home from 'app/containers/home';
+import PageNotFound from 'app/containers/pageNotFound';
+import Reminders from 'app/containers/reminders';
 
 const Navigation = () => {
   return (

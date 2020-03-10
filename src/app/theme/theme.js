@@ -1,4 +1,4 @@
-import { Colors } from 'styles/colors';
+import { Colors } from 'app/styles/colors';
 
 export const Themes = {
   primary: {
