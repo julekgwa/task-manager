@@ -1,4 +1,4 @@
-import { Themes } from 'theme/theme';
+import { Themes } from 'app/theme/theme';
 
 const initState = {
   theme: Themes.primary

@@ -1,4 +1,4 @@
-import { SET_THEME } from 'redux/constants';
+import { SET_THEME } from '../constants';
 
 export function setTheme(payload) {
   return {
