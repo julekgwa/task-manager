@@ -1,28 +1,36 @@
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styled, { css } from 'styled-components';
 
+const mapStateToProps = state => ({
+  theme: state.theme
+});
+
 const Navbar = styled.nav`
-  background-color: #333;
   overflow: hidden;
   position: relative;
 
   a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: ${props => props.color || props.theme && props.theme.anchor};
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
+    text-transform: uppercase;
   }
 
-  a:hover {
-    background-color: #ddd;
-    color: black;
+  a:hover ${`svg`} {
+    color: ${props => props && props.theme && props.theme.anchorHover};
   }
 
   a.active {
-    background-color: #4caf50;
-    color: white;
+    color: ${props => props && props.theme && props.theme.activeAnchor};
+  }
+
+  svg {
+    margin-right: 3px;
   }
 
   .icon {
@@ -58,4 +66,10 @@ const Navbar = styled.nav`
     `}
 `;
 
-export default Navbar;
+Navbar.propTypes = {
+  color: PropTypes.string,
+  theme: PropTypes.object.isRequired,
+  active: PropTypes.bool.isRequired
+}
+
+export const Header = connect(mapStateToProps)(Navbar);

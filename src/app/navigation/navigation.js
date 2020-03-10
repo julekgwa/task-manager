@@ -1,16 +1,14 @@
-
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
-import Edit from 'app/containers/edit';
-import Home from 'app/containers/home';
+import { Edit } from 'app/containers/edit';
+import { Home } from 'app/containers/home';
 import PageNotFound from 'app/containers/pageNotFound';
-import Reminders from 'app/containers/reminders';
+import { Reminders } from 'app/containers/reminders';
 
-const Navigation = () => {
+export const Navigation = () => {
   return (
     <BrowserRouter>
-
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/reminders' component={Reminders} />
@@ -22,5 +20,3 @@ const Navigation = () => {
     </BrowserRouter>
   );
 };
-
-export default Navigation;
