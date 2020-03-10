@@ -5,18 +5,22 @@ export const Themes = {
     heading: Colors.slightlyDesaturatedOrange,
     paragraph: Colors.darkModerateOrange2,
     anchor: Colors.darkModerateOrange2,
-    activeAnchor: Colors.slightlyDesaturatedOrange,
+    activeAnchor: Colors.verySoftOrange,
+    anchorHover: Colors.slightlyDesaturatedOrange,
     backgroundColor: Colors.veryDarkGrayishOrange,
     defaultColor: Colors.darkModerateOrange2,
-    borderColor: Colors.slightlyDesaturatedOrange
+    borderColor: Colors.slightlyDesaturatedOrange,
+    alternate: Colors.strongCyan
   },
   neon: {
-    hTag: '',
-    pTag: '',
-    anchor: '',
-    activeAnchor: '',
-    backgroundColor: '',
-    color: '',
-    borderColor: ''
+    heading: Colors.strongCyan,
+    paragraph: Colors.veryDarkGray,
+    anchor: Colors.veryDarkGray,
+    activeAnchor: Colors.softOrange,
+    anchorHover: Colors.strongCyan,
+    backgroundColor: Colors.veryDarkBlue,
+    defaultColor: Colors.veryDarkGray,
+    borderColor: Colors.strongCyan,
+    alternate: Colors.slightlyDesaturatedOrange
   }
 };

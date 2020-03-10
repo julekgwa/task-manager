@@ -8,5 +8,8 @@ export const Colors = {
   slightlyDesaturatedLimeGreen: '#73C867',
   veryDarkBlue: '#030304', // mostly black
   veryDarkCyanLimeGreen: '#01552E',
-  pureCyanLimeGreen: '#00DC5E', // (or mostly pure) 
+  pureCyanLimeGreen: '#00DC5E', // (or mostly pure)
+  strongCyan: '#00C397',
+  veryDarkGray: '#6F6F6F',
+  softOrange: '#EC7B47'
 }
