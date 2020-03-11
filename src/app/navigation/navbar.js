@@ -6,7 +6,7 @@ const mapStateToProps = state => ({
   theme: state.theme
 });
 
-const Navbar = styled.nav`
+const NavbarContainer = styled.nav`
   overflow: hidden;
   position: relative;
 
@@ -66,10 +66,10 @@ const Navbar = styled.nav`
     `}
 `;
 
-Navbar.propTypes = {
+NavbarContainer.propTypes = {
   color: PropTypes.string,
   theme: PropTypes.object.isRequired,
   active: PropTypes.bool.isRequired
 }
 
-export const Header = connect(mapStateToProps)(Navbar);
+export const NavBar = connect(mapStateToProps)(NavbarContainer);

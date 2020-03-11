@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import Toggle from 'app/components/toggle';
+import { Toggle } from 'app/components/toggle';
 
 export const RoutesLinks = ({ toggleMenu }) => (
   <>

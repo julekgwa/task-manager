@@ -2,25 +2,29 @@ import { Colors } from 'app/styles/colors';
 
 export const Themes = {
   primary: {
-    heading: Colors.slightlyDesaturatedOrange,
-    paragraph: Colors.darkModerateOrange2,
-    anchor: Colors.darkModerateOrange2,
+    headerColor: Colors.darkGrayishBlue,
+    paragraph: Colors.darkGrayishBlue,
+    anchor: Colors.darkGrayishBlue,
     activeAnchor: Colors.verySoftOrange,
     anchorHover: Colors.slightlyDesaturatedOrange,
-    backgroundColor: Colors.veryDarkGrayishOrange,
-    defaultColor: Colors.darkModerateOrange2,
+    backgroundColor: Colors.veryDarkBlue,
+    defaultColor: Colors.darkGrayishBlue,
     borderColor: Colors.slightlyDesaturatedOrange,
-    alternate: Colors.strongCyan
+    alternate: Colors.lightGrayishBlue,
+    boxShadowPrimaryColor: Colors.veryDarkGrayBlue,
+    boxShadowSecondaryColor: Colors.veryDarkGrayishBlue
   },
   neon: {
-    heading: Colors.strongCyan,
+    headerColor: Colors.darkGrayishBlue,
     paragraph: Colors.veryDarkGray,
     anchor: Colors.veryDarkGray,
     activeAnchor: Colors.softOrange,
-    anchorHover: Colors.strongCyan,
-    backgroundColor: Colors.veryDarkBlue,
+    anchorHover: Colors.slightlyDesaturatedOrange,
+    backgroundColor: Colors.lightGrayishBlue,
     defaultColor: Colors.veryDarkGray,
-    borderColor: Colors.strongCyan,
-    alternate: Colors.slightlyDesaturatedOrange
+    borderColor: Colors.slightlyDesaturatedOrange,
+    alternate: Colors.darkGrayishBlue,
+    boxShadowPrimaryColor: Colors.grayishBlue,
+    boxShadowSecondaryColor: Colors.white
   }
 };
