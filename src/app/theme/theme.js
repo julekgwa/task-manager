@@ -23,7 +23,7 @@ export const Themes = {
     backgroundColor: Colors.lightGrayishBlue,
     defaultColor: Colors.veryDarkGray,
     borderColor: Colors.slightlyDesaturatedOrange,
-    alternate: Colors.darkGrayishBlue,
+    alternate: Colors.veryDarkBlue,
     boxShadowPrimaryColor: Colors.grayishBlue,
     boxShadowSecondaryColor: Colors.white
   }
