@@ -13,10 +13,22 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    color: ${props => props && props.theme && props.theme.heading}
+    color: ${props => props && props.theme && props.theme.headerColor}
   }
   p {
     color: ${props => props && props.theme && props.theme.paragraph}
+  }
+
+  button {
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    border-style: none;
+    font-size: 16px;
+    cursor: pointer;
+    width: 150px;
+    display: block;
   }
 `;
 
