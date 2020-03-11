@@ -16,7 +16,7 @@ export const Switch = styled.label`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${props => props && props.theme && props.theme.headerColor} !important;
+    background-color: ${props => props && props.theme && props.theme.alternate} !important;
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 34px;
@@ -29,7 +29,7 @@ export const Switch = styled.label`
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: white;
+    background-color: ${props => props && props.theme && props.theme.backgroundColor};
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 50%;
@@ -46,7 +46,7 @@ export const Switch = styled.label`
   }
   .slider:after {
     content: 'THEME';
-    color: white;
+    color: ${props => props && props.theme && props.theme.backgroundColor};
     display: block;
     position: absolute;
     transform: translate(-50%, -50%);

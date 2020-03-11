@@ -13,7 +13,7 @@ const NavbarContainer = styled.nav`
   a {
     float: left;
     display: block;
-    color: ${props => props.color || props.theme && props.theme.anchor};
+    color: ${props => props.color || (props.theme && props.theme.anchor)};
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -35,6 +35,28 @@ const NavbarContainer = styled.nav`
 
   .icon {
     display: none;
+  }
+
+  .logo {
+    width: 70px;
+    height: 70px;
+    border-radius: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: ${props => props && props.theme && props.theme.backgroundColor};
+    box-shadow: 5px 5px 10px
+        ${props => props && props.theme && props.theme.boxShadowPrimaryColor},
+      -5px -5px 10px
+        ${props => props && props.theme && props.theme.boxShadowSecondaryColor};
+
+    img {
+      height: 40px;
+    }
+  }
+
+  a:not(:first-child) {
+    margin-top: 15px;
   }
 
   @media screen and (max-width: 480px) {
@@ -70,6 +92,6 @@ NavbarContainer.propTypes = {
   color: PropTypes.string,
   theme: PropTypes.object.isRequired,
   active: PropTypes.bool.isRequired
-}
+};
 
 export const NavBar = connect(mapStateToProps)(NavbarContainer);

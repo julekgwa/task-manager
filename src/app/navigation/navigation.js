@@ -15,7 +15,9 @@ export const Navigation = () => {
   return (
     <BrowserRouter>
       <NavBar active={active}>
-        <RoutesLinks toggleMenu={setActive} />
+        <RoutesLinks
+          toggleMenu={() => setActive(currentValue => !currentValue)}
+        />
       </NavBar>
       <Switch>
         <Route exact path='/' component={Home} />

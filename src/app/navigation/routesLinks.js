@@ -9,10 +9,16 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import Logo from 'app/assets/logo.png';
 import { Toggle } from 'app/components/toggle';
 
 export const RoutesLinks = ({ toggleMenu }) => (
   <>
+    <NavLink exact strict to='/'>
+      <div className='logo'>
+        <img src={Logo} alt='logo' />
+      </div>
+    </NavLink>
     <NavLink exact strict to='/'>
       <FontAwesomeIcon icon={faHome} />
       Home
