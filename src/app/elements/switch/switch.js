@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 export const Switch = styled.label`
   position: relative;
   display: inline-block;
@@ -16,7 +16,8 @@ export const Switch = styled.label`
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: ${props => props && props.theme && props.theme.alternate} !important;
+    background-color: ${props =>
+      props && props.theme && props.theme.alternate} !important;
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 34px;
@@ -24,12 +25,13 @@ export const Switch = styled.label`
 
   .slider:before {
     position: absolute;
-    content: '';
+    content: "";
     height: 26px;
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: ${props => props && props.theme && props.theme.backgroundColor};
+    background-color: ${props =>
+      props && props.theme && props.theme.backgroundColor};
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 50%;
@@ -45,7 +47,7 @@ export const Switch = styled.label`
     transform: translateX(55px);
   }
   .slider:after {
-    content: 'THEME';
+    content: "THEME";
     color: ${props => props && props.theme && props.theme.backgroundColor};
     display: block;
     position: absolute;
@@ -57,7 +59,7 @@ export const Switch = styled.label`
   }
 
   input:checked + .slider:after {
-    content: 'THEME';
+    content: "THEME";
     margin-left: -6px;
   }
 `;

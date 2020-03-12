@@ -1,5 +1,5 @@
-import { connect } from 'react-redux';
-import styled from 'styled-components';
+import {connect} from "react-redux";
+import styled from "styled-components";
 
 const HeaderContainer = styled.h1`
   color: ${props =>
@@ -7,7 +7,7 @@ const HeaderContainer = styled.h1`
 `;
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  theme: state.theme,
 });
 
 export const Header = connect(mapStateToProps)(HeaderContainer);

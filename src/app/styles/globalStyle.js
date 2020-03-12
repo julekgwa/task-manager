@@ -1,11 +1,11 @@
-import { connect } from 'react-redux';
-import { createGlobalStyle } from 'styled-components';
+import {connect} from "react-redux";
+import {createGlobalStyle} from "styled-components";
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  theme: state.theme,
 });
 
-const GlobalStyle = createGlobalStyle`
+const GlobalStyles = createGlobalStyle`
   body {
     font-family: 'Playfair Display', serif;
     background-color: ${props =>
@@ -32,4 +32,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-export default connect(mapStateToProps)(GlobalStyle);
+export const GlobalStyle = connect(mapStateToProps)(GlobalStyles);
