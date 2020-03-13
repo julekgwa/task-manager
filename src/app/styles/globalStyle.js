@@ -1,5 +1,5 @@
-import {connect} from "react-redux";
-import {createGlobalStyle} from "styled-components";
+import { connect } from "react-redux";
+import { createGlobalStyle } from "styled-components";
 
 const mapStateToProps = state => ({
   theme: state.theme,

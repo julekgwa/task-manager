@@ -7,6 +7,7 @@ import { store } from 'app/redux/store';
 import { GlobalStyle } from 'app/styles/globalStyle';
 
 function App() {
+
   return (
     <Provider store={store}>
       <>
@@ -17,6 +18,7 @@ function App() {
       </>
     </Provider>
   );
+
 }
 
 // eslint-disable-next-line import/no-default-export

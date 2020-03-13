@@ -1,11 +1,12 @@
-import {faPlus} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import React, {Component} from "react";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { Component } from "react";
 
-import {Button} from "app/elements/button/button";
-import {Header} from "app/elements/header/header";
-import {withLogger} from "app/hoc/withLogger";
-import {Colors} from "app/styles/colors";
+import { Task } from 'app/components/task';
+import { Button } from "app/elements/button/button";
+import { Header } from "app/elements/header/header";
+import { withLogger } from "app/hoc/withLogger";
+import { Colors } from "app/styles/colors";
 
 class TodoHome extends Component {
 
@@ -14,6 +15,7 @@ class TodoHome extends Component {
     return (
       <>
         <Header color={Colors.softOrange}>Home</Header>
+        <Task />
         <Button circle>
           <FontAwesomeIcon icon={faPlus} />
         </Button>
