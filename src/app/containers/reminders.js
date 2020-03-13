@@ -1,13 +1,20 @@
-import React, { Component } from 'react';
+import React, {Component} from "react";
 
-import { Header } from 'app/elements/header/header';
+import {Header} from "app/elements/header/header";
+import {withLogger} from "app/hoc/withLogger";
 
-export class Reminders extends Component {
+class TodoReminders extends Component {
+
   render = () => {
+
     return (
       <>
         <Header>Reminders</Header>
       </>
     );
+  
   };
+
 }
+
+export const Reminders = withLogger(TodoReminders);

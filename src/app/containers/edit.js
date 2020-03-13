@@ -1,13 +1,25 @@
-import React, { Component } from 'react';
+import PropTypes from "prop-types";
+import React, {Component} from "react";
 
-import { Header } from 'app/elements/header/header';
+import {Header} from "app/elements/header/header";
+import {withLogger} from "app/hoc/withLogger";
 
-export class Edit extends Component {
+class TodoEdit extends Component {
+
+  static propTypes = {
+    logger: PropTypes.object,
+  };
+
   render = () => {
+
     return (
       <>
         <Header>Edit</Header>
       </>
     );
+  
   };
+
 }
+
+export const Edit = withLogger(TodoEdit);

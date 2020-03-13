@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import Container from 'app/containers/container';
+import { Container } from 'app/containers/container';
 import { Navigation } from 'app/navigation/navigation';
 import { store } from 'app/redux/store';
-import GlobalStyle from 'app/styles/globalStyle';
+import { GlobalStyle } from 'app/styles/globalStyle';
 
 function App() {
   return (
@@ -19,4 +19,5 @@ function App() {
   );
 }
 
+// eslint-disable-next-line import/no-default-export
 export default App;

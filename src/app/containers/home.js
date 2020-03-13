@@ -1,13 +1,16 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { Component } from 'react';
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import React, {Component} from "react";
 
-import { Button } from 'app/elements/button/button';
-import { Header } from 'app/elements/header/header';
-import { Colors } from 'app/styles/colors';
+import {Button} from "app/elements/button/button";
+import {Header} from "app/elements/header/header";
+import {withLogger} from "app/hoc/withLogger";
+import {Colors} from "app/styles/colors";
 
-export class Home extends Component {
+class TodoHome extends Component {
+
   render = () => {
+
     return (
       <>
         <Header color={Colors.softOrange}>Home</Header>
@@ -16,5 +19,9 @@ export class Home extends Component {
         </Button>
       </>
     );
+  
   };
+
 }
+
+export const Home = withLogger(TodoHome);

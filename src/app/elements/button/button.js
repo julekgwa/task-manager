@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import styled, { css } from 'styled-components';
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import styled, {css} from "styled-components";
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  theme: state.theme,
 });
 
 const ButtonContainer = styled.button`
@@ -12,7 +12,7 @@ const ButtonContainer = styled.button`
       ${props => props && props.theme && props.theme.boxShadowPrimaryColor},
     -10px -10px 20px
       ${props => props && props.theme && props.theme.boxShadowSecondaryColor};
-      
+
   ${props =>
     props.circle &&
     css`
@@ -22,18 +22,18 @@ const ButtonContainer = styled.button`
       border-style: none;
       padding: 0;
       background: ${props =>
-        props && props.theme && props.theme.backgroundColor};
+    props && props.theme && props.theme.backgroundColor};
       box-shadow: 5px 5px 10px
           ${props => props && props.theme && props.theme.boxShadowPrimaryColor},
         -5px -5px 10px
           ${props =>
-            props && props.theme && props.theme.boxShadowSecondaryColor};
+    props && props.theme && props.theme.boxShadowSecondaryColor};
     `}
 `;
 
 ButtonContainer.propTypes = {
   circle: PropTypes.bool,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export const Button = connect(mapStateToProps)(ButtonContainer);

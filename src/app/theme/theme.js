@@ -1,4 +1,4 @@
-import { Colors } from 'app/styles/colors';
+import {Colors} from "app/styles/colors";
 
 export const Themes = {
   primary: {
@@ -12,7 +12,7 @@ export const Themes = {
     borderColor: Colors.slightlyDesaturatedOrange,
     alternate: Colors.lightGrayishBlue,
     boxShadowPrimaryColor: Colors.veryDarkGrayBlue,
-    boxShadowSecondaryColor: Colors.veryDarkGrayishBlue
+    boxShadowSecondaryColor: Colors.veryDarkGrayishBlue,
   },
   neon: {
     headerColor: Colors.darkGrayishBlue,
@@ -25,6 +25,6 @@ export const Themes = {
     borderColor: Colors.slightlyDesaturatedOrange,
     alternate: Colors.veryDarkBlue,
     boxShadowPrimaryColor: Colors.grayishBlue,
-    boxShadowSecondaryColor: Colors.white
-  }
+    boxShadowSecondaryColor: Colors.white,
+  },
 };
