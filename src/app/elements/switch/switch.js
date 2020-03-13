@@ -17,7 +17,7 @@ export const Switch = styled.label`
     right: 0;
     bottom: 0;
     background-color: ${props =>
-      props && props.theme && props.theme.alternate} !important;
+    props && props.theme && props.theme.alternate} !important;
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 34px;
@@ -31,7 +31,7 @@ export const Switch = styled.label`
     left: 4px;
     bottom: 4px;
     background-color: ${props =>
-      props && props.theme && props.theme.backgroundColor};
+    props && props.theme && props.theme.backgroundColor};
     -webkit-transition: 0.4s;
     transition: 0.4s;
     border-radius: 50%;

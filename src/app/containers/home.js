@@ -20,7 +20,7 @@ class TodoHome extends Component {
       </>
     );
   
-};
+  };
 
 }
 

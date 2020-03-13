@@ -13,7 +13,7 @@ class TodoReminders extends Component {
       </>
     );
   
-};
+  };
 
 }
 

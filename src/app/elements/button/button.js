@@ -22,12 +22,12 @@ const ButtonContainer = styled.button`
       border-style: none;
       padding: 0;
       background: ${props =>
-        props && props.theme && props.theme.backgroundColor};
+    props && props.theme && props.theme.backgroundColor};
       box-shadow: 5px 5px 10px
           ${props => props && props.theme && props.theme.boxShadowPrimaryColor},
         -5px -5px 10px
           ${props =>
-            props && props.theme && props.theme.boxShadowSecondaryColor};
+    props && props.theme && props.theme.boxShadowSecondaryColor};
     `}
 `;
 

@@ -18,7 +18,7 @@ class TodoEdit extends Component {
       </>
     );
   
-};
+  };
 
 }
 
