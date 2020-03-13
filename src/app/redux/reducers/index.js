@@ -1,6 +1,6 @@
-import {Themes} from "app/theme/theme";
+import { Themes } from "app/theme/theme";
 
-import {SET_THEME, PRIMARY, NEON} from "../constants";
+import { SET_THEME, PRIMARY, NEON } from "../constants";
 
 const initState = {
   theme: Themes.primary,

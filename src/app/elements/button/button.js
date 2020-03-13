@@ -1,17 +1,21 @@
-import PropTypes from "prop-types";
-import {connect} from "react-redux";
-import styled, {css} from "styled-components";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import styled, { css } from 'styled-components';
 
 const mapStateToProps = state => ({
   theme: state.theme,
 });
 
 const ButtonContainer = styled.button`
-  background: ${props => props && props.theme && props.theme.backgroundColor};
+  font-family: 'Playfair Display', serif;
+  background: ${props =>
+    props && props.theme && props.theme.backgroundColor};
   box-shadow: 10px 10px 20px
-      ${props => props && props.theme && props.theme.boxShadowPrimaryColor},
+      ${props =>
+    props && props.theme && props.theme.boxShadowPrimaryColor},
     -10px -10px 20px
-      ${props => props && props.theme && props.theme.boxShadowSecondaryColor};
+      ${props =>
+    props && props.theme && props.theme.boxShadowSecondaryColor};
 
   ${props =>
     props.circle &&
@@ -24,10 +28,23 @@ const ButtonContainer = styled.button`
       background: ${props =>
     props && props.theme && props.theme.backgroundColor};
       box-shadow: 5px 5px 10px
-          ${props => props && props.theme && props.theme.boxShadowPrimaryColor},
+          ${props =>
+    props &&
+            props.theme &&
+            props.theme.boxShadowPrimaryColor},
         -5px -5px 10px
           ${props =>
-    props && props.theme && props.theme.boxShadowSecondaryColor};
+    props &&
+            props.theme &&
+            props.theme.boxShadowSecondaryColor};
+    `}
+
+  ${props =>
+    props.round &&
+    css`
+      border-radius: 180px;
+      width: 200px;
+      text-transform: uppercase;
     `}
 `;
 

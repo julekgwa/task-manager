@@ -1,4 +1,4 @@
-import {SET_THEME} from "../constants";
+import { SET_THEME } from "../constants";
 
 export function setTheme(payload) {
 

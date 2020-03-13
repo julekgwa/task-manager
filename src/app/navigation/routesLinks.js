@@ -4,15 +4,15 @@ import {
   faHome,
   faBars,
 } from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import PropTypes from "prop-types";
 import React from "react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import Logo from "app/assets/logo.png";
-import {Toggle} from "app/components/toggle";
+import { Toggle } from "app/components/toggle";
 
-export const RoutesLinks = ({toggleMenu}) => (
+export const RoutesLinks = ({ toggleMenu }) => (
   <>
     <NavLink exact strict to="/">
       <div className="logo">

@@ -49,6 +49,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-redux": "^3.0.3",
+    "husky": "^4.2.3",
     "prettier": "^1.19.1"
   },
   "prettier": {
@@ -56,5 +57,10 @@
     "trailingComma": "all",
     "singleQuote": true,
     "printWidth": 70
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run fix-lint"
+    }
   }
 }
