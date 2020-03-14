@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 
 import React, {
+
   Component 
 } from 'react';
 
@@ -17,8 +18,12 @@ import {
 } from 'react-redux';
 
 import {
-  Task 
-} from 'app/components/task';
+  Greeting 
+} from 'app/components/greeting';
+
+import {
+  Tasks 
+} from 'app/components/tasks/tasks';
 
 import {
   Button 
@@ -29,37 +34,79 @@ import {
 } from 'app/elements/header/header';
 
 import {
+  ListHeader 
+} from 'app/elements/listHeader/listHeader';
+
+import {
   withLogger 
 } from 'app/hoc/withLogger';
+
+import {
+  getTasks
+} from 'app/redux/actions';
 
 import {
   Colors 
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  isLoadingTasks: state.isLoadingTasks,
+  isLoading: state.home.isLoading,
   tasks: state.tasks,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getTasks: () => dispatch(getTasks()),
 });
 
 class TodoHome extends Component {
 
   static propTypes = {
-    isLoadingTasks: PropTypes.bool,
+    isLoading: PropTypes.bool,
+    tasks: PropTypes.array,
+    getTasks: PropTypes.func,
+  };
+
+  static defaultProps = {
+    tasks: [],
+    isLoading: false,
+    getTasks: () => {},
+  };
+
+  componentDidMount = () => {
+
+    this.props.getTasks();
+  
   }
 
   render = () => {
 
+    const tasks = this.props.tasks || [];
+    const isLoading = this.props.isLoading;
+
     return (
       <>
         <Header color={Colors.softOrange}>Home</Header>
-        {this.props.isLoadingTasks ? (
+        <Greeting />
+        {isLoading ? (
           <h1>Loading...</h1>
-        ) : (
+        ) :  (
           <>
-            <Task />
-            <Button circle>
-              <FontAwesomeIcon icon={faPlus} />
-            </Button>
+            <div style={{
+              display: 'flex' ,
+              flexWrap: 'wrap',
+            }}>
+
+              <ListHeader>
+
+                <Header>Tasks</Header>
+                <Button circle>
+                  <FontAwesomeIcon icon={faPlus} />
+                </Button>
+                
+              </ListHeader>
+
+              <Tasks tasks={tasks} />
+            </div>
           </>
         )}
       </>
@@ -69,4 +116,7 @@ class TodoHome extends Component {
 
 }
 
-export const Home = connect(mapStateToProps)(withLogger(TodoHome));
+export const Home = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withLogger(TodoHome));

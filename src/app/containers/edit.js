@@ -18,6 +18,12 @@ class TodoEdit extends Component {
     logger: PropTypes.object,
   };
 
+  componentDidMount = () => {
+
+    this.props.logger.info('/edit', 'edit page');
+  
+  }
+
   render = () => {
 
     return (

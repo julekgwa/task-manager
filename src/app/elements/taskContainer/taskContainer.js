@@ -2,15 +2,18 @@ import {
   connect 
 } from 'react-redux';
 
-import styled from 'styled-components';
+import styled, {
+  css 
+} from 'styled-components';
 
 const mapStateToProps = state => ({
   theme: state.theme,
 });
 
 const Container = styled.div`
-  width: 400px;
+  width: 394px;
   border-radius: 25px;
+  margin: 10px;
   background: ${props =>
     props && props.theme && props.theme.backgroundColor};
   box-shadow: 9px 9px 18px
@@ -54,6 +57,18 @@ const Container = styled.div`
       margin: 5px;
     }
   }
+
+  ${props =>
+    props &&
+    props.noTasks &&
+    css`
+      box-shadow: none;
+      min-height: 0;
+
+      p {
+        font-size: 30px;
+      }
+    `}
 `;
 
 export const TaskContainer = connect(mapStateToProps)(Container);

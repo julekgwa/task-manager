@@ -8,7 +8,8 @@
   },
   "env": {
     "node": true,
-    "es6": true
+    "es6": true,
+    "browser": true
   },
   "settings": {
     "react": {
@@ -28,6 +29,8 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "no-var": "error",
+    "newline-per-chained-call": "error",
     "modules-newline/import-declaration-newline": "error",
     "modules-newline/export-declaration-newline": "error",
     "comma-dangle": ["error", { "objects": "always" }],
@@ -59,7 +62,7 @@
     "object-curly-spacing": ["error", "always"],
     "padding-line-between-statements": [
       "error",
-      { "blankLine": "always", "prev": ["*", "import"], "next": ["return", "import"] }
+      { "blankLine": "always", "prev": ["*", "import", "case"], "next": ["return", "import", "case"] }
     ],
     "padded-blocks": ["error", "always"],
     "indent": ["error", 2, { "ImportDeclaration": "first" }],
@@ -70,6 +73,7 @@
         "allow": ["warn", "error", "info"]
       }
     ],
+    "react/no-unused-prop-types": [2],
     "import/no-default-export": "error",
     "import/newline-after-import": "error",
     "import/order": [
