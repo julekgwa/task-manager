@@ -16,11 +16,11 @@ import {
   TaskContainer 
 } from 'app/elements/taskContainer/taskContainer';
 
-export const Task = ({ taskTittle, taskCount, }) => (
+export const TaskItem = ({ title, subTasks, }) => (
   <TaskContainer>
     <div>
-      <h1>{taskTittle}</h1>
-      <p>{taskCount} Tasks</p>
+      <h1>{title}</h1>
+      <p>{subTasks} Tasks</p>
       <hr />
       <div className="buttons">
         <FontAwesomeIcon size="lg" icon={faPlus} />
@@ -31,12 +31,12 @@ export const Task = ({ taskTittle, taskCount, }) => (
   </TaskContainer>
 );
 
-Task.propTypes = {
-  taskTittle: PropTypes.string.isRequired,
-  taskCount: PropTypes.number.isRequired,
+TaskItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  subTasks: PropTypes.number.isRequired,
 };
 
-Task.defaultProps = {
-  taskTittle: 'No Title',
-  taskCount: 0,
+TaskItem.defaultProps = {
+  title: 'No Title',
+  subTasks: 0,
 };
