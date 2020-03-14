@@ -1,18 +1,29 @@
 import {
-  faBell,
-  faEdit,
-  faHome,
   faBars,
+  faBell,
+  faHome,
+  faPencilAlt
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import {
+  FontAwesomeIcon 
+} from "@fortawesome/react-fontawesome";
+
 import PropTypes from "prop-types";
+
 import React from "react";
-import { NavLink } from "react-router-dom";
+
+import {
+  NavLink 
+} from "react-router-dom";
 
 import Logo from "app/assets/logo.png";
-import { Toggle } from "app/components/toggle";
 
-export const RoutesLinks = ({ toggleMenu }) => (
+import {
+  Toggle 
+} from "app/components/toggle";
+
+export const RoutesLinks = ({ toggleMenu, }) => (
   <>
     <NavLink exact strict to="/">
       <div className="logo">
@@ -28,7 +39,7 @@ export const RoutesLinks = ({ toggleMenu }) => (
       Reminders
     </NavLink>
     <NavLink exact strict to="/edit">
-      <FontAwesomeIcon icon={faEdit} />
+      <FontAwesomeIcon icon={faPencilAlt} />
       Edit
     </NavLink>
     <a style={styles.themeSwitcher} href="#">

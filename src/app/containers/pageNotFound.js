@@ -1,12 +1,24 @@
 import PropTypes from "prop-types";
+
 import React from "react";
-import { Link } from 'react-router-dom';
 
-import { Button } from 'app/elements/button/button';
-import { Lost } from 'app/elements/pageNotFound/lost';
-import { withLogger } from "app/hoc/withLogger";
+import {
+  Link 
+} from 'react-router-dom';
 
-const PageNotFound = ({ logger }) => {
+import {
+  Button 
+} from 'app/elements/button/button';
+
+import {
+  Lost 
+} from 'app/elements/pageNotFound/lost';
+
+import {
+  withLogger 
+} from "app/hoc/withLogger";
+
+const PageNotFound = ({ logger, }) => {
 
   logger.error("/404", "Page not found");
 

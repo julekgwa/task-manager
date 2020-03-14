@@ -1,10 +1,18 @@
-import { Themes } from "app/theme/theme";
+import {
+  Themes 
+} from 'app/theme/theme';
 
-import { SET_THEME, PRIMARY, NEON } from "../constants";
+import {
+  NEON,
+  PRIMARY,
+  SET_THEME 
+} from '../constants';
 
 const initState = {
   theme: Themes.primary,
   currentTheme: PRIMARY,
+  tasks: [],
+  isLoadingTasks: false,
 };
 
 export function rootReducer(state = initState, action) {
@@ -14,7 +22,9 @@ export function rootReducer(state = initState, action) {
   case SET_THEME:
     return {
       ...state,
-      theme: state.currentTheme === PRIMARY ? Themes.neon : Themes.primary,
+      theme: state.currentTheme === PRIMARY
+        ? Themes.neon
+        : Themes.primary,
       currentTheme: state.currentTheme === PRIMARY ? NEON : PRIMARY,
     };
   default:
