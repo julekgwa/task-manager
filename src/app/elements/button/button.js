@@ -1,6 +1,12 @@
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import styled, { css } from 'styled-components';
+
+import {
+  connect 
+} from 'react-redux';
+
+import styled, {
+  css 
+} from 'styled-components';
 
 const mapStateToProps = state => ({
   theme: state.theme,

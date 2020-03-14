@@ -1,10 +1,22 @@
 import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
 
-import { Switch } from "app/elements/switch/switch";
-import { setTheme } from "app/redux/actions";
-import { PRIMARY } from "app/redux/constants";
+import React from "react";
+
+import {
+  connect 
+} from "react-redux";
+
+import {
+  Switch 
+} from "app/elements/switch/switch";
+
+import {
+  setTheme 
+} from "app/redux/actions";
+
+import {
+  PRIMARY 
+} from "app/redux/constants";
 
 const mapStateToProps = state => ({
   theme: state.theme,
@@ -15,7 +27,7 @@ const mapDispatchToProps = dispatch => ({
   themeSwitcher: () => dispatch(setTheme()),
 });
 
-const SwitchContainer = ({ themeSwitcher, theme, currentTheme }) => {
+const SwitchContainer = ({ themeSwitcher, theme, currentTheme, }) => {
 
   return (
     <Switch theme={theme}>

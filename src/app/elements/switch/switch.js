@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const Switch = styled.label`
   position: relative;
   display: inline-block;

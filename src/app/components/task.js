@@ -1,15 +1,22 @@
 import {
-  faPlus,
-  faEdit,
-  faTrash,
+  faPencilAlt,
+  faPlus, 
+  faTrash
 } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import {
+  FontAwesomeIcon 
+} from '@fortawesome/react-fontawesome';
+
 import PropTypes from 'prop-types';
+
 import React from 'react';
 
-import { TaskContainer } from 'app/elements/taskContainer/taskContainer';
+import {
+  TaskContainer 
+} from 'app/elements/taskContainer/taskContainer';
 
-export const Task = ({ taskTittle, taskCount }) => (
+export const Task = ({ taskTittle, taskCount, }) => (
   <TaskContainer>
     <div>
       <h1>{taskTittle}</h1>
@@ -17,7 +24,7 @@ export const Task = ({ taskTittle, taskCount }) => (
       <hr />
       <div className="buttons">
         <FontAwesomeIcon size="lg" icon={faPlus} />
-        <FontAwesomeIcon size="lg" icon={faEdit} />
+        <FontAwesomeIcon size="lg" icon={faPencilAlt} />
         <FontAwesomeIcon size="lg" icon={faTrash} />
       </div>
     </div>
@@ -26,10 +33,10 @@ export const Task = ({ taskTittle, taskCount }) => (
 
 Task.propTypes = {
   taskTittle: PropTypes.string.isRequired,
-  taskCount: PropTypes.number.isRequired
-}
+  taskCount: PropTypes.number.isRequired,
+};
 
 Task.defaultProps = {
   taskTittle: 'No Title',
-  taskCount: 0
-}
+  taskCount: 0,
+};
