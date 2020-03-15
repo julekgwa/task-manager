@@ -2,6 +2,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Greeting } from 'app/components/greeting';
 import { Loader } from 'app/components/loader/loader';
+import { Popup } from 'app/components/popup/popup';
 import { Tasks } from 'app/components/tasks/tasks';
 import { Button } from 'app/elements/button/button';
 import { Header } from 'app/elements/header/header';
@@ -23,6 +24,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class TodoHome extends Component {
+
+  state = {
+    showPopup: false,
+  }
+
   static propTypes = {
     isLoading: PropTypes.bool,
     tasks: PropTypes.array,
@@ -42,6 +48,7 @@ class TodoHome extends Component {
   render = () => {
     const tasks = this.props.tasks || [];
     const isLoading = this.props.isLoading;
+    const showPopup = this.state.showPopup;
 
     return (
       <>
@@ -63,6 +70,8 @@ class TodoHome extends Component {
                   <FontAwesomeIcon icon={faPlus} />
                 </Button>
               </ListHeader>
+
+              <Popup iconType='success' show={showPopup} message='There was an error making a request.' />
 
               <Tasks tasks={tasks} />
             </div>
