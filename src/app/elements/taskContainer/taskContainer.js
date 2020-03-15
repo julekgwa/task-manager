@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 });
 
 const Container = styled.div`
-  width: 394px;
+  width: 300px;
   border-radius: 25px;
   margin: 10px;
   background: ${props =>
@@ -23,7 +23,7 @@ const Container = styled.div`
       ${props =>
     props && props.theme && props.theme.boxShadowSecondaryColor};
   padding: 10px;
-  min-height: 250px;
+  min-height: 300px;
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
@@ -56,6 +56,15 @@ const Container = styled.div`
         (props.theme && props.theme.paragraph)};
       margin: 5px;
     }
+  }
+
+  &:hover {
+    box-shadow: inset 9px 9px 18px
+      ${props =>
+    props && props.theme && props.theme.boxShadowPrimaryColor},
+    inset -9px -9px 18px
+      ${props =>
+    props && props.theme && props.theme.boxShadowSecondaryColor};
   }
 
   ${props =>

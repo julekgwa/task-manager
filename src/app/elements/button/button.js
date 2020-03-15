@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
 
 const ButtonContainer = styled.button`
   font-family: 'Playfair Display', serif;
+  outline:none;
   background: ${props =>
     props && props.theme && props.theme.backgroundColor};
   box-shadow: 10px 10px 20px
@@ -22,6 +23,15 @@ const ButtonContainer = styled.button`
     -10px -10px 20px
       ${props =>
     props && props.theme && props.theme.boxShadowSecondaryColor};
+
+  &:hover {
+    box-shadow: inset 10px 10px 20px
+      ${props =>
+    props && props.theme && props.theme.boxShadowPrimaryColor},
+   inset -10px -10px 20px
+      ${props =>
+    props && props.theme && props.theme.boxShadowSecondaryColor};
+  }
 
   ${props =>
     props.circle &&
@@ -43,6 +53,21 @@ const ButtonContainer = styled.button`
     props &&
             props.theme &&
             props.theme.boxShadowSecondaryColor};
+
+      &:hover {
+
+        box-shadow: inset 5px 5px 10px
+          ${props =>
+    props &&
+            props.theme &&
+            props.theme.boxShadowPrimaryColor},
+        inset -5px -5px 10px
+          ${props =>
+    props &&
+            props.theme &&
+            props.theme.boxShadowSecondaryColor};
+
+      }
     `}
 
   ${props =>
