@@ -1,53 +1,17 @@
-import {
-  faPlus 
-} from '@fortawesome/free-solid-svg-icons';
-
-import {
-  FontAwesomeIcon 
-} from '@fortawesome/react-fontawesome';
-
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Greeting } from 'app/components/greeting';
+import { Loader } from 'app/components/loader/loader';
+import { Tasks } from 'app/components/tasks/tasks';
+import { Button } from 'app/elements/button/button';
+import { Header } from 'app/elements/header/header';
+import { ListHeader } from 'app/elements/listHeader/listHeader';
+import { withLogger } from 'app/hoc/withLogger';
+import { getTasks } from 'app/redux/actions';
+import { Colors } from 'app/styles/colors';
 import PropTypes from 'prop-types';
-
-import React, {
-
-  Component 
-} from 'react';
-
-import {
-  connect 
-} from 'react-redux';
-
-import {
-  Greeting 
-} from 'app/components/greeting';
-
-import {
-  Tasks 
-} from 'app/components/tasks/tasks';
-
-import {
-  Button 
-} from 'app/elements/button/button';
-
-import {
-  Header 
-} from 'app/elements/header/header';
-
-import {
-  ListHeader 
-} from 'app/elements/listHeader/listHeader';
-
-import {
-  withLogger 
-} from 'app/hoc/withLogger';
-
-import {
-  getTasks
-} from 'app/redux/actions';
-
-import {
-  Colors 
-} from 'app/styles/colors';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 const mapStateToProps = state => ({
   isLoading: state.home.isLoading,
@@ -59,7 +23,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 class TodoHome extends Component {
-
   static propTypes = {
     isLoading: PropTypes.bool,
     tasks: PropTypes.array,
@@ -73,13 +36,10 @@ class TodoHome extends Component {
   };
 
   componentDidMount = () => {
-
     this.props.getTasks();
-  
-  }
+  };
 
   render = () => {
-
     const tasks = this.props.tasks || [];
     const isLoading = this.props.isLoading;
 
@@ -88,21 +48,20 @@ class TodoHome extends Component {
         <Header color={Colors.softOrange}>Home</Header>
         <Greeting />
         {isLoading ? (
-          <h1>Loading...</h1>
-        ) :  (
+          <Loader size="7x" />
+        ) : (
           <>
-            <div style={{
-              display: 'flex' ,
-              flexWrap: 'wrap',
-            }}>
-
+            <div
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+              }}
+            >
               <ListHeader>
-
                 <Header>Tasks</Header>
                 <Button circle>
                   <FontAwesomeIcon icon={faPlus} />
                 </Button>
-                
               </ListHeader>
 
               <Tasks tasks={tasks} />
@@ -111,12 +70,10 @@ class TodoHome extends Component {
         )}
       </>
     );
-  
   };
-
 }
 
 export const Home = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(withLogger(TodoHome));

@@ -1,6 +1,4 @@
-import {
-  Colors 
-} from "app/styles/colors";
+import { Colors } from "app/styles/colors";
 
 export const Themes = {
   primary: {
@@ -23,7 +21,7 @@ export const Themes = {
     activeAnchor: Colors.softOrange,
     anchorHover: Colors.slightlyDesaturatedOrange,
     backgroundColor: Colors.lightGrayishBlue,
-    defaultColor: Colors.veryDarkGray,
+    defaultColor: Colors.darkGrayishBlue,
     borderColor: Colors.slightlyDesaturatedOrange,
     alternate: Colors.veryDarkBlue,
     boxShadowPrimaryColor: Colors.grayishBlue,
