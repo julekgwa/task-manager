@@ -1,18 +1,60 @@
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Greeting } from 'app/components/greeting';
-import { Loader } from 'app/components/loader/loader';
-import { Popup } from 'app/components/popup/popup';
-import { Tasks } from 'app/components/tasks/tasks';
-import { Button } from 'app/elements/button/button';
-import { Header } from 'app/elements/header/header';
-import { ListHeader } from 'app/elements/listHeader/listHeader';
-import { withLogger } from 'app/hoc/withLogger';
-import { getTasks } from 'app/redux/actions';
-import { Colors } from 'app/styles/colors';
+import {
+  faPlus 
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
+  FontAwesomeIcon 
+} from '@fortawesome/react-fontawesome';
+
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+
+import React, {
+  Component 
+} from 'react';
+
+import {
+  connect 
+} from 'react-redux';
+
+import {
+  Greeting 
+} from 'app/components/greeting';
+
+import {
+  Loader 
+} from 'app/components/loader/loader';
+
+import {
+  Popup 
+} from 'app/components/popup/popup';
+
+import {
+  Tasks 
+} from 'app/components/tasks/tasks';
+
+import {
+  Button 
+} from 'app/elements/button/button';
+
+import {
+  Header 
+} from 'app/elements/header/header';
+
+import {
+  ListHeader 
+} from 'app/elements/listHeader/listHeader';
+
+import {
+  withLogger 
+} from 'app/hoc/withLogger';
+
+import {
+  getTasks 
+} from 'app/redux/actions';
+
+import {
+  Colors 
+} from 'app/styles/colors';
 
 const mapStateToProps = state => ({
   isLoading: state.home.isLoading,
@@ -42,10 +84,13 @@ class TodoHome extends Component {
   };
 
   componentDidMount = () => {
+
     this.props.getTasks();
+  
   };
 
   render = () => {
+
     const tasks = this.props.tasks || [];
     const isLoading = this.props.isLoading;
     const showPopup = this.state.showPopup;
@@ -79,10 +124,12 @@ class TodoHome extends Component {
         )}
       </>
     );
+  
   };
+
 }
 
 export const Home = connect(
   mapStateToProps,
-  mapDispatchToProps,
+  mapDispatchToProps
 )(withLogger(TodoHome));

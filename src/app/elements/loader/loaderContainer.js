@@ -1,8 +1,11 @@
-import { connect } from 'react-redux';
+import {
+  connect 
+} from 'react-redux';
+
 import styled from 'styled-components';
 
 const mapStateToProps = state => ({
-    theme: state.theme
+  theme: state.theme,
 })
 
 const Container = styled.div`
@@ -15,5 +18,4 @@ const Container = styled.div`
 `;
 
 export const LoaderContainer = connect(mapStateToProps)(Container);
-
 

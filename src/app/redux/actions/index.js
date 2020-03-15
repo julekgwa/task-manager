@@ -1,6 +1,12 @@
-import { fetchAPI } from 'app/fetch/fetch';
-import { GET_TASKS, SET_LOADER, SET_THEME } from '../constants';
+import {
+  fetchAPI 
+} from 'app/fetch/fetch';
 
+import {
+  GET_TASKS,
+  SET_LOADER,
+  SET_THEME 
+} from '../constants';
 
 export function setTheme(payload) {
 

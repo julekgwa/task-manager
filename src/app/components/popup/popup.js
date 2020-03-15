@@ -1,13 +1,27 @@
-import { Button } from 'app/elements/button/button';
-import { PopupContainer } from 'app/elements/popup/popupContainer';
+import {
+  faCheckCircle,
+  faExclamationCircle 
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
+  FontAwesomeIcon 
+} from '@fortawesome/react-fontawesome';
+
 import PropTypes from 'prop-types';
+
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExclamationCircle, faExclamation, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
+
+import {
+  Button 
+} from 'app/elements/button/button';
+
+import {
+  PopupContainer 
+} from 'app/elements/popup/popupContainer';
 
 const icons = {
-  error: faExclamation,
-  success: faCheckCircle
+  error: faExclamationCircle,
+  success: faCheckCircle,
 }
 
 export const Popup = ({
@@ -17,7 +31,7 @@ export const Popup = ({
   message,
   cancelButtonText,
   okButtonText,
-  iconType
+  iconType,
 }) => (
   <>
     {show ? (
@@ -48,6 +62,7 @@ Popup.propTypes = {
   onCancelButtonPress: PropTypes.func,
   onOkButtonPress: PropTypes.func,
   message: PropTypes.string,
+  iconType: PropTypes.string,
 };
 
 Popup.defaultProps = {

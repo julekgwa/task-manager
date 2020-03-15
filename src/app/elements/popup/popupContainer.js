@@ -1,4 +1,7 @@
-import { connect } from 'react-redux';
+import {
+  connect 
+} from 'react-redux';
+
 import styled from 'styled-components';
 
 const mapStateToProps = state => ({
@@ -28,13 +31,13 @@ const Container = styled.div`
     border-radius: 25px;
     flex-direction: column;
     background: ${props =>
-      props && props.theme && props.theme.backgroundColor};
+    props && props.theme && props.theme.backgroundColor};
     box-shadow: 9px 9px 18px
         ${props =>
-          props && props.theme && props.theme.boxShadowPrimaryColor},
+    props && props.theme && props.theme.boxShadowPrimaryColor},
       -9px -9px 18px
         ${props =>
-          props &&
+    props &&
           props.theme &&
           props.theme.boxShadowSecondaryColor};
   }
