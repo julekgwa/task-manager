@@ -13,8 +13,9 @@ export const Themes = {
     defaultColor: Colors.darkGrayishBlue,
     borderColor: Colors.slightlyDesaturatedOrange,
     alternate: Colors.lightGrayishBlue,
-    boxShadowPrimaryColor: Colors.veryDarkGrayBlue,
-    boxShadowSecondaryColor: Colors.veryDarkGrayishBlue,
+    primaryShadowColor: Colors.veryDarkGrayBlue,
+    secondaryShadowColor: Colors.veryDarkGrayishBlue,
+    color: Colors.veryDarkBlue,
   },
   neon: {
     headerColor: Colors.darkGrayishBlue,
@@ -26,7 +27,8 @@ export const Themes = {
     defaultColor: Colors.darkGrayishBlue,
     borderColor: Colors.slightlyDesaturatedOrange,
     alternate: Colors.veryDarkBlue,
-    boxShadowPrimaryColor: Colors.grayishBlue,
-    boxShadowSecondaryColor: Colors.white,
+    primaryShadowColor: Colors.grayishBlue,
+    secondaryShadowColor: Colors.white,
+    color: Colors.lightGrayishBlue,
   },
 };

@@ -19,18 +19,18 @@ const ButtonContainer = styled.button`
     props && props.theme && props.theme.backgroundColor};
   box-shadow: 10px 10px 20px
       ${props =>
-    props && props.theme && props.theme.boxShadowPrimaryColor},
+    props && props.theme && props.theme.primaryShadowColor},
     -10px -10px 20px
       ${props =>
-    props && props.theme && props.theme.boxShadowSecondaryColor};
+    props && props.theme && props.theme.secondaryShadowColor};
 
   &:hover {
     box-shadow: inset 10px 10px 20px
       ${props =>
-    props && props.theme && props.theme.boxShadowPrimaryColor},
+    props && props.theme && props.theme.primaryShadowColor},
    inset -10px -10px 20px
       ${props =>
-    props && props.theme && props.theme.boxShadowSecondaryColor};
+    props && props.theme && props.theme.secondaryShadowColor};
   }
 
   ${props =>
@@ -47,12 +47,12 @@ const ButtonContainer = styled.button`
           ${props =>
     props &&
             props.theme &&
-            props.theme.boxShadowPrimaryColor},
+            props.theme.primaryShadowColor},
         -5px -5px 10px
           ${props =>
     props &&
             props.theme &&
-            props.theme.boxShadowSecondaryColor};
+            props.theme.secondaryShadowColor};
 
       &:hover {
 
@@ -60,12 +60,12 @@ const ButtonContainer = styled.button`
           ${props =>
     props &&
             props.theme &&
-            props.theme.boxShadowPrimaryColor},
+            props.theme.primaryShadowColor},
         inset -5px -5px 10px
           ${props =>
     props &&
             props.theme &&
-            props.theme.boxShadowSecondaryColor};
+            props.theme.secondaryShadowColor};
 
       }
     `}

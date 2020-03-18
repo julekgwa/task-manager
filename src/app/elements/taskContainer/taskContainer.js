@@ -18,10 +18,10 @@ const Container = styled.div`
     props && props.theme && props.theme.backgroundColor};
   box-shadow: 9px 9px 18px
       ${props =>
-    props && props.theme && props.theme.boxShadowPrimaryColor},
+    props && props.theme && props.theme.primaryShadowColor},
     -9px -9px 18px
       ${props =>
-    props && props.theme && props.theme.boxShadowSecondaryColor};
+    props && props.theme && props.theme.secondaryShadowColor};
   padding: 10px;
   min-height: 300px;
   display: flex;
@@ -61,10 +61,10 @@ const Container = styled.div`
   &:hover {
     box-shadow: inset 9px 9px 18px
       ${props =>
-    props && props.theme && props.theme.boxShadowPrimaryColor},
+    props && props.theme && props.theme.primaryShadowColor},
     inset -9px -9px 18px
       ${props =>
-    props && props.theme && props.theme.boxShadowSecondaryColor};
+    props && props.theme && props.theme.secondaryShadowColor};
   }
 
   ${props =>

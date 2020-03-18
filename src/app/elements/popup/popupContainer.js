@@ -34,12 +34,12 @@ const Container = styled.div`
     props && props.theme && props.theme.backgroundColor};
     box-shadow: 9px 9px 18px
         ${props =>
-    props && props.theme && props.theme.boxShadowPrimaryColor},
+    props && props.theme && props.theme.primaryShadowColor},
       -9px -9px 18px
         ${props =>
     props &&
           props.theme &&
-          props.theme.boxShadowSecondaryColor};
+          props.theme.secondaryShadowColor};
   }
 
   .message {

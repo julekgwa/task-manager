@@ -8740,6 +8740,11 @@ react-is@^16.12.0, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-i
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.0.tgz#0f37c3613c34fe6b37cd7f763a0d6293ab15c527"
   integrity sha512-GFMtL0vHkiBv9HluwNZTggSn/sCyEt9n02aM0dSAjGGyqyNlAyftYm4phPxdvCigG15JreC5biwxCgTAJZ7yAA==
 
+react-neumorphic-toggle@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-neumorphic-toggle/-/react-neumorphic-toggle-1.0.1.tgz#45d990fc3a303d01659501b1e0829d6b8fe2b3cc"
+  integrity sha512-/gn90qBCfFFODpM60eRIqZ/8DKa6za8kjk7j5ZXvKuFoCuz/c8q+3kR4Uzn32Tfawn2ytZgGWF9gKcFObh7yjw==
+
 react-redux@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.0.tgz#f970f62192b3981642fec46fd0db18a074fe879d"

@@ -3,27 +3,51 @@ import {
   faBell,
   faHome,
   faPencilAlt
-} from "@fortawesome/free-solid-svg-icons";
+} from '@fortawesome/free-solid-svg-icons';
 
 import {
   FontAwesomeIcon 
-} from "@fortawesome/react-fontawesome";
+} from '@fortawesome/react-fontawesome';
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import React from "react";
+import React from 'react';
+
+import Switch from 'react-neumorphic-toggle';
+
+import {
+  connect 
+} from 'react-redux';
 
 import {
   NavLink 
-} from "react-router-dom";
+} from 'react-router-dom';
 
-import Logo from "app/assets/logo.png";
+import Logo from 'app/assets/logo.png';
 
 import {
-  Toggle 
-} from "app/components/toggle";
+  setTheme 
+} from 'app/redux/actions';
 
-export const RoutesLinks = ({ toggleMenu, }) => (
+import {
+  PRIMARY 
+} from 'app/redux/constants';
+
+const mapStateToProps = state => ({
+  theme: state.theme,
+  currentTheme: state.currentTheme,
+});
+
+const mapDispatchToProps = dispatch => ({
+  themeSwitcher: () => dispatch(setTheme()),
+});
+
+const Links = ({
+  toggleMenu,
+  theme,
+  themeSwitcher,
+  currentTheme,
+}) => (
   <>
     <NavLink exact strict to="/">
       <div className="logo">
@@ -43,7 +67,11 @@ export const RoutesLinks = ({ toggleMenu, }) => (
       Edit
     </NavLink>
     <a style={styles.themeSwitcher} href="#">
-      <Toggle />
+      <Switch
+        theme={theme}
+        checked={currentTheme === PRIMARY ? false : true}
+        onChange={themeSwitcher}
+      />
     </a>
     <a href="#" className="icon" onClick={toggleMenu}>
       <FontAwesomeIcon icon={faBars} />
@@ -51,12 +79,20 @@ export const RoutesLinks = ({ toggleMenu, }) => (
   </>
 );
 
-RoutesLinks.propTypes = {
+Links.propTypes = {
   toggleMenu: PropTypes.func,
+  theme: PropTypes.object,
+  themeSwitcher: PropTypes.func,
+  currentTheme: PropTypes.string,
 };
+
+export const RoutesLinks = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Links);
 
 const styles = {
   themeSwitcher: {
-    float: "right",
+    float: 'right',
   },
 };

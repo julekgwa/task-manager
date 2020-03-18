@@ -52,9 +52,9 @@ const NavbarContainer = styled.nav`
     align-items: center;
     background: ${props => props && props.theme && props.theme.backgroundColor};
     box-shadow: 5px 5px 10px
-        ${props => props && props.theme && props.theme.boxShadowPrimaryColor},
+        ${props => props && props.theme && props.theme.primaryShadowColor},
       -5px -5px 10px
-        ${props => props && props.theme && props.theme.boxShadowSecondaryColor};
+        ${props => props && props.theme && props.theme.secondaryShadowColor};
 
     img {
       height: 40px;
