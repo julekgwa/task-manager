@@ -3,7 +3,7 @@ import {
 } from "app/styles/colors";
 
 export const Themes = {
-  primary: {
+  neon: {
     headerColor: Colors.darkGrayishBlue,
     paragraph: Colors.darkGrayishBlue,
     anchor: Colors.darkGrayishBlue,
@@ -17,7 +17,7 @@ export const Themes = {
     secondaryShadowColor: Colors.veryDarkGrayishBlue,
     color: Colors.veryDarkBlue,
   },
-  neon: {
+  primary: {
     headerColor: Colors.darkGrayishBlue,
     paragraph: Colors.veryDarkGray,
     anchor: Colors.veryDarkGray,

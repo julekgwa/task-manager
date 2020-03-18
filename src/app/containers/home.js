@@ -9,6 +9,7 @@ import {
 import PropTypes from 'prop-types';
 
 import React, {
+
   Component 
 } from 'react';
 
@@ -69,7 +70,8 @@ class TodoHome extends Component {
 
   state = {
     showPopup: false,
-  }
+    startDate: new Date(),
+  };
 
   static propTypes = {
     isLoading: PropTypes.bool,
@@ -83,6 +85,22 @@ class TodoHome extends Component {
     getTasks: () => {},
   };
 
+  togglePopup = () => {
+
+    this.setState(prevState => ({
+      showPopup: !prevState.showPopup,
+    }));
+  
+  };
+
+  handleDateChange = date => {
+
+    this.setState({
+      startDate: date,
+    });
+  
+  };
+
   componentDidMount = () => {
 
     this.props.getTasks();
@@ -94,6 +112,7 @@ class TodoHome extends Component {
     const tasks = this.props.tasks || [];
     const isLoading = this.props.isLoading;
     const showPopup = this.state.showPopup;
+    const startDate = this.state.startDate;
 
     return (
       <>
@@ -111,12 +130,19 @@ class TodoHome extends Component {
             >
               <ListHeader>
                 <Header>Tasks</Header>
-                <Button circle>
+                <Button onClick={this.togglePopup} circle>
                   <FontAwesomeIcon icon={faPlus} />
                 </Button>
               </ListHeader>
 
-              <Popup iconType='success' show={showPopup} message='There was an error making a request.' />
+              <Popup
+                startDate={startDate}
+                onDateChange={this.handleDateChange}
+                onCancelButtonPress={this.togglePopup}
+                iconType="success"
+                show={showPopup}
+                message="There was an error making a request."
+              />
 
               <Tasks tasks={tasks} />
             </div>

@@ -1,6 +1,6 @@
 import {
   faCheckCircle,
-  faExclamationCircle 
+  faExclamationCircle
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -19,10 +19,14 @@ import {
   PopupContainer 
 } from 'app/elements/popup/popupContainer';
 
+import {
+  Form 
+} from '../form/form';
+
 const icons = {
   error: faExclamationCircle,
   success: faCheckCircle,
-}
+};
 
 export const Popup = ({
   show,
@@ -32,20 +36,33 @@ export const Popup = ({
   cancelButtonText,
   okButtonText,
   iconType,
+  notification,
+  startDate,
+  onDateChange,
 }) => (
   <>
     {show ? (
       <PopupContainer>
         <div className="container">
-          <div className="message">
-            <FontAwesomeIcon size='5x' icon={icons[iconType]} />
-            <p>{message}</p>
+
+          {notification && (
+            <div className="message">
+              <FontAwesomeIcon size="5x" icon={icons[iconType]} />
+              <p>{message}</p>
+            </div>
+          )}
+
+          <div className="form">
+            <Form startDate={startDate} onDateChange={onDateChange} />
           </div>
+
           <div className="buttons">
             <Button onClick={onCancelButtonPress} round>
               {cancelButtonText}
             </Button>
-            <Button onClick={onOkButtonPress} round>{okButtonText}</Button>
+            <Button onClick={onOkButtonPress} round>
+              {okButtonText}
+            </Button>
           </div>
         </div>
       </PopupContainer>
@@ -63,6 +80,9 @@ Popup.propTypes = {
   onOkButtonPress: PropTypes.func,
   message: PropTypes.string,
   iconType: PropTypes.string,
+  notification: PropTypes.bool,
+  startDate: PropTypes.object,
+  onDateChange: PropTypes.func,
 };
 
 Popup.defaultProps = {

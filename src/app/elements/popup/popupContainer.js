@@ -17,16 +17,14 @@ const Container = styled.div`
   right: 0;
   bottom: 0;
   margin: auto;
-  background-color: ${props =>
-    props && props.theme && props.theme.backgroundColor};
+  opacity: 1;
+  background-color: rgba(236, 240, 243, .5);
 
   .container {
-    position: absolute;
-    left: 25%;
-    right: 25%;
-    top: 25%;
-    bottom: 25%;
-    margin: auto;
+    width: 800px;
+    min-height: 300px;
+    margin: 100px auto;
+    opacity: 1;
     display: flex;
     border-radius: 25px;
     flex-direction: column;
@@ -52,6 +50,13 @@ const Container = styled.div`
     p {
       text-align: center;
     }
+  }
+
+  .form {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-top: 30px;
   }
 
   .buttons {
