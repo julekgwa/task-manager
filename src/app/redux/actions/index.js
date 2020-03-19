@@ -3,9 +3,10 @@ import {
 } from 'app/fetch/fetch';
 
 import {
+  ADD_TASK,
   GET_TASKS,
-  SET_LOADER,
-  SET_THEME 
+  SET_LOADER, 
+  SET_THEME
 } from '../constants';
 
 export function setTheme(payload) {
@@ -26,6 +27,15 @@ export function setLoader(payload) {
 
 }
 
+export function addTask(payload) {
+
+  return {
+    type: ADD_TASK,
+    payload,
+  }
+
+}
+
 export function getTasks() {
 
   return dispatch => {
@@ -42,7 +52,7 @@ export function getTasks() {
       url: `${process.env.REACT_APP_API}`,
       method: 'get',
     })
-      .then(res => {
+      .then(() => {
 
         dispatch(
           setLoader({
@@ -56,7 +66,7 @@ export function getTasks() {
 
         dispatch({
           type: GET_TASKS,
-          payload: res,
+          payload: [],
         });
       
       })

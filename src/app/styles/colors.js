@@ -19,4 +19,6 @@ export const Colors = {
   veryDarkGrayBlue: "#202327",
   veryDarkGrayishBlue: "#32373E",
   grayishBlue: "#B6B9BB",
+  red: '#FF0000',
+  darkGreen: '#459628',
 };

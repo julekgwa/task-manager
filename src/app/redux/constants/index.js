@@ -4,3 +4,4 @@ export const PRIMARY = "PRIMARY";
 export const NEON = "NEON";
 export const SET_LOADER = 'SET_LOADER';
 export const GET_TASKS = 'GET_TASKS';
+export const ADD_TASK = 'ADD_TASK';

@@ -1,9 +1,4 @@
 import {
-  faCheckCircle,
-  faExclamationCircle
-} from '@fortawesome/free-solid-svg-icons';
-
-import {
   FontAwesomeIcon 
 } from '@fortawesome/react-fontawesome';
 
@@ -20,13 +15,8 @@ import {
 } from 'app/elements/popup/popupContainer';
 
 import {
-  Form 
-} from '../form/form';
-
-const icons = {
-  error: faExclamationCircle,
-  success: faCheckCircle,
-};
+  Icons 
+} from '../constants';
 
 export const Popup = ({
   show,
@@ -37,8 +27,6 @@ export const Popup = ({
   okButtonText,
   iconType,
   notification,
-  startDate,
-  onDateChange,
 }) => (
   <>
     {show ? (
@@ -47,14 +35,10 @@ export const Popup = ({
 
           {notification && (
             <div className="message">
-              <FontAwesomeIcon size="5x" icon={icons[iconType]} />
+              <FontAwesomeIcon size="5x" icon={Icons[iconType]} />
               <p>{message}</p>
             </div>
           )}
-
-          <div className="form">
-            <Form startDate={startDate} onDateChange={onDateChange} />
-          </div>
 
           <div className="buttons">
             <Button onClick={onCancelButtonPress} round>
@@ -81,8 +65,6 @@ Popup.propTypes = {
   message: PropTypes.string,
   iconType: PropTypes.string,
   notification: PropTypes.bool,
-  startDate: PropTypes.object,
-  onDateChange: PropTypes.func,
 };
 
 Popup.defaultProps = {

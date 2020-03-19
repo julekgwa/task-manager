@@ -10,7 +10,7 @@ import {
   TaskItem 
 } from './taskItem';
 
-export const Tasks = ({ tasks, }) => {
+export const Tasks = ({ tasks, onDeleteTask, onAddSubTask, }) => {
 
   return (
     <>
@@ -23,11 +23,13 @@ export const Tasks = ({ tasks, }) => {
         )
 
         : (
-          tasks.map(task => (
+          tasks.map((task) => (
             <TaskItem
-              key={task.title}
+              deleteTask={() => onDeleteTask(task)}
+              addSubTask={() => onAddSubTask(task.id)}
+              key={task.id}
               title={task.title}
-              subTasks={task.taskCount}
+              subTasks={task.tasks.length}
             />
           ))
         )}
@@ -38,4 +40,6 @@ export const Tasks = ({ tasks, }) => {
 
 Tasks.propTypes = {
   tasks: PropTypes.array.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
+  onAddSubTask: PropTypes.func.isRequired,
 };

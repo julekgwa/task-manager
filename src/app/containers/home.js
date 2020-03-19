@@ -18,6 +18,14 @@ import {
 } from 'react-redux';
 
 import {
+  v4 as uuid
+} from 'uuid';
+
+import {
+  Form 
+} from 'app/components/form/form';
+
+import {
   Greeting 
 } from 'app/components/greeting';
 
@@ -50,6 +58,7 @@ import {
 } from 'app/hoc/withLogger';
 
 import {
+  addTask,
   getTasks 
 } from 'app/redux/actions';
 
@@ -60,29 +69,45 @@ import {
 const mapStateToProps = state => ({
   isLoading: state.home.isLoading,
   tasks: state.tasks,
+  isSubmittingTask: state.home.isSubmittingTask,
+  addTaskStatus: state.home.addTaskStatus,
+  addTaskMessage: state.home.addTaskMessage,
 });
 
 const mapDispatchToProps = dispatch => ({
   getTasks: () => dispatch(getTasks()),
+  addTask: payload => dispatch(addTask(payload)),
 });
 
 class TodoHome extends Component {
 
   state = {
     showPopup: false,
-    startDate: new Date(),
+    taskStartDate: new Date(),
+    taskValue: '',
+    showForm: false,
+    isInputEmpty: false,
+    rootId: null,
   };
 
   static propTypes = {
     isLoading: PropTypes.bool,
     tasks: PropTypes.array,
     getTasks: PropTypes.func,
+    isSubmittingTask: PropTypes.bool,
+    addTaskStatus: PropTypes.string,
+    addTaskMessage: PropTypes.string,
+    addTask: PropTypes.func,
   };
 
   static defaultProps = {
+    addTaskStatus: '',
+    addTaskMessage: '',
+    isSubmittingTask: false,
     tasks: [],
     isLoading: false,
     getTasks: () => {},
+    addTask: () => {},
   };
 
   togglePopup = () => {
@@ -93,13 +118,72 @@ class TodoHome extends Component {
   
   };
 
-  handleDateChange = date => {
-
+  showAddTaskForm = (rootId) => {
+    
     this.setState({
-      startDate: date,
+      showForm: true,
+      rootId: rootId || null,
     });
   
   };
+
+  closeForm = () => {
+
+    this.setState({
+      showForm: false,
+      taskValue: '',
+      isInputEmpty: false,
+    });
+  
+  };
+
+  addTask = () => {
+
+    if (!this.state.taskValue) {
+
+      this.setState({
+        isInputEmpty: true,
+      });
+
+      return;
+    
+    }
+
+    this.props.addTask({
+      title: this.state.taskValue,
+      status: false,
+      dueDate: this.state.taskStartDate,
+      rootId: this.state.rootId,
+      tasks: [],
+      id: uuid(),
+    });
+
+    this.setState({
+      taskValue: '',
+    });
+  
+  };
+
+  handleTaskValueChange = e => {
+
+    this.setState({
+      taskValue: e.target.value,
+      isInputEmpty: false,
+    });
+  
+  };
+
+  handleDateChange = date => {
+
+    this.setState({
+      taskStartDate: date,
+    });
+  
+  };
+
+  deleteTask = () => {
+  
+  }
 
   componentDidMount = () => {
 
@@ -111,8 +195,14 @@ class TodoHome extends Component {
 
     const tasks = this.props.tasks || [];
     const isLoading = this.props.isLoading;
+    const isSubmittingTask = this.props.isSubmittingTask;
+    const addTaskStatus = this.props.addTaskStatus;
+    const addTaskMessage = this.props.addTaskMessage;
     const showPopup = this.state.showPopup;
-    const startDate = this.state.startDate;
+    const taskStartDate = this.state.taskStartDate;
+    const showForm = this.state.showForm;
+    const taskValue = this.state.taskValue;
+    const isInputEmpty = this.state.isInputEmpty;
 
     return (
       <>
@@ -130,21 +220,33 @@ class TodoHome extends Component {
             >
               <ListHeader>
                 <Header>Tasks</Header>
-                <Button onClick={this.togglePopup} circle>
+                <Button onClick={() => this.showAddTaskForm()} circle>
                   <FontAwesomeIcon icon={faPlus} />
                 </Button>
               </ListHeader>
 
-              <Popup
-                startDate={startDate}
+              <Form
+                show={showForm}
+                taskStartDate={taskStartDate}
+                isSubmittingTask={isSubmittingTask}
+                addTaskStatus={addTaskStatus}
+                addTaskMessage={addTaskMessage}
                 onDateChange={this.handleDateChange}
+                onCloseForm={this.closeForm}
+                onConfirm={this.addTask}
+                onTaskInputChange={this.handleTaskValueChange}
+                taskInputValue={taskValue}
+                isInputEmpty={isInputEmpty}
+              />
+
+              <Popup
                 onCancelButtonPress={this.togglePopup}
                 iconType="success"
                 show={showPopup}
                 message="There was an error making a request."
               />
 
-              <Tasks tasks={tasks} />
+              <Tasks onAddSubTask={this.showAddTaskForm} onDeleteTask={this.deleteTask} tasks={tasks} />
             </div>
           </>
         )}

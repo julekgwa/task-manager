@@ -49,6 +49,8 @@ const Container = styled.div`
 
     p {
       text-align: center;
+      margin-top: 40px;
+      font-size: 20px;
     }
   }
 
