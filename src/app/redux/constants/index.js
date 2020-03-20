@@ -5,3 +5,6 @@ export const NEON = "NEON";
 export const SET_LOADER = 'SET_LOADER';
 export const GET_TASKS = 'GET_TASKS';
 export const ADD_TASK = 'ADD_TASK';
+export const REMOVE_TASK = 'REMOVE_TASK';
+export const GET_TASK = 'GET_TASK';
+export const UPDATE_SUBTASK = 'UPDATE_SUBTASK';

@@ -15,4 +15,5 @@ export const Icons = {
 export const IconColors = {
   error: Colors.red,
   success: Colors.darkGreen,
+  complete: Colors.softOrange,
 }

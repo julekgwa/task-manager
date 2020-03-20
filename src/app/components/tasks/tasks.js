@@ -23,11 +23,13 @@ export const Tasks = ({ tasks, onDeleteTask, onAddSubTask, }) => {
         )
 
         : (
-          tasks.map((task) => (
+          tasks.map((task, index) => (
             <TaskItem
-              deleteTask={() => onDeleteTask(task)}
+              deleteTask={() => onDeleteTask(index)}
               addSubTask={() => onAddSubTask(task.id)}
               key={task.id}
+              taskId={task.id}
+              rootId={task.rootId}
               title={task.title}
               subTasks={task.tasks.length}
             />

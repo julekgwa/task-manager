@@ -18,7 +18,7 @@ import {
 } from 'react-redux';
 
 import {
-  v4 as uuid
+  v4 as uuid 
 } from 'uuid';
 
 import {
@@ -59,7 +59,8 @@ import {
 
 import {
   addTask,
-  getTasks 
+  getTasks,
+  removeTask 
 } from 'app/redux/actions';
 
 import {
@@ -77,6 +78,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getTasks: () => dispatch(getTasks()),
   addTask: payload => dispatch(addTask(payload)),
+  removeTask: payload => dispatch(removeTask(payload)),
 });
 
 class TodoHome extends Component {
@@ -98,6 +100,7 @@ class TodoHome extends Component {
     addTaskStatus: PropTypes.string,
     addTaskMessage: PropTypes.string,
     addTask: PropTypes.func,
+    removeTask: PropTypes.func,
   };
 
   static defaultProps = {
@@ -108,6 +111,7 @@ class TodoHome extends Component {
     isLoading: false,
     getTasks: () => {},
     addTask: () => {},
+    removeTask: () => {},
   };
 
   togglePopup = () => {
@@ -118,8 +122,8 @@ class TodoHome extends Component {
   
   };
 
-  showAddTaskForm = (rootId) => {
-    
+  showAddTaskForm = rootId => {
+
     this.setState({
       showForm: true,
       rootId: rootId || null,
@@ -181,13 +185,22 @@ class TodoHome extends Component {
   
   };
 
-  deleteTask = () => {
+  deleteTask = index => {
+
+    this.props.removeTask(index);
   
-  }
+  };
 
   componentDidMount = () => {
 
     this.props.getTasks();
+
+    const date = new Date();
+    date.setHours(23,59,59,999);
+
+    this.setState({
+      taskStartDate: date,
+    });
   
   };
 
@@ -206,8 +219,8 @@ class TodoHome extends Component {
 
     return (
       <>
-        <Header color={Colors.softOrange}>Home</Header>
         <Greeting />
+        <Header color={Colors.softOrange}>Home</Header>
         {isLoading ? (
           <Loader size="7x" />
         ) : (
@@ -246,7 +259,11 @@ class TodoHome extends Component {
                 message="There was an error making a request."
               />
 
-              <Tasks onAddSubTask={this.showAddTaskForm} onDeleteTask={this.deleteTask} tasks={tasks} />
+              <Tasks
+                onAddSubTask={this.showAddTaskForm}
+                onDeleteTask={this.deleteTask}
+                tasks={tasks}
+              />
             </div>
           </>
         )}

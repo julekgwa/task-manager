@@ -16,6 +16,7 @@ export const Themes = {
     primaryShadowColor: Colors.veryDarkGrayBlue,
     secondaryShadowColor: Colors.veryDarkGrayishBlue,
     color: Colors.veryDarkBlue,
+    editParagraphColor: Colors.veryDarkGray,
   },
   primary: {
     headerColor: Colors.darkGrayishBlue,
@@ -30,5 +31,6 @@ export const Themes = {
     primaryShadowColor: Colors.grayishBlue,
     secondaryShadowColor: Colors.white,
     color: Colors.lightGrayishBlue,
+    editParagraphColor: Colors.white,
   },
 };

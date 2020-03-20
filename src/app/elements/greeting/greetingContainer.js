@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const GreetingContainer = styled.div`
-  margin-bottom: 100px;
+  margin: 100px 0 100px 0;
   div {
     display: inline-flex;
     flex-direction: column;

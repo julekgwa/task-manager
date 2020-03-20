@@ -1,8 +1,7 @@
 import {
   faBars,
   faBell,
-  faHome,
-  faPencilAlt
+  faHome
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -61,10 +60,6 @@ const Links = ({
     <NavLink exact strict to="/reminders">
       <FontAwesomeIcon icon={faBell} />
       Reminders
-    </NavLink>
-    <NavLink exact strict to="/edit">
-      <FontAwesomeIcon icon={faPencilAlt} />
-      Edit
     </NavLink>
     <a style={styles.themeSwitcher} href="#">
       <Switch

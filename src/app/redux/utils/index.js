@@ -2,6 +2,49 @@ import {
   findFirst 
 } from 'obj-traverse/lib/obj-traverse';
 
+export function getTask(id, isRoot, tasks) {
+
+  if (isRoot) {
+
+    const rootTask = tasks.filter(t => t && t.id === id);
+
+    return rootTask.length > 0 ? rootTask[0] : {};
+  
+  }
+
+}
+
+export function updateSubTask(tasks, subTaskId) {
+
+  const copyOfTasks = JSON.parse(JSON.stringify(tasks));
+  let updatedTask;
+
+  for (let i = 0; i < copyOfTasks.length; i++) {
+
+    const currentTask = copyOfTasks[i];
+
+    const subTask = findFirst(currentTask, 'tasks', {
+      id: subTaskId,
+    });
+
+    if (subTask) {
+
+      subTask.status = !subTask.status;
+      updatedTask = currentTask;
+
+      break;
+    
+    }
+
+  }
+
+  return {
+    tasks: copyOfTasks,
+    updatedTask,
+  };
+
+}
+
 export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
 
   // spread operator doesn't deep copy
@@ -31,7 +74,7 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
 
   }
 
-  if (copyArrayOfNestedArrayObjects.length === 0) {
+  if (copyArrayOfNestedArrayObjects.length === 0 || newTask.rootId === null) {
 
     copyArrayOfNestedArrayObjects.push(newTask);
   

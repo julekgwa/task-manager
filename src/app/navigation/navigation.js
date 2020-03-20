@@ -44,7 +44,7 @@ export const Navigation = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/reminders" component={Reminders} />
-        <Route exact path="/edit" component={Edit} />
+        <Route exact path="/edit/:taskId/:root" component={Edit} />
         <Route>
           <PageNotFound />
         </Route>
