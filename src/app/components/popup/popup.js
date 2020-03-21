@@ -31,16 +31,16 @@ export const Popup = ({
   <>
     {show ? (
       <PopupContainer>
-        <div className="container">
+        <div className='container'>
 
           {notification && (
-            <div className="message">
-              <FontAwesomeIcon size="5x" icon={Icons[iconType]} />
+            <div className='message'>
+              <FontAwesomeIcon size='5x' icon={Icons[iconType]} />
               <p>{message}</p>
             </div>
           )}
 
-          <div className="buttons">
+          <div className='buttons'>
             <Button onClick={onCancelButtonPress} round>
               {cancelButtonText}
             </Button>

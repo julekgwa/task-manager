@@ -33,17 +33,17 @@ export const TaskItem = ({
       <h1>{title}</h1>
       <p>{subTasks} Tasks</p>
       <hr />
-      <div className="buttons">
+      <div className='buttons'>
         <FontAwesomeIcon
-          size="lg"
+          size='lg'
           onClick={addSubTask}
           icon={faPlus}
         />
         <Link to={`/edit/${taskId}/${rootId ? rootId : 'task' }`}>
-          <FontAwesomeIcon size="lg" icon={faPencilAlt} />
+          <FontAwesomeIcon size='lg' icon={faPencilAlt} />
         </Link>
         <FontAwesomeIcon
-          size="lg"
+          size='lg'
           onClick={deleteTask}
           icon={faTrash}
         />

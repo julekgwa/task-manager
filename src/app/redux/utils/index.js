@@ -12,6 +12,22 @@ export function getTask(id, isRoot, tasks) {
   
   }
 
+  for (let i = 0; i < tasks.length; i++) {
+
+    const currentTask = tasks[i];
+
+    const subTask = findFirst(currentTask, 'tasks', {
+      id: id,
+    });
+
+    if (subTask) {
+
+      return subTask;
+    
+    }
+    
+  }
+
 }
 
 export function updateSubTask(tasks, subTaskId) {
@@ -49,10 +65,11 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
 
   // spread operator doesn't deep copy
   const copyArrayOfNestedArrayObjects = JSON.parse(JSON.stringify(arrayOfNestedArrayObjects));
+  let currentTask;
 
   for (let i = 0; i < copyArrayOfNestedArrayObjects.length; i++) {
 
-    const currentTask = copyArrayOfNestedArrayObjects[i];
+    currentTask = copyArrayOfNestedArrayObjects[i];
 
     if (currentTask && currentTask.id === newTask.rootId) {
 
@@ -69,6 +86,10 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
     if (rootTask) {
 
       rootTask.tasks.push(newTask);
+
+      currentTask = rootTask;
+
+      break;
     
     }
 
@@ -80,6 +101,9 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
   
   }
 
-  return copyArrayOfNestedArrayObjects;
+  return {
+    tasks: copyArrayOfNestedArrayObjects,
+    task: currentTask,
+  };
 
 }

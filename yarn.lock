@@ -4101,6 +4101,11 @@ eslint-plugin-modules-newline@^0.0.1:
   dependencies:
     requireindex "~1.1.0"
 
+eslint-plugin-no-unused-react-component-methods@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-no-unused-react-component-methods/-/eslint-plugin-no-unused-react-component-methods-1.1.0.tgz#5e81ca47327e219eddd52447b782a2eb96952df2"
+  integrity sha512-NYcyxx5RP0R/RuZDihQLNIKG+tKfcJICrZGk+HO/TUOTAmEn+TuJn7Z9aGDM6yxuLjSSDWkzjec6SF3f1y7n5Q==
+
 eslint-plugin-prettier@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.1.2.tgz#432e5a667666ab84ce72f945c72f77d996a5c9ba"

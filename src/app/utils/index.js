@@ -2,16 +2,14 @@ import moment from 'moment';
 
 export function getDueDate(dueDate) {
 
-  if (!dueDate) {
+  if (!parseInt(dueDate, 10)) {
 
     return '00:00';
   
   }
- 
-  const endDate = typeof dueDate === 'string' ? new Date(dueDate) : dueDate;
 
   const startDate = moment(Date.now());
-  const timeEnd = moment(endDate.getTime());
+  const timeEnd = moment(parseInt(dueDate, 10));
   const diff = timeEnd.diff(startDate);
   const diffDuration = moment.duration(diff);
 
@@ -26,5 +24,61 @@ export function getDueDate(dueDate) {
     return `in ${diffDuration.days()} days`
   
   }
+
+}
+
+export function flatten(items) {
+
+  const flat = [];
+
+  items.forEach(item => {
+
+    flat.push(item);
+    if (Array.isArray(item.tasks) && item.tasks.length > 0) {
+
+      flat.push(...flatten(item.tasks));
+      delete item.tasks;
+    
+    }
+    delete item.tasks;
+  
+  });
+
+  return flat;
+
+}
+
+export function getObjectTasksDepth(obj, level = 0) {
+
+  if (!obj || obj.tasks.length === 0) {
+
+    return level;
+  
+  }
+
+  let nextObj;
+
+  for (const key in obj) {
+
+    if (obj[key]) {
+
+      if (!Array.isArray(obj[key])) {
+
+        continue;
+      
+      }
+
+      if (Array.isArray(obj[key]) && obj[key].length !== 0) {
+
+        nextObj = obj[key][0];
+        break;
+      
+      }
+    
+    }
+  
+  }
+
+  return getObjectTasksDepth(nextObj, level + 1);
 
 }

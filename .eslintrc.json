@@ -21,7 +21,7 @@
       }
     }
   },
-  "plugins": ["import", "eslint-plugin-import", "modules-newline"],
+  "plugins": ["import", "eslint-plugin-import", "modules-newline", "no-unused-react-component-methods"],
   "extends": [
     "eslint:recommended",
     "plugin:eslint-plugin-import/recommended",
@@ -29,6 +29,8 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "no-unused-react-component-methods/no-unused-react-component-methods": 2,
+    "jsx-quotes": ["error", "prefer-single"],
     "no-var": "error",
     "newline-per-chained-call": "error",
     "modules-newline/import-declaration-newline": "error",
@@ -74,6 +76,7 @@
       }
     ],
     "react/no-unused-prop-types": [2],
+    "react/no-unused-state": [2],
     "import/no-default-export": "error",
     "import/newline-after-import": "error",
     "import/order": [

@@ -12,7 +12,7 @@ const mapStateToProps = state => ({
 
 const GlobalStyles = createGlobalStyle`
   body {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Signika', sans-serif;
     background-color: ${props =>
     props && props.theme && props.theme.backgroundColor}
   }

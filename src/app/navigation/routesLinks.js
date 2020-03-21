@@ -48,27 +48,27 @@ const Links = ({
   currentTheme,
 }) => (
   <>
-    <NavLink exact strict to="/">
-      <div className="logo">
-        <img src={Logo} alt="logo" />
+    <NavLink exact strict to='/'>
+      <div className='logo'>
+        <img src={Logo} alt='logo' />
       </div>
     </NavLink>
-    <NavLink exact strict to="/">
+    <NavLink exact strict to='/'>
       <FontAwesomeIcon icon={faHome} />
       Home
     </NavLink>
-    <NavLink exact strict to="/reminders">
+    <NavLink exact strict to='/reminders'>
       <FontAwesomeIcon icon={faBell} />
       Reminders
     </NavLink>
-    <a style={styles.themeSwitcher} href="#">
+    <a style={styles.themeSwitcher} href='#'>
       <Switch
         theme={theme}
         checked={currentTheme === PRIMARY ? false : true}
         onChange={themeSwitcher}
       />
     </a>
-    <a href="#" className="icon" onClick={toggleMenu}>
+    <a href='#' className='icon' onClick={toggleMenu}>
       <FontAwesomeIcon icon={faBars} />
     </a>
   </>

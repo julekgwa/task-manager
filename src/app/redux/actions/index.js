@@ -94,9 +94,11 @@ export function getTasks() {
 
         // TODO: check for ok status
 
+        const tasks = localStorage.getItem('tasks');
+
         dispatch({
           type: GET_TASKS,
-          payload: [],
+          payload: JSON.parse(tasks),
         });
       
       })

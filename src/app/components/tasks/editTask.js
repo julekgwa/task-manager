@@ -10,7 +10,10 @@ import {
 
 import PropTypes from 'prop-types';
 
-import React from 'react';
+import React, {
+
+  useEffect 
+} from 'react';
 
 import {
   TaskContainer 
@@ -20,49 +23,64 @@ import {
   EditItem 
 } from './editItem';
 
-export const EditTask = ({ dueDate, title, subTasks, updateSubTask, }) => (
-  <TaskContainer edit>
-    <div className="add-task">
-      <div className="todo">
-        <FontAwesomeIcon size="2x" icon={faClipboardList} />
+export const EditTask = ({ taskId, type, getTask, task, updateSubTask,showAddTaskForm, }) => {
+
+  useEffect(() => {
+
+    getTask({
+      taskId: taskId,
+      isRoot: type === 'task',
+    });
+  
+  }, [taskId, getTask, type])
+
+  return (
+    <TaskContainer edit>
+      <div className='add-task'>
+        <div className='todo'>
+          <FontAwesomeIcon size='2x' icon={faClipboardList} />
+        </div>
+        <div className='add-todo'>
+          <FontAwesomeIcon onClick={showAddTaskForm} size='2x' icon={faPlus} />
+        </div>
       </div>
-      <div className="add-todo">
-        <FontAwesomeIcon size="2x" icon={faPlus} />
+      <div className='task-status'>
+        <p>{`You have ${task && task.tasks && task.tasks.length} tasks to finish today`}</p>
       </div>
-    </div>
-    <div className="task-status">
-      <p>{`You have ${subTasks.length} tasks to finish today`}</p>
-    </div>
-    <div className="task-title">
-      <EditItem
-        icon={faAngleDoubleRight}
-        rootTask
-        title={title}
-        dueDate={dueDate}
-        incomplete={false}
-      />
-    </div>
-    {subTasks.map(task => (
-      <EditItem
-        updateSubTask={() => updateSubTask(task.id)}
-        key={task.id}
-        title={task.title}
-        dueDate={task.dueDate}
-        incomplete={!task.status}
-      />
-    ))}
-  </TaskContainer>
-);
+      <div className='task-title'>
+        <EditItem
+          icon={faAngleDoubleRight}
+          rootTask={true}
+          title={task.title}
+          dueDate={task.dueDate}
+          incomplete={false}
+        />
+      </div>
+      {task && task.tasks && task.tasks.map(task => (
+        <EditItem
+          updateSubTask={() => updateSubTask(task.id)}
+          key={task.id}
+          title={task.title}
+          taskId={task.id}
+          dueDate={task.dueDate}
+          incomplete={!task.status}
+        />
+      ))}
+    </TaskContainer>
+  );
+
+}
 
 EditTask.propTypes = {
   title: PropTypes.string,
-  subTasks: PropTypes.array.isRequired,
+  task: PropTypes.object,
   updateSubTask: PropTypes.func.isRequired,
-  dueDate: PropTypes.instanceOf(Date).isRequired,
+  showAddTaskForm: PropTypes.func.isRequired,
+  taskId: PropTypes.string,
+  type: PropTypes.string,
+  getTask: PropTypes.func,
 };
 
 EditTask.defaultProps = {
-  subTasks: [],
-  title: '',
-  dueDate: new Date(),
+  showAddTaskForm: () => {},
 };

@@ -1,6 +1,9 @@
 import {
   faCheck,
-  faClock 
+  faClock,
+  faPencilAlt,
+  faPlus,
+  faTrash
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -10,6 +13,10 @@ import {
 import PropTypes from 'prop-types';
 
 import React from 'react';
+
+import {
+  Link 
+} from 'react-router-dom';
 
 import {
   Header 
@@ -35,6 +42,7 @@ export const EditItem = ({
   showDueDate,
   updateSubTask,
   dueDate,
+  taskId,
 }) => {
 
   const endDate = getDueDate(dueDate);
@@ -45,16 +53,40 @@ export const EditItem = ({
       incomplete={incomplete}
       rootTask={rootTask}
     >
-      <div className="container">
-        <div className="task-info">
-          <div className="icon">
-            <FontAwesomeIcon onClick={updateSubTask} icon={icon} />
+      <div className='container'>
+        <div className='task-info'>
+          <div className='icon'>
+            <FontAwesomeIcon
+              className='check'
+              size='lg'
+              onClick={updateSubTask}
+              icon={icon}
+            />
+            {!rootTask && (
+              <div className='edit-sub'>
+                <Link to={`/edit/${taskId}/sub`}>
+                  <FontAwesomeIcon icon={faPencilAlt} />
+                </Link>
+                <FontAwesomeIcon
+                  onClick={updateSubTask}
+                  icon={faPlus}
+                />
+              </div>
+            )}
           </div>
           <Header>{title}</Header>
           {showDueDate && (
-            <div className="due-date">
-              <FontAwesomeIcon size="1x" icon={faClock} />{' '}
+            <div className='due-date'>
+              <FontAwesomeIcon size='1x' icon={faClock} />{' '}
               <p>{endDate}</p>
+              {!rootTask && (
+                <div className='delete-task'>
+                  <FontAwesomeIcon
+                    onClick={updateSubTask}
+                    icon={faTrash}
+                  />
+                </div>
+              )}
             </div>
           )}
         </div>
@@ -62,7 +94,7 @@ export const EditItem = ({
     </EditItemContainer>
   );
 
-}
+};
 
 EditItem.propTypes = {
   title: PropTypes.string.isRequired,
@@ -71,7 +103,8 @@ EditItem.propTypes = {
   incomplete: PropTypes.bool,
   showDueDate: PropTypes.bool,
   updateSubTask: PropTypes.func,
-  dueDate: PropTypes.instanceOf(Date).isRequired,
+  dueDate: PropTypes.string.isRequired,
+  taskId: PropTypes.string.isRequired,
 };
 
 EditItem.defaultProps = {
@@ -79,5 +112,5 @@ EditItem.defaultProps = {
   icon: faCheck,
   incomplete: true,
   showDueDate: true,
-  dueDate: new Date(),
+  dueDate: '',
 };

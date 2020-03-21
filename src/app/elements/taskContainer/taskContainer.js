@@ -108,7 +108,7 @@ const Container = styled.div`
 
         p {
           font-size: 20px;
-          font-family: 'Roboto Slab', serif;
+          font-family: 'Signika', sans-serif;
           color: ${props => props && props.theme && props.theme.editParagraphColor};
         }
       }

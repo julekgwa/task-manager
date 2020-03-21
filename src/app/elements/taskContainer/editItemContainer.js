@@ -26,30 +26,57 @@ const Container = styled.div`
     flex-basis: 10%;
     display: flex;
     justify-content: center;
+    padding-left: 10px;
     align-items: center;
 
     svg {
+      color: ${Colors.darkGrayishBlue};
+    }
+
+    svg.check {
       color: ${props =>
     (props && props.color) || Colors.darkGrayishBlue};
     }
   }
 
+  svg.check:hover {
+    color: ${Colors.softOrange};
+  }
+
+  .edit-sub {
+    display: flex;
+    justify-content: flex-end;
+
+    svg {
+      margin-left: 10px;
+    }
+  }
+
   .due-date {
-    flex-basis: 20%;
+    flex-basis: 15%;
     padding: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     align-content: space-between;
 
     p {
       margin-left: 5px;
       text-transform: uppercase;
-      font-family: serif;
+      font-family: 'Signika', sans-serif;
     }
 
     svg {
       color: ${Colors.softOrange};
+    }
+  }
+
+  .delete-task {
+    justify-content: flex-end;
+    display: flex;
+
+    svg {
+      color: ${Colors.darkGrayishBlue};
     }
   }
 
@@ -90,6 +117,10 @@ const Container = styled.div`
     props && props.theme && props.theme.backgroundColor};
       }
     `}
+
+    svg:hover {
+    color: ${Colors.softOrange};
+  }
 `;
 
 export const EditItemContainer = connect(mapStateToProps)(Container);

@@ -30,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src/app",
-    "fix-lint": "eslint --fix src/app"
+    "auto-fix": "eslint --fix src/app"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,6 +53,7 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-import": "^2.20.1",
     "eslint-plugin-modules-newline": "^0.0.1",
+    "eslint-plugin-no-unused-react-component-methods": "^1.1.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-redux": "^3.0.3",
@@ -67,7 +68,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm run fix-lint"
+      "pre-commit": "npm run lint"
     }
   }
 }

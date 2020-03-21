@@ -85,10 +85,7 @@ class TodoHome extends Component {
 
   state = {
     showPopup: false,
-    taskStartDate: new Date(),
-    taskValue: '',
     showForm: false,
-    isInputEmpty: false,
     rootId: null,
   };
 
@@ -135,52 +132,19 @@ class TodoHome extends Component {
 
     this.setState({
       showForm: false,
-      taskValue: '',
-      isInputEmpty: false,
     });
   
   };
 
-  addTask = () => {
-
-    if (!this.state.taskValue) {
-
-      this.setState({
-        isInputEmpty: true,
-      });
-
-      return;
-    
-    }
+  addTask = (task, dueDate) => {
 
     this.props.addTask({
-      title: this.state.taskValue,
+      title: task,
       status: false,
-      dueDate: this.state.taskStartDate,
+      dueDate: dueDate,
       rootId: this.state.rootId,
       tasks: [],
       id: uuid(),
-    });
-
-    this.setState({
-      taskValue: '',
-    });
-  
-  };
-
-  handleTaskValueChange = e => {
-
-    this.setState({
-      taskValue: e.target.value,
-      isInputEmpty: false,
-    });
-  
-  };
-
-  handleDateChange = date => {
-
-    this.setState({
-      taskStartDate: date,
     });
   
   };
@@ -194,13 +158,6 @@ class TodoHome extends Component {
   componentDidMount = () => {
 
     this.props.getTasks();
-
-    const date = new Date();
-    date.setHours(23,59,59,999);
-
-    this.setState({
-      taskStartDate: date,
-    });
   
   };
 
@@ -212,17 +169,14 @@ class TodoHome extends Component {
     const addTaskStatus = this.props.addTaskStatus;
     const addTaskMessage = this.props.addTaskMessage;
     const showPopup = this.state.showPopup;
-    const taskStartDate = this.state.taskStartDate;
     const showForm = this.state.showForm;
-    const taskValue = this.state.taskValue;
-    const isInputEmpty = this.state.isInputEmpty;
 
     return (
       <>
         <Greeting />
         <Header color={Colors.softOrange}>Home</Header>
         {isLoading ? (
-          <Loader size="7x" />
+          <Loader size='7x' />
         ) : (
           <>
             <div
@@ -240,23 +194,18 @@ class TodoHome extends Component {
 
               <Form
                 show={showForm}
-                taskStartDate={taskStartDate}
-                isSubmittingTask={isSubmittingTask}
-                addTaskStatus={addTaskStatus}
-                addTaskMessage={addTaskMessage}
-                onDateChange={this.handleDateChange}
-                onCloseForm={this.closeForm}
-                onConfirm={this.addTask}
-                onTaskInputChange={this.handleTaskValueChange}
-                taskInputValue={taskValue}
-                isInputEmpty={isInputEmpty}
+                isLoading={isSubmittingTask}
+                requestStatus={addTaskStatus}
+                message={addTaskMessage}
+                onCloseButton={this.closeForm}
+                onOkButton={this.addTask}
               />
 
               <Popup
                 onCancelButtonPress={this.togglePopup}
-                iconType="success"
+                iconType='success'
                 show={showPopup}
-                message="There was an error making a request."
+                message='There was an error making a request.'
               />
 
               <Tasks

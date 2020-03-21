@@ -26,7 +26,7 @@ const PageNotFound = ({ logger, }) => {
     <Lost>
       <h1>404</h1>
       <p>Looks like you got lost</p>
-      <Link to="/"><Button round>Go back home</Button></Link>
+      <Link to='/'><Button round>Go back home</Button></Link>
     </Lost>
   );
 

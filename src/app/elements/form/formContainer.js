@@ -78,7 +78,7 @@ const Container = styled.div`
     color: ${Colors.darkGrayishBlue};
     font-size: 24px;
     padding: 12px 20px;
-    font-family: 'Playfair Display', serif;
+    font-family: 'Signika', sans-serif;
     margin-bottom: 30px;
 
     &:focus {

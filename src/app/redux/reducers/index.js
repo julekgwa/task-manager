@@ -28,6 +28,16 @@ const initState = {
   home: {
     isLoading: false,
     isError: false,
+    isSubmittingTask: false,
+    addTaskStatus: '',
+    addTaskMessage: '',
+  },
+  edit: {
+    isLoading: false,
+    isError: false,
+    isSubmittingTask: false,
+    addTaskStatus: '',
+    addTaskMessage: '',
   },
 };
 
@@ -53,11 +63,12 @@ export function rootReducer(state = initState, action) {
 
   case ADD_TASK: {
 
-    const tasks = updateNestedArrayObject([...state.tasks], action.payload);
+    const { tasks, task, } = updateNestedArrayObject([...state.tasks], action.payload);
 
     return {
       ...state,
       tasks: tasks,
+      task: task || {},
     };
 
   }
