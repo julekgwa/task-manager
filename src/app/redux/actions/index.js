@@ -1,16 +1,21 @@
 import {
-  fetchAPI 
-} from 'app/fetch/fetch';
-
-import {
   ADD_TASK,
   GET_TASK,
   GET_TASKS, 
+  HOME_ERROR,
   REMOVE_TASK,
-  SET_LOADER,
+  SET_HOME_LOADER,
   SET_THEME,
   UPDATE_SUBTASK
 } from '../constants';
+
+import {
+  fetchItem 
+} from './utils';
+
+const BASE_URL = process.env.REACT_APP_API_URL;
+const GET_ALL_TASKS = process.env.REACT_APP_GET_TASKS;
+const GET_TASK_BY_ID = process.env.REACT_APP_GET_TASK_BY_ID;
 
 export function setTheme(payload) {
 
@@ -21,12 +26,21 @@ export function setTheme(payload) {
 
 }
 
-export function setLoader(payload) {
+export function setError(type, payload) {
 
   return {
-    type: SET_LOADER,
+    type,
     payload,
   };
+
+}
+
+export function closePopup(type, payload) {
+
+  return {
+    type,
+    payload,
+  }
 
 }
 
@@ -59,9 +73,21 @@ export function removeTask(payload) {
 
 export function getTask(payload) {
 
-  return {
-    type: GET_TASK,
-    payload,
+  return dispatch => {
+
+    const requestOptions = {
+      url: `${BASE_URL}${GET_TASK_BY_ID}${payload.id}`,
+      method: 'get',
+    }
+
+    const action = {
+      type: GET_TASK,
+      loaderType: SET_HOME_LOADER,
+      error: HOME_ERROR,
+    }
+
+    fetchItem(dispatch, requestOptions, true, action);
+
   }
   
 }
@@ -70,44 +96,18 @@ export function getTasks() {
 
   return dispatch => {
 
-    dispatch(
-      setLoader({
-        home: {
-          isLoading: true, 
-        }, 
-      })
-    );
-
-    fetchAPI({
-      url: `${process.env.REACT_APP_API}`,
+    const requestOptions = {
+      url: `${BASE_URL}${GET_ALL_TASKS}`,
       method: 'get',
-    })
-      .then(() => {
+    }
 
-        dispatch(
-          setLoader({
-            home: {
-              isLoading: false, 
-            }, 
-          })
-        );
+    const action = {
+      type: GET_TASKS,
+      loaderType: SET_HOME_LOADER,
+      error: HOME_ERROR,
+    }
 
-        // TODO: check for ok status
-
-        const tasks = localStorage.getItem('tasks');
-
-        dispatch({
-          type: GET_TASKS,
-          payload: JSON.parse(tasks),
-        });
-      
-      })
-      .catch(error => {
-
-        // TODO: check error message
-        console.error('ERROR', error);
-      
-      });
+    fetchItem(dispatch, requestOptions, true, action);
   
   };
 

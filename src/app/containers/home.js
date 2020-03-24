@@ -59,9 +59,14 @@ import {
 
 import {
   addTask,
-  getTasks,
-  removeTask 
+  closePopup,
+  getTasks, 
+  removeTask
 } from 'app/redux/actions';
+
+import {
+  CLOSE_HOME_POPUP 
+} from 'app/redux/constants';
 
 import {
   Colors 
@@ -69,22 +74,25 @@ import {
 
 const mapStateToProps = state => ({
   isLoading: state.home.isLoading,
-  tasks: state.tasks,
+  tasks: state.app.tasks,
   isSubmittingTask: state.home.isSubmittingTask,
   addTaskStatus: state.home.addTaskStatus,
   addTaskMessage: state.home.addTaskMessage,
+  isError: state.home.isError,
+  message: state.home.message,
+  showPopup: state.home.showPopup,
 });
 
 const mapDispatchToProps = dispatch => ({
   getTasks: () => dispatch(getTasks()),
   addTask: payload => dispatch(addTask(payload)),
   removeTask: payload => dispatch(removeTask(payload)),
+  closePopup: (type, payload) => dispatch(closePopup(type, payload)),
 });
 
 class TodoHome extends Component {
 
   state = {
-    showPopup: false,
     showForm: false,
     rootId: null,
   };
@@ -98,6 +106,10 @@ class TodoHome extends Component {
     addTaskMessage: PropTypes.string,
     addTask: PropTypes.func,
     removeTask: PropTypes.func,
+    isError: PropTypes.bool,
+    showPopup: PropTypes.bool,
+    message: PropTypes.string,
+    closePopup: PropTypes.func,
   };
 
   static defaultProps = {
@@ -106,16 +118,18 @@ class TodoHome extends Component {
     isSubmittingTask: false,
     tasks: [],
     isLoading: false,
+    showPopup: false,
+    isError: false,
+    message: '',
     getTasks: () => {},
     addTask: () => {},
     removeTask: () => {},
+    closePopup: () => {},
   };
 
   togglePopup = () => {
 
-    this.setState(prevState => ({
-      showPopup: !prevState.showPopup,
-    }));
+    this.props.closePopup(CLOSE_HOME_POPUP, false);
   
   };
 
@@ -168,7 +182,9 @@ class TodoHome extends Component {
     const isSubmittingTask = this.props.isSubmittingTask;
     const addTaskStatus = this.props.addTaskStatus;
     const addTaskMessage = this.props.addTaskMessage;
-    const showPopup = this.state.showPopup;
+    const showPopup = this.props.showPopup;
+    const message = this.props.message;
+    const isError = this.props.isError;
     const showForm = this.state.showForm;
 
     return (
@@ -202,10 +218,10 @@ class TodoHome extends Component {
               />
 
               <Popup
-                onCancelButtonPress={this.togglePopup}
-                iconType='success'
+                onButtonPress={this.togglePopup}
+                isError={isError}
                 show={showPopup}
-                message='There was an error making a request.'
+                message={message}
               />
 
               <Tasks

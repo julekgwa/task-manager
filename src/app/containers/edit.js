@@ -36,7 +36,7 @@ import {
 } from 'app/redux/actions';
 
 const mapStateToProps = state => ({
-  task: state.task,
+  task: state.app.task,
   isLoading: state.edit.isLoading,
   isSubmittingTask: state.edit.isSubmittingTask,
   addTaskStatus: state.edit.addTaskStatus,

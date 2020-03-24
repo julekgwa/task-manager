@@ -1,4 +1,13 @@
 import {
+  faFrown,
+  faSmile
+} from '@fortawesome/free-regular-svg-icons';
+
+import {
+  faTimes 
+} from '@fortawesome/free-solid-svg-icons';
+
+import {
   FontAwesomeIcon 
 } from '@fortawesome/react-fontawesome';
 
@@ -7,46 +16,27 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
-  Button 
-} from 'app/elements/button/button';
-
-import {
   PopupContainer 
 } from 'app/elements/popup/popupContainer';
 
-import {
-  Icons 
-} from '../constants';
-
 export const Popup = ({
   show,
-  onCancelButtonPress,
-  onOkButtonPress,
   message,
-  cancelButtonText,
-  okButtonText,
-  iconType,
-  notification,
+  isError,
+  onButtonPress,
 }) => (
   <>
     {show ? (
-      <PopupContainer>
+      <PopupContainer isError={isError}>
         <div className='container'>
-
-          {notification && (
-            <div className='message'>
-              <FontAwesomeIcon size='5x' icon={Icons[iconType]} />
-              <p>{message}</p>
-            </div>
-          )}
-
-          <div className='buttons'>
-            <Button onClick={onCancelButtonPress} round>
-              {cancelButtonText}
-            </Button>
-            <Button onClick={onOkButtonPress} round>
-              {okButtonText}
-            </Button>
+          <FontAwesomeIcon onClick={onButtonPress} className='icon' icon={faTimes} />
+          <div className='message-area'>
+            <FontAwesomeIcon size='6x' icon={isError ? faFrown : faSmile} />
+            <p className='status'>{isError ? 'Error': 'Success'}</p>
+            <p className='message'>{message}</p>
+          </div>
+          <div onClick={onButtonPress} className='button'>
+            <p>{isError ? 'OK!' : 'Cool beans!'}</p>
           </div>
         </div>
       </PopupContainer>
@@ -57,21 +47,15 @@ export const Popup = ({
 );
 
 Popup.propTypes = {
-  cancelButtonText: PropTypes.string,
-  okButtonText: PropTypes.string,
   show: PropTypes.bool,
-  onCancelButtonPress: PropTypes.func,
-  onOkButtonPress: PropTypes.func,
   message: PropTypes.string,
-  iconType: PropTypes.string,
-  notification: PropTypes.bool,
+  isError: PropTypes.bool,
+  onButtonPress: PropTypes.func,
 };
 
 Popup.defaultProps = {
-  onCancelButtonPress: () => {},
-  onOkButtonPress: () => {},
   show: false,
   message: '',
-  cancelButtonText: 'Cancel',
-  okButtonText: 'Ok',
+  onButtonPress: () => {},
+  isError: false,
 };

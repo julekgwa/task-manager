@@ -113,4 +113,6 @@ EditItem.defaultProps = {
   incomplete: true,
   showDueDate: true,
   dueDate: '',
+  title: '',
+  taskId: '',
 };

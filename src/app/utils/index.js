@@ -25,6 +25,8 @@ export function getDueDate(dueDate) {
   
   }
 
+  return 'overdue';
+
 }
 
 export function flatten(items) {

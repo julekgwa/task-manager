@@ -33,8 +33,8 @@ import {
 } from 'app/redux/constants';
 
 const mapStateToProps = state => ({
-  theme: state.theme,
-  currentTheme: state.currentTheme,
+  theme: state.app.theme,
+  currentTheme: state.app.currentTheme,
 });
 
 const mapDispatchToProps = dispatch => ({

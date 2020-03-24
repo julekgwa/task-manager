@@ -23,16 +23,15 @@ import {
   EditItem 
 } from './editItem';
 
-export const EditTask = ({ taskId, type, getTask, task, updateSubTask,showAddTaskForm, }) => {
+export const EditTask = ({ taskId, getTask, task, updateSubTask,showAddTaskForm, }) => {
 
   useEffect(() => {
 
     getTask({
-      taskId: taskId,
-      isRoot: type === 'task',
+      id: taskId, 
     });
   
-  }, [taskId, getTask, type])
+  }, [taskId, getTask])
 
   return (
     <TaskContainer edit>
@@ -77,7 +76,6 @@ EditTask.propTypes = {
   updateSubTask: PropTypes.func.isRequired,
   showAddTaskForm: PropTypes.func.isRequired,
   taskId: PropTypes.string,
-  type: PropTypes.string,
   getTask: PropTypes.func,
 };
 

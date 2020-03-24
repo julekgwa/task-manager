@@ -1,4 +1,8 @@
 import {
+  combineReducers 
+} from 'redux';
+
+import {
   Themes 
 } from 'app/theme/theme';
 
@@ -15,10 +19,17 @@ import {
 } from '../constants';
 
 import {
-  getTask,
   updateNestedArrayObject, 
   updateSubTask
 } from '../utils';
+
+import {
+  editReducer 
+} from './editReducer';
+
+import {
+  homeReducer 
+} from './homeReducer';
 
 const initState = {
   theme: Themes.primary,
@@ -41,7 +52,7 @@ const initState = {
   },
 };
 
-export function rootReducer(state = initState, action) {
+function mainReducer(state = initState, action) {
 
   switch (action.type) {
 
@@ -88,13 +99,9 @@ export function rootReducer(state = initState, action) {
 
   case GET_TASK: {
 
-    const { taskId, isRoot, } = action.payload;
-
-    const task = getTask(taskId, isRoot, state.tasks);
-
     return {
       ...state,
-      task: task,
+      task: action.payload,
     }
   
   }
@@ -118,3 +125,9 @@ export function rootReducer(state = initState, action) {
   }
 
 }
+
+export const rootReducer = combineReducers({
+  home: homeReducer,
+  app: mainReducer,
+  edit: editReducer,
+})

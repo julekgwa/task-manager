@@ -9,7 +9,7 @@ import styled, {
 } from 'styled-components';
 
 const mapStateToProps = state => ({
-  theme: state.theme,
+  theme: state.app.theme,
 });
 
 const ButtonContainer = styled.button`

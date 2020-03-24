@@ -4,8 +4,12 @@ import {
 
 import styled from 'styled-components';
 
+import {
+  Colors 
+} from 'app/styles/colors';
+
 const mapStateToProps = state => ({
-  theme: state.theme,
+  theme: state.app.theme,
 });
 
 const Container = styled.div`
@@ -21,15 +25,17 @@ const Container = styled.div`
   background-color: rgba(236, 240, 243, .5);
 
   .container {
-    width: 800px;
-    min-height: 300px;
-    margin: 100px auto;
-    opacity: 1;
+    background-color: ${props => props && props.isError && Colors.verySoftRed || Colors.verySoftCyan};
+    width: 400px;
+    min-height: 359px;
+    border-radius: 10px;
     display: flex;
-    border-radius: 25px;
     flex-direction: column;
-    background: ${props =>
-    props && props.theme && props.theme.backgroundColor};
+    opacity: 1;
+    margin: 100px auto;
+    position: relative;
+    /* background: ${props =>
+    props && props.theme && props.theme.backgroundColor}; */
     box-shadow: 9px 9px 18px
         ${props =>
     props && props.theme && props.theme.primaryShadowColor},
@@ -40,35 +46,46 @@ const Container = styled.div`
           props.theme.secondaryShadowColor};
   }
 
-  .message {
-    display: flex;
-    align-items: center;
+  .message-area {
     flex: 1;
+    display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    justify-content: center;
+    align-items: center;
+  }
 
-    p {
-      text-align: center;
-      margin-top: 40px;
-      font-size: 20px;
+  .status {
+    text-transform: uppercase;
+    color: white;
+  }
+
+  .message {
+    color: ${Colors.white}
+  }
+
+  .icon {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: white;
+
+    &:hover {
+      cursor: pointer;
     }
   }
 
-  .form {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    margin-top: 30px;
-  }
+  .button {
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
-  .buttons {
-    display: flex;
-    justify-content: flex-end;
-    margin: 20px;
-    align-content: space-between;
+    p {
+      text-transform: uppercase;
+      text-align: center;
+    }
 
-    button {
-      margin-left: 15px;
+    &:hover {
+      cursor: pointer;
     }
   }
 `;

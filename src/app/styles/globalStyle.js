@@ -7,7 +7,7 @@ import {
 } from "styled-components";
 
 const mapStateToProps = state => ({
-  theme: state.theme,
+  theme: state.app.theme,
 });
 
 const GlobalStyles = createGlobalStyle`
