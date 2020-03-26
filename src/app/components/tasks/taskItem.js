@@ -24,6 +24,10 @@ import {
 } from 'react-router-dom';
 
 import {
+  TASK_TYPE 
+} from 'app/constants';
+
+import {
   TaskContainer 
 } from 'app/elements/taskContainer/taskContainer';
 
@@ -36,7 +40,7 @@ import {
 } from '../loader/loader';
 
 const mapStateToProps = state => ({
-  isDeleting: state.app.isDeleting
+  isUpdatingTask: state.isUpdatingTask
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -49,16 +53,17 @@ const Task = ({
   deleteTask,
   addSubTask,
   taskId,
-  isDeleting
+  isUpdatingTask,
+  root
 }) => {
 
   const [isRemovingTask, setIsRemovingTask] = useState(false);
 
   useEffect(() => {
 
-    setIsRemovingTask(isDeleting && isRemovingTask || false);
+    setIsRemovingTask(isUpdatingTask && isRemovingTask || false);
   
-  }, [isDeleting]);
+  }, [isUpdatingTask]);
 
   const remove = () => {
 
@@ -77,7 +82,7 @@ const Task = ({
         <p>{subTasks} Tasks</p>
         <hr />
         <div className='buttons'>
-          {isRemovingTask && isDeleting ? (
+          {isRemovingTask && isUpdatingTask ? (
             <div className='loader'><Loader size='3x' /></div>
           ) : (
             <React.Fragment>
@@ -86,7 +91,7 @@ const Task = ({
                 onClick={addSubTask}
                 icon={faPlus}
               />
-              <Link to={`/edit/${taskId}`}>
+              <Link to={`/edit/${taskId}/${root ? TASK_TYPE.task : TASK_TYPE.subtask}`}>
                 <FontAwesomeIcon size='lg' icon={faPencilAlt} />
               </Link>
               <FontAwesomeIcon
@@ -109,7 +114,8 @@ Task.propTypes = {
   deleteTask: PropTypes.func.isRequired,
   addSubTask: PropTypes.func.isRequired,
   taskId: PropTypes.string.isRequired,
-  isDeleting: PropTypes.bool
+  isUpdatingTask: PropTypes.bool,
+  root: PropTypes.bool
 };
 
 Task.defaultProps = {
@@ -117,7 +123,8 @@ Task.defaultProps = {
   subTasks: 0,
   deleteTask: () => {},
   addSubTask: () => {},
-  isDeleting: false
+  isUpdatingTask: false,
+  root: false
 };
 
 export const TaskItem = connect(mapStateToProps, mapDispatchToProps)(Task);

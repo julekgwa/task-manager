@@ -11,12 +11,21 @@ import {
 import PropTypes from 'prop-types';
 
 import React, {
-  useEffect 
+  useEffect,
+  useState 
 } from 'react';
+
+import {
+  TASK_TYPE 
+} from 'app/constants';
 
 import {
   TaskContainer 
 } from 'app/elements/taskContainer/taskContainer';
+
+import {
+  getTask 
+} from 'app/utils';
 
 import {
   Loader 
@@ -29,25 +38,24 @@ import {
 export const EditTask = ({
   isLoading,
   taskId,
-  getTask,
-  task,
-  updateSubTask,
-  showAddTaskForm
+  tasks,
+  showAddTaskForm,
+  type
 }) => {
+
+  const [task, setTask] = useState([]);
 
   useEffect(() => {
 
-    getTask({
-      id: taskId
-    });
+    setTask(getTask(taskId, type === TASK_TYPE.task, tasks));
   
-  }, [taskId, getTask]);
+  }, [tasks, taskId, type]);
 
   return (
     <React.Fragment>
       {isLoading ? (
         <Loader size='5x' />
-      ) : Object.keys(task).length ? (
+      ) : task && Object.keys(task).length ? (
         <TaskContainer edit>
           <div className='add-task'>
             <div className='todo'>
@@ -77,10 +85,10 @@ export const EditTask = ({
           </div>
           {task &&
             task.tasks &&
-            task.tasks.map(task => (
+            task.tasks.map(task => task && (
               <EditItem
-                updateSubTask={() => updateSubTask(task.id)}
                 key={task.id}
+                task={task}
                 title={task.title}
                 taskId={task.id}
                 dueDate={task.dueDate}
@@ -89,7 +97,7 @@ export const EditTask = ({
             ))}
         </TaskContainer>
       ) : (
-        <React.Fragment></React.Fragment>
+        <React.Fragment><p>No Task</p></React.Fragment>
       )}
     </React.Fragment>
   );
@@ -97,16 +105,15 @@ export const EditTask = ({
 };
 
 EditTask.propTypes = {
-  title: PropTypes.string,
-  task: PropTypes.object,
-  updateSubTask: PropTypes.func.isRequired,
+  type: PropTypes.string,
+  tasks: PropTypes.array,
   showAddTaskForm: PropTypes.func.isRequired,
   taskId: PropTypes.string,
-  getTask: PropTypes.func,
   isLoading: PropTypes.bool
 };
 
 EditTask.defaultProps = {
   showAddTaskForm: () => {},
-  isLoading: false
+  isLoading: false,
+  tasks: []
 };

@@ -21,7 +21,7 @@ ${props =>
 `;
 
 const mapStateToProps = state => ({
-  theme: state.app.theme
+  theme: state.theme
 });
 
 export const Header = connect(mapStateToProps)(HeaderContainer);

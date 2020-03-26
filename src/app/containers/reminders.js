@@ -25,7 +25,7 @@ import {
 } from 'app/redux/actions';
 
 const mapStateToProps = state => ({
-  isLoading: state.home.isLoading,
+  isLoading: state.isLoading,
   tasks: state.tasks
 });
 

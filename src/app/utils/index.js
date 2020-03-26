@@ -1,5 +1,9 @@
 import moment from 'moment';
 
+import {
+  findFirst 
+} from 'obj-traverse/lib/obj-traverse';
+
 export function getDueDate(dueDate) {
 
   if (!parseInt(dueDate, 10)) {
@@ -82,5 +86,33 @@ export function getObjectTasksDepth(obj, level = 0) {
   }
 
   return getObjectTasksDepth(nextObj, level + 1);
+
+}
+
+export function getTask(id, isRoot, tasks) {
+
+  if (isRoot) {
+
+    const rootTask = tasks.filter(t => t && t.id === id);
+
+    return rootTask.length > 0 ? rootTask[0] : {};
+  
+  }
+
+  for (let i = 0; i < tasks.length; i++) {
+
+    const currentTask = tasks[i];
+
+    const subTask = findFirst(currentTask, 'tasks', {
+      id: id
+    });
+
+    if (subTask) {
+
+      return subTask;
+    
+    }
+    
+  }
 
 }
