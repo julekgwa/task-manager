@@ -38,6 +38,11 @@ import {
 } from 'app/components/tasks/tasks';
 
 import {
+  CLOSE_POPUP,
+  TASK_TYPE 
+} from 'app/constants';
+
+import {
   Button 
 } from 'app/elements/button/button';
 
@@ -61,22 +66,18 @@ import {
 } from 'app/redux/actions';
 
 import {
-  CLOSE_HOME_POPUP 
-} from 'app/redux/constants';
-
-import {
   Colors 
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  isLoading: state.home.isLoading,
-  tasks: state.app.tasks,
-  isSubmittingTask: state.home.isSubmittingTask,
-  addTaskStatus: state.home.addTaskStatus,
-  addTaskMessage: state.home.addTaskMessage,
-  isError: state.home.isError,
-  message: state.home.message,
-  showPopup: state.home.showPopup
+  isLoading: state.isLoading,
+  tasks: state.tasks,
+  isSubmittingTask: state.isSubmittingTask,
+  addTaskStatus: state.addTaskStatus,
+  addTaskMessage: state.addTaskMessage,
+  isError: state.isError,
+  message: state.message,
+  showPopup: state.showPopup
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -123,7 +124,7 @@ class TodoHome extends Component {
 
   togglePopup = () => {
 
-    this.props.closePopup(CLOSE_HOME_POPUP, false);
+    this.props.closePopup(CLOSE_POPUP, false);
   
   };
 
@@ -154,7 +155,7 @@ class TodoHome extends Component {
         rootId: this.state.rootId,
         tasks: []
       },
-      this.state.rootId ? 'subtask' : 'task'
+      this.state.rootId ? TASK_TYPE.subtask : TASK_TYPE.task
     );
   
   };
@@ -216,6 +217,7 @@ class TodoHome extends Component {
             <Tasks
               onAddSubTask={this.showAddTaskForm}
               tasks={tasks}
+              root={true}
             />
           </div>
         )}

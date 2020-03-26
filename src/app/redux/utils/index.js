@@ -2,33 +2,33 @@ import {
   findFirst 
 } from 'obj-traverse/lib/obj-traverse';
 
-export function getTask(id, isRoot, tasks) {
+// export function getTask(id, isRoot, tasks) {
 
-  if (isRoot) {
+//   if (isRoot) {
 
-    const rootTask = tasks.filter(t => t && t.id === id);
+//     const rootTask = tasks.filter(t => t && t.id === id);
 
-    return rootTask.length > 0 ? rootTask[0] : {};
+//     return rootTask.length > 0 ? rootTask[0] : {};
   
-  }
+//   }
 
-  for (let i = 0; i < tasks.length; i++) {
+//   for (let i = 0; i < tasks.length; i++) {
 
-    const currentTask = tasks[i];
+//     const currentTask = tasks[i];
 
-    const subTask = findFirst(currentTask, 'tasks', {
-      id: id
-    });
+//     const subTask = findFirst(currentTask, 'tasks', {
+//       id: id
+//     });
 
-    if (subTask) {
+//     if (subTask) {
 
-      return subTask;
+//       return subTask;
     
-    }
+//     }
     
-  }
+//   }
 
-}
+// }
 
 export function updateSubTask(tasks, subTaskId) {
 

@@ -25,16 +25,16 @@ import {
 import Logo from 'app/assets/logo.png';
 
 import {
+  PRIMARY 
+} from 'app/constants';
+
+import {
   setTheme 
 } from 'app/redux/actions';
 
-import {
-  PRIMARY 
-} from 'app/redux/constants';
-
 const mapStateToProps = state => ({
-  theme: state.app.theme,
-  currentTheme: state.app.currentTheme
+  theme: state.theme,
+  currentTheme: state.currentTheme
 });
 
 const mapDispatchToProps = dispatch => ({

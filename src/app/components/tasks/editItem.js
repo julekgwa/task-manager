@@ -2,7 +2,6 @@ import {
   faCheck,
   faClock,
   faPencilAlt,
-  faPlus,
   faTrash
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,7 +11,14 @@ import {
 
 import PropTypes from 'prop-types';
 
-import React from 'react';
+import React, {
+  useEffect,
+  useState 
+} from 'react';
+
+import {
+  connect 
+} from 'react-redux';
 
 import {
   Link 
@@ -27,6 +33,11 @@ import {
 } from 'app/elements/taskContainer/editItemContainer';
 
 import {
+  removeTask,
+  updateSubTask
+} from 'app/redux/actions';
+
+import {
   getDueDate 
 } from 'app/utils';
 
@@ -34,7 +45,20 @@ import {
   IconColors 
 } from '../constants';
 
-export const EditItem = ({
+import {
+  Loader 
+} from '../loader/loader';
+
+const mapStateToProps = state => ({
+  isUpdatingTask: state.isUpdatingTask
+});
+
+const mapDispatchToProps = dispatch => ({
+  deleteTask: payload => dispatch(removeTask(payload)),
+  updateSubTask: payload => dispatch(updateSubTask(payload))
+});
+
+const Item = ({
   title,
   rootTask,
   icon,
@@ -42,10 +66,40 @@ export const EditItem = ({
   showDueDate,
   updateSubTask,
   dueDate,
-  taskId
+  taskId,
+  isUpdatingTask,
+  deleteTask,
+  task
 }) => {
 
   const endDate = getDueDate(dueDate);
+  const [updatingTask, setUpdatingTask] = useState(false);
+
+  useEffect(() => {
+
+    setUpdatingTask((isUpdatingTask && updatingTask) || false);
+  
+  }, [isUpdatingTask]);
+
+  const remove = () => {
+
+    setUpdatingTask(true);
+
+    deleteTask({
+      id: taskId
+    });
+  
+  };
+
+  const update = () => {
+
+    setUpdatingTask(true);
+
+    task.status = !task.status;
+    
+    updateSubTask(task);
+
+  }
 
   return (
     <EditItemContainer
@@ -56,22 +110,26 @@ export const EditItem = ({
       <div className='container'>
         <div className='task-info'>
           <div className='icon'>
-            <FontAwesomeIcon
-              className='check'
-              size='lg'
-              onClick={updateSubTask}
-              icon={icon}
-            />
-            {!rootTask && (
-              <div className='edit-sub'>
-                <Link to={`/edit/${taskId}`}>
-                  <FontAwesomeIcon icon={faPencilAlt} />
-                </Link>
-                <FontAwesomeIcon
-                  onClick={updateSubTask}
-                  icon={faPlus}
-                />
+            {updatingTask && isUpdatingTask ? (
+              <div className='loader'>
+                <Loader size='3x' />
               </div>
+            ) : (
+              <React.Fragment>
+                <FontAwesomeIcon
+                  className='check'
+                  size='lg'
+                  onClick={update}
+                  icon={icon}
+                />
+                {!rootTask && (
+                  <div className='edit-sub'>
+                    <Link to={`/edit/${taskId}/subtask`}>
+                      <FontAwesomeIcon icon={faPencilAlt} />
+                    </Link>
+                  </div>
+                )}
+              </React.Fragment>
             )}
           </div>
           <Header>{title}</Header>
@@ -79,12 +137,9 @@ export const EditItem = ({
             <div className='due-date'>
               <FontAwesomeIcon size='1x' icon={faClock} />{' '}
               <p>{endDate}</p>
-              {!rootTask && (
+              {!rootTask && !updatingTask && (
                 <div className='delete-task'>
-                  <FontAwesomeIcon
-                    onClick={updateSubTask}
-                    icon={faTrash}
-                  />
+                  <FontAwesomeIcon onClick={remove} icon={faTrash} />
                 </div>
               )}
             </div>
@@ -96,7 +151,7 @@ export const EditItem = ({
 
 };
 
-EditItem.propTypes = {
+Item.propTypes = {
   title: PropTypes.string.isRequired,
   rootTask: PropTypes.bool,
   icon: PropTypes.any,
@@ -104,15 +159,25 @@ EditItem.propTypes = {
   showDueDate: PropTypes.bool,
   updateSubTask: PropTypes.func,
   dueDate: PropTypes.string.isRequired,
-  taskId: PropTypes.string.isRequired
+  taskId: PropTypes.string.isRequired,
+  isUpdatingTask: PropTypes.bool,
+  deleteTask: PropTypes.func,
+  task: PropTypes.object.isRequired
 };
 
-EditItem.defaultProps = {
+Item.defaultProps = {
   rootTask: false,
   icon: faCheck,
   incomplete: true,
   showDueDate: true,
   dueDate: '',
   title: '',
-  taskId: ''
+  taskId: '',
+  isUpdatingTask: false,
+  deleteTask: () => {}
 };
+
+export const EditItem = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Item);

@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import React, {
-
   Component 
 } from 'react';
 
@@ -26,6 +25,11 @@ import {
 } from 'app/components/tasks/editTask';
 
 import {
+  CLOSE_POPUP,
+  TASK_TYPE 
+} from 'app/constants';
+
+import {
   Header 
 } from 'app/elements/header/header';
 
@@ -36,29 +40,25 @@ import {
 import {
   addTask,
   closePopup, 
-  getTask,
+  getTasks,
   updateSubTask
 } from 'app/redux/actions';
 
-import {
-  CLOSE_EDIT_POPUP 
-} from 'app/redux/constants';
-
 const mapStateToProps = state => ({
-  task: state.app.task,
-  isLoading: state.edit.isLoading,
-  isSubmittingTask: state.edit.isSubmittingTask,
-  addTaskStatus: state.edit.addTaskStatus,
-  addTaskMessage: state.edit.addTaskMessage,
-  isError: state.edit.isError,
-  message: state.edit.message,
-  showPopup: state.edit.showPopup
+  tasks: state.tasks,
+  isLoading: state.isLoading,
+  isSubmittingTask: state.isSubmittingTask,
+  addTaskStatus: state.addTaskStatus,
+  addTaskMessage: state.addTaskMessage,
+  isError: state.isError,
+  message: state.message,
+  showPopup: state.showPopup
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTask: payload => dispatch(getTask(payload)),
+  getTasks: () => dispatch(getTasks()),
   updateSubTask: payload => dispatch(updateSubTask(payload)),
-  addTask: payload => dispatch(addTask(payload)),
+  addTask: (payload, type) => dispatch(addTask(payload, type)),
   closePopup: (type, payload) => dispatch(closePopup(type, payload))
 });
 
@@ -67,9 +67,9 @@ class TodoEdit extends Component {
   static propTypes = {
     logger: PropTypes.object,
     match: PropTypes.object,
-    getTask: PropTypes.func,
+    getTasks: PropTypes.func,
     updateSubTask: PropTypes.func,
-    task: PropTypes.object,
+    tasks: PropTypes.array,
     isSubmittingTask: PropTypes.bool,
     addTaskStatus: PropTypes.string,
     addTaskMessage: PropTypes.string,
@@ -82,8 +82,8 @@ class TodoEdit extends Component {
   };
 
   static defaultProps = {
-    task: {},
-    getTask: () => {},
+    tasks: [],
+    getTasks: () => {},
     updateSubTask: () => {},
     closePopup: () => {},
     logger: {},
@@ -120,7 +120,7 @@ class TodoEdit extends Component {
 
   togglePopup = () => {
 
-    this.props.closePopup(CLOSE_EDIT_POPUP, false);
+    this.props.closePopup(CLOSE_POPUP, false);
   
   };
 
@@ -133,7 +133,7 @@ class TodoEdit extends Component {
       rootId: this.state.rootId,
       tasks: [],
       id: uuid()
-    });
+    }, TASK_TYPE.subtask);
   
   };
 
@@ -154,13 +154,15 @@ class TodoEdit extends Component {
       rootId: taskId
     });
 
+    this.props.getTasks();
+
     this.props.logger.info('/edit', 'edit page: => ' + taskId);
   
   };
 
   render = () => {
 
-    const task = this.props.task;
+    const tasks = this.props.tasks;
     const updateSubTask = this.props.updateSubTask;
     const showForm = this.state.showForm;
     const isSubmittingTask = this.props.isSubmittingTask;
@@ -171,27 +173,18 @@ class TodoEdit extends Component {
     const showPopup = this.props.showPopup;
     const message = this.props.message;
     const isError = this.props.isError;
-    const getTask = this.props.getTask;
 
     return (
       <React.Fragment>
         <Header>Edit</Header>
         
         <EditTask
-          task={task}
+          tasks={tasks}
           taskId={this.state.rootId}
           type={type}
-          getTask={getTask}
           isLoading={isLoading}
           updateSubTask={updateSubTask}
           showAddTaskForm={this.showAddTaskForm}
-        />
-
-        <Popup
-          onButtonPress={this.togglePopup}
-          isError={isError}
-          show={showPopup}
-          message={message}
         />
 
         <Form
@@ -201,6 +194,13 @@ class TodoEdit extends Component {
           isLoading={isSubmittingTask}
           requestStatus={addTaskStatus}
           message={addTaskMessage}
+        />
+
+        <Popup
+          onButtonPress={this.togglePopup}
+          isError={isError}
+          show={showPopup}
+          message={message}
         />
 
       </React.Fragment>
