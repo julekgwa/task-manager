@@ -10,6 +10,7 @@ import {
   ADD_TASK,
   GET_TASK,
   GET_TASKS,
+  IS_DELETING,
   NEON,
   PRIMARY,
   REMOVE_TASK,
@@ -19,8 +20,7 @@ import {
 } from '../constants';
 
 import {
-  updateNestedArrayObject, 
-  updateSubTask
+  updateSubTask 
 } from '../utils';
 
 import {
@@ -36,20 +36,11 @@ const initState = {
   currentTheme: PRIMARY,
   tasks: [],
   task: {},
-  home: {
-    isLoading: false,
-    isError: false,
-    isSubmittingTask: false,
-    addTaskStatus: '',
-    addTaskMessage: '',
-  },
-  edit: {
-    isLoading: false,
-    isError: false,
-    isSubmittingTask: false,
-    addTaskStatus: '',
-    addTaskMessage: '',
-  },
+  isDeleting: false,
+  isLoading: false,
+  showPopup: false,
+  isError: false,
+  isSubmittingTask: false
 };
 
 function mainReducer(state = initState, action) {
@@ -63,60 +54,64 @@ function mainReducer(state = initState, action) {
           state.currentTheme === PRIMARY
             ? Themes.neon
             : Themes.primary,
-      currentTheme: state.currentTheme === PRIMARY ? NEON : PRIMARY,
+      currentTheme: state.currentTheme === PRIMARY ? NEON : PRIMARY
     };
 
   case SET_LOADER:
     return {
       ...state,
-      ...action.payload,
+      ...action.payload
     };
 
   case ADD_TASK: {
 
-    const { tasks, task, } = updateNestedArrayObject([...state.tasks], action.payload);
-
     return {
       ...state,
-      tasks: tasks,
-      task: task || {},
+      tasks: action.payload
     };
-
+  
   }
 
   case UPDATE_SUBTASK: {
 
-    const { tasks, updatedTask, } = updateSubTask(state.tasks, action.payload);
+    const { tasks, updatedTask } = updateSubTask(
+      state.tasks,
+      action.payload
+    );
 
     return {
       ...state,
       tasks: tasks,
-      task: updatedTask,
-      
-    }
+      task: updatedTask
+    };
   
   }
+
+  case IS_DELETING:
+    return {
+      ...state,
+      isDeleting: action.payload
+    };
 
   case GET_TASK: {
 
     return {
       ...state,
-      task: action.payload,
-    }
+      task: action.payload
+    };
   
   }
 
   case REMOVE_TASK:
-
     return {
       ...state,
-      tasks: [...state.tasks.slice(0, action.index), ...state.tasks.slice(action.index + 1)],
-    }
+      tasks: action.payload
+    };
 
   case GET_TASKS:
     return {
       ...state,
-      tasks: action.payload,
+      tasks: action.payload
     };
 
   default:
@@ -129,5 +124,5 @@ function mainReducer(state = initState, action) {
 export const rootReducer = combineReducers({
   home: homeReducer,
   app: mainReducer,
-  edit: editReducer,
-})
+  edit: editReducer
+});

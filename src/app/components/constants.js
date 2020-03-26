@@ -9,11 +9,11 @@ import {
 
 export const Icons = {
   error: faExclamationCircle,
-  success: faCheckCircle,
+  success: faCheckCircle
 };
 
 export const IconColors = {
   error: Colors.red,
   success: Colors.darkGreen,
-  complete: Colors.softOrange,
+  complete: Colors.softOrange
 }

@@ -26,23 +26,23 @@ import {
 
 const mapStateToProps = state => ({
   isLoading: state.home.isLoading,
-  tasks: state.tasks,
+  tasks: state.tasks
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(getTasks()),
+  getTasks: () => dispatch(getTasks())
 });
 
 class TodoReminders extends Component {
 
   static propTypes = {
     getTasks: PropTypes.func,
-    tasks: PropTypes.array,
+    tasks: PropTypes.array
   }
 
   static defaultProps = {
     getTasks: () => {},
-    tasks: [],
+    tasks: []
   } 
 
   componentDidMount = () => {
@@ -54,10 +54,10 @@ class TodoReminders extends Component {
   render = () => {
 
     return (
-      <>
+      <React.Fragment>
         <Header>Reminders</Header>
         <TaskReminder tasks={this.props.tasks} />
-      </>
+      </React.Fragment>
     );
   
   };

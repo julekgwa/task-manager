@@ -42,7 +42,7 @@ export const EditItem = ({
   showDueDate,
   updateSubTask,
   dueDate,
-  taskId,
+  taskId
 }) => {
 
   const endDate = getDueDate(dueDate);
@@ -64,7 +64,7 @@ export const EditItem = ({
             />
             {!rootTask && (
               <div className='edit-sub'>
-                <Link to={`/edit/${taskId}/sub`}>
+                <Link to={`/edit/${taskId}`}>
                   <FontAwesomeIcon icon={faPencilAlt} />
                 </Link>
                 <FontAwesomeIcon
@@ -104,7 +104,7 @@ EditItem.propTypes = {
   showDueDate: PropTypes.bool,
   updateSubTask: PropTypes.func,
   dueDate: PropTypes.string.isRequired,
-  taskId: PropTypes.string.isRequired,
+  taskId: PropTypes.string.isRequired
 };
 
 EditItem.defaultProps = {
@@ -114,5 +114,5 @@ EditItem.defaultProps = {
   showDueDate: true,
   dueDate: '',
   title: '',
-  taskId: '',
+  taskId: ''
 };

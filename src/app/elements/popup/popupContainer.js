@@ -9,7 +9,7 @@ import {
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  theme: state.app.theme,
+  theme: state.app.theme
 });
 
 const Container = styled.div`
@@ -34,8 +34,6 @@ const Container = styled.div`
     opacity: 1;
     margin: 100px auto;
     position: relative;
-    /* background: ${props =>
-    props && props.theme && props.theme.backgroundColor}; */
     box-shadow: 9px 9px 18px
         ${props =>
     props && props.theme && props.theme.primaryShadowColor},
@@ -44,6 +42,11 @@ const Container = styled.div`
     props &&
           props.theme &&
           props.theme.secondaryShadowColor};
+  }
+
+  .form {
+    background: ${props =>
+    props && props.theme && props.theme.backgroundColor};
   }
 
   .message-area {
@@ -60,7 +63,9 @@ const Container = styled.div`
   }
 
   .message {
-    color: ${Colors.white}
+    color: ${Colors.white};
+    text-align: center;
+    padding: 0 10px 0 10px;
   }
 
   .icon {

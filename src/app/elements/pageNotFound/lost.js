@@ -5,6 +5,7 @@ export const Lost = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-top: 100px;
 
   h1 {
     font-size: 400px;
@@ -17,6 +18,10 @@ export const Lost = styled.div`
 
   a {
     text-decoration: none;
+  }
+
+  button {
+    color: #000;
   }
 
   /* Extra small devices (phones, 600px and down) */

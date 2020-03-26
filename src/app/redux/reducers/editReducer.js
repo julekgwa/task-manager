@@ -11,7 +11,7 @@ const initState = {
   isSubmittingTask: false,
   addTaskStatus: '',
   addTaskMessage: '',
-  message: '',
+  message: ''
 }
 
 export function editReducer(state = initState, action) {
@@ -21,7 +21,7 @@ export function editReducer(state = initState, action) {
   case SET_EDIT_LOADER:
     return {
       ...state,
-      isLoading: action.payload,
+      isLoading: action.payload
     }
 
   case EDIT_ERROR:
@@ -29,13 +29,13 @@ export function editReducer(state = initState, action) {
       ...state,
       isError: action.payload.error,
       message: action.payload.message,
-      showPopup: true,
+      showPopup: true
     }
 
   case CLOSE_EDIT_POPUP:
     return {
       ...state,
-      showPopup: action.payload,
+      showPopup: action.payload
     }
   
   default:

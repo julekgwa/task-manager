@@ -10,38 +10,31 @@ import {
   TaskItem 
 } from './taskItem';
 
-export const Tasks = ({ tasks, onDeleteTask, onAddSubTask, }) => {
+export const Tasks = ({ tasks, onAddSubTask }) => {
 
   return (
-    <>
-      {tasks.length <= 0 
-      
-        ? (
-          <TaskContainer noTasks>
-            <p>No tasks</p>
-          </TaskContainer>
-        )
-
-        : (
-          tasks.map((task, index) => (
-            <TaskItem
-              deleteTask={() => onDeleteTask(index)}
-              addSubTask={() => onAddSubTask(task.id)}
-              key={task.id}
-              taskId={task.id}
-              rootId={task.rootId}
-              title={task.title}
-              subTasks={task.tasks.length}
-            />
-          ))
-        )}
-    </>
+    <React.Fragment>
+      {tasks.length <= 0 || tasks[0] === null ? (
+        <TaskContainer noTasks>
+          <p>No tasks</p>
+        </TaskContainer>
+      ) : (
+        tasks.map(task => task && (
+          <TaskItem
+            addSubTask={() => onAddSubTask(task.id)}
+            key={task.id}
+            taskId={task.id}
+            title={task.title}
+            subTasks={task.tasks.length}
+          />
+        ))
+      )}
+    </React.Fragment>
   );
 
 };
 
 Tasks.propTypes = {
   tasks: PropTypes.array.isRequired,
-  onDeleteTask: PropTypes.func.isRequired,
-  onAddSubTask: PropTypes.func.isRequired,
+  onAddSubTask: PropTypes.func.isRequired
 };

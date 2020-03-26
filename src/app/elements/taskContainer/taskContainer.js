@@ -12,7 +12,7 @@ import {
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  theme: state.app.theme,
+  theme: state.app.theme
 });
 
 const Container = styled.div`
@@ -65,6 +65,12 @@ const Container = styled.div`
     ${`svg`} {
       &:hover {
         color: ${Colors.softOrange};
+      }
+    }
+
+    .loader {
+      svg {
+        color: ${Colors.red};
       }
     }
   }

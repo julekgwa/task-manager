@@ -13,7 +13,7 @@
   },
   "settings": {
     "react": {
-      "version": "latest"
+      "version": "detect"
     },
     "import/resolver": {
       "node": {
@@ -35,7 +35,7 @@
     "newline-per-chained-call": "error",
     "modules-newline/import-declaration-newline": "error",
     "modules-newline/export-declaration-newline": "error",
-    "comma-dangle": ["error", { "objects": "always" }],
+    "comma-dangle": ["error", { "objects": "never" }],
     "object-property-newline": [
       "error",
       { "allowAllPropertiesOnSameLine": false }
@@ -76,6 +76,8 @@
       }
     ],
     "react/no-unused-prop-types": [2],
+    // "react/jsx-no-useless-fragment": "error",
+    "react/jsx-fragments": ["error", "element"],
     "react/no-unused-state": [2],
     "import/no-default-export": "error",
     "import/newline-after-import": "error",

@@ -1,6 +1,9 @@
 import {
   CLOSE_HOME_POPUP,
   HOME_ERROR, 
+  HOME_TASK_ADDED,
+  HOME_TASK_FAILED,
+  IS_HOME_ADDING_TASK,
   SET_HOME_LOADER
 } from '../constants';
 
@@ -11,7 +14,7 @@ const initState = {
   isSubmittingTask: false,
   addTaskStatus: '',
   addTaskMessage: '',
-  message: '',
+  message: ''
 }
 
 export function homeReducer(state = initState, action) {
@@ -21,7 +24,7 @@ export function homeReducer(state = initState, action) {
   case SET_HOME_LOADER:
     return {
       ...state,
-      isLoading: action.payload,
+      isLoading: action.payload
     }
 
   case HOME_ERROR:
@@ -29,13 +32,35 @@ export function homeReducer(state = initState, action) {
       ...state,
       isError: action.payload.error,
       message: action.payload.message,
-      showPopup: true,
+      showPopup: true
     }
 
   case CLOSE_HOME_POPUP:
     return {
       ...state,
-      showPopup: action.payload,
+      showPopup: action.payload
+    }
+
+  case HOME_TASK_ADDED:
+    return {
+      ...state,
+      message: "Yay, you've successfully added a new task",
+      showPopup: true,
+      isError: false
+    }
+
+  case HOME_TASK_FAILED:
+    return {
+      ...state,
+      isError: action.payload.error,
+      message: action.payload.message,
+      showPopup: true
+    }
+
+  case IS_HOME_ADDING_TASK:
+    return {
+      ...state,
+      isSubmittingTask: action.payload
     }
   
   default:

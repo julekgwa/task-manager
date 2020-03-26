@@ -34,20 +34,20 @@ import {
 
 const mapStateToProps = state => ({
   theme: state.app.theme,
-  currentTheme: state.app.currentTheme,
+  currentTheme: state.app.currentTheme
 });
 
 const mapDispatchToProps = dispatch => ({
-  themeSwitcher: () => dispatch(setTheme()),
+  themeSwitcher: () => dispatch(setTheme())
 });
 
 const Links = ({
   toggleMenu,
   theme,
   themeSwitcher,
-  currentTheme,
+  currentTheme
 }) => (
-  <>
+  <React.Fragment>
     <NavLink exact strict to='/'>
       <div className='logo'>
         <img src={Logo} alt='logo' />
@@ -71,14 +71,14 @@ const Links = ({
     <a href='#' className='icon' onClick={toggleMenu}>
       <FontAwesomeIcon icon={faBars} />
     </a>
-  </>
+  </React.Fragment>
 );
 
 Links.propTypes = {
   toggleMenu: PropTypes.func,
   theme: PropTypes.object,
   themeSwitcher: PropTypes.func,
-  currentTheme: PropTypes.string,
+  currentTheme: PropTypes.string
 };
 
 export const RoutesLinks = connect(
@@ -88,6 +88,6 @@ export const RoutesLinks = connect(
 
 const styles = {
   themeSwitcher: {
-    float: 'right',
-  },
+    float: 'right'
+  }
 };

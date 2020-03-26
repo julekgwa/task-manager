@@ -1,20 +1,20 @@
-const handleError = (error) => {
+const validateResponse = (response) => {
 
-  if (typeof error === 'object') {
+  if (typeof response === 'object') {
 
-    return error;
+    return response;
   
   }
 
   try {
 
-    const { message, } = JSON.parse(error);
+    const { message, error } = JSON.parse(response);
 
-    return Promise.reject(new Error(message));
+    return Promise.reject(new Error(message || error));
     
   } catch (err) {
 
-    return Promise.reject(new Error(error));
+    return Promise.reject(new Error(response));
   
   }
 
@@ -22,10 +22,12 @@ const handleError = (error) => {
 
 export const fetchAPI = (options) => {
 
+  options.headers = {
+    'Content-Type': 'application/json'
+  };
+
   return fetch(options.url, options)
     .then(response => {
-
-      // TODO: Validate error responses from the backend
 
       if(response.status !== 200) {
 
@@ -36,7 +38,7 @@ export const fetchAPI = (options) => {
       return response;
     
     })
-    .then(handleError)
+    .then(validateResponse)
     .then(response => response.json());
 
 }

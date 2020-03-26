@@ -12,12 +12,19 @@ import {
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  theme: state.app.theme,
+  theme: state.app.theme
 });
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  .input-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
 
   label {
     text-transform: uppercase;
@@ -26,13 +33,24 @@ const Container = styled.div`
     props && props.theme && props.theme.headerColor};
   }
 
-  button {
-    color: ${props =>
-    props && props.theme && props.theme.headerColor};
-  }
+  .button {
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    display: flex;
 
-  .container {
-    padding: 20px;
+    p {
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    div {
+      flex: 1;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   ${props =>

@@ -1,7 +1,3 @@
-import {
-  FontAwesomeIcon 
-} from '@fortawesome/react-fontawesome';
-
 import moment from 'moment';
 
 import PropTypes from 'prop-types';
@@ -15,21 +11,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
-  Button 
-} from 'app/elements/button/button';
-
-import {
   FormContainer 
 } from 'app/elements/form/formContainer';
 
 import {
   PopupContainer 
 } from 'app/elements/popup/popupContainer';
-
-import {
-  IconColors,
-  Icons 
-} from '../constants';
 
 import {
   Loader 
@@ -45,9 +32,7 @@ export const Form = ({
   okButtonText,
   onCloseButton,
   onOkButton,
-  isLoading,
-  requestStatus,
-  message,
+  isLoading
 }) => {
 
   const [isInputEmpty, setIsInputEmpty] = useState(false);
@@ -69,6 +54,7 @@ export const Form = ({
       .toString());
 
     resetValue('');
+    setIsInputEmpty(false);
   
   };
 
@@ -76,65 +62,48 @@ export const Form = ({
 
     resetValue('');
     onCloseButton();
+    setIsInputEmpty(false);
   
   }
 
   return (
-    <>
+    <React.Fragment>
       {show ? (
         <PopupContainer>
           <FormContainer
             inputEmpty={isInputEmpty}
             isSubmitting={isLoading}
           >
-            <div className='container'>
+            <div className='container form'>
               {isLoading ? (
                 <Loader size='5x' />
-              ) : requestStatus ? (
-                <>
-                  <div className='message'>
-                    <FontAwesomeIcon
-                      color={IconColors[requestStatus]}
-                      size='5x'
-                      icon={Icons[requestStatus]}
-                    />
-                    <p>{message}</p>
-                  </div>
-                  <div className='buttons'>
-                    <Button onClick={onCloseButton} round>
-                      {closeButtonText}
-                    </Button>
-                  </div>
-                </>
               ) : (
-                <>
-                  <label htmlFor='task'>Task</label>
-                  {TaskInput}
-                  <label htmlFor='date'>Due date</label>
-                  <DatePicker
-                    id='date'
-                    selected={taskStartDate}
-                    onChange={setTaskStartDate}
-                    dateFormat='d MMMM yyyy'
-                  />
-
-                  <div className='buttons'>
-                    <Button onClick={closeForm} round>
-                      {closeButtonText}
-                    </Button>
-                    <Button onClick={addTask} round>
-                      {okButtonText}
-                    </Button>
+                <React.Fragment>
+                  <div className='input-container'>
+                    <label htmlFor='task'>Task</label>
+                    {TaskInput}
+                    <label htmlFor='date'>Due date</label>
+                    <DatePicker
+                      id='date'
+                      selected={taskStartDate}
+                      onChange={setTaskStartDate}
+                      dateFormat='d MMMM yyyy'
+                    />
                   </div>
-                </>
+
+                  <div className='button'>
+                    <div onClick={closeForm}><p>{closeButtonText}</p></div>
+                    <div onClick={addTask}><p>{okButtonText}</p></div>
+                  </div>
+                </React.Fragment>
               )}
             </div>
           </FormContainer>
         </PopupContainer>
       ) : (
-        <></>
+        <React.Fragment></React.Fragment>
       )}
-    </>
+    </React.Fragment>
   );
 
 };
@@ -145,9 +114,7 @@ Form.propTypes = {
   okButtonText: PropTypes.string,
   onCloseButton: PropTypes.func,
   isLoading: PropTypes.bool,
-  onOkButton: PropTypes.func.isRequired,
-  message: PropTypes.string,
-  requestStatus: PropTypes.string,
+  onOkButton: PropTypes.func.isRequired
 };
 
 Form.defaultProps = {
@@ -158,5 +125,5 @@ Form.defaultProps = {
   isLoading: false,
   requestStatus: '',
   message: '',
-  onOkButton: () => {},
+  onOkButton: () => {}
 };

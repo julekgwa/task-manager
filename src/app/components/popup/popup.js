@@ -23,9 +23,9 @@ export const Popup = ({
   show,
   message,
   isError,
-  onButtonPress,
+  onButtonPress
 }) => (
-  <>
+  <React.Fragment>
     {show ? (
       <PopupContainer isError={isError}>
         <div className='container'>
@@ -43,19 +43,19 @@ export const Popup = ({
     ) : (
       <div />
     )}
-  </>
+  </React.Fragment>
 );
 
 Popup.propTypes = {
   show: PropTypes.bool,
   message: PropTypes.string,
   isError: PropTypes.bool,
-  onButtonPress: PropTypes.func,
+  onButtonPress: PropTypes.func
 };
 
 Popup.defaultProps = {
   show: false,
   message: '',
   onButtonPress: () => {},
-  isError: false,
+  isError: false
 };

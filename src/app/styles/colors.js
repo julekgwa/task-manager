@@ -22,5 +22,5 @@ export const Colors = {
   red: '#FF0000',
   darkGreen: '#459628',
   verySoftCyan: '#A5DAC8',
-  verySoftRed: '#E79B9B',
+  verySoftRed: '#E79B9B'
 };
