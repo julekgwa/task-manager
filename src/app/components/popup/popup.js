@@ -19,11 +19,15 @@ import {
   PopupContainer 
 } from 'app/elements/popup/popupContainer';
 
+import {
+  handleKeyDown 
+} from 'app/utils';
+
 export const Popup = ({
   show,
   message,
   isError,
-  onButtonPress
+  onButtonPress,
 }) => (
   <React.Fragment>
     {show ? (
@@ -35,7 +39,7 @@ export const Popup = ({
             <p className='status'>{isError ? 'Error': 'Success'}</p>
             <p className='message'>{message}</p>
           </div>
-          <div onClick={onButtonPress} className='button'>
+          <div tabIndex='0' role='button' onKeyDown={(e) => handleKeyDown(e, onButtonPress)} onClick={onButtonPress} className='button'>
             <p>{isError ? 'OK!' : 'Cool beans!'}</p>
           </div>
         </div>
@@ -50,12 +54,12 @@ Popup.propTypes = {
   show: PropTypes.bool,
   message: PropTypes.string,
   isError: PropTypes.bool,
-  onButtonPress: PropTypes.func
+  onButtonPress: PropTypes.func,
 };
 
 Popup.defaultProps = {
   show: false,
   message: '',
   onButtonPress: () => {},
-  isError: false
+  isError: false,
 };

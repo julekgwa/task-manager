@@ -40,7 +40,7 @@ export function updateSubTask(tasks, subTaskId) {
     const currentTask = copyOfTasks[i];
 
     const subTask = findFirst(currentTask, 'tasks', {
-      id: subTaskId
+      id: subTaskId,
     });
 
     if (subTask) {
@@ -56,7 +56,7 @@ export function updateSubTask(tasks, subTaskId) {
 
   return {
     tasks: copyOfTasks,
-    updatedTask
+    updatedTask,
   };
 
 }
@@ -80,7 +80,7 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
     }
 
     const rootTask = findFirst(currentTask, 'tasks', {
-      id: newTask.rootId 
+      id: newTask.rootId, 
     });
 
     if (rootTask) {
@@ -103,7 +103,7 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
 
   return {
     tasks: copyArrayOfNestedArrayObjects,
-    task: currentTask
+    task: currentTask,
   };
 
 }

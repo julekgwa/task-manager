@@ -19,31 +19,31 @@ function getGreeting() {
   case hours >= 5 && hours <= 11:
     return {
       greeting: 'Good morning.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`
-    }
+      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+    };
 
   case hours === 12:
     return {
       greeting: 'It is high noon.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`
-    }
+      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+    };
 
   case hours >= 13 && hours <= 17:
     return {
       greeting: 'Good afternoon.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`
-    }
+      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+    };
 
   case hours >= 18 && hours <= 22:
     return {
       greeting: 'Good evening.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`
+      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
   
   default:
     return {
       greeting:'ZZZZZZzzzzzzZZZZ',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`
+      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
   
   }
@@ -52,7 +52,7 @@ function getGreeting() {
 
 export const Greeting = () => {
 
-  const { date, greeting } = getGreeting();
+  const { date, greeting, } = getGreeting();
 
   return (
     <GreetingContainer>

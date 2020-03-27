@@ -18,11 +18,11 @@ export const IS_UPDATING_TASK = 'IS_UPDATING_TASK';
 
 export const TASK_TYPE = {
   task: 'task',
-  subtask: 'subtask'
-}
+  subtask: 'subtask',
+};
 export const REQUEST_METHOD = {
   get: 'GET',
   post: 'POST',
   put: 'PUT',
-  delete: 'DELETE'
-}
+  delete: 'DELETE',
+};

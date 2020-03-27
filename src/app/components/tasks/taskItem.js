@@ -40,11 +40,11 @@ import {
 } from '../loader/loader';
 
 const mapStateToProps = state => ({
-  isUpdatingTask: state.isUpdatingTask
+  isUpdatingTask: state.isUpdatingTask,
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteTask: payload => dispatch(removeTask(payload))
+  deleteTask: payload => dispatch(removeTask(payload)),
 });
 
 const Task = ({
@@ -54,29 +54,29 @@ const Task = ({
   addSubTask,
   taskId,
   isUpdatingTask,
-  root
+  root,
 }) => {
 
   const [isRemovingTask, setIsRemovingTask] = useState(false);
 
   useEffect(() => {
 
-    setIsRemovingTask(isUpdatingTask && isRemovingTask || false);
+    setIsRemovingTask((isUpdatingTask && isRemovingTask) || false);
   
-  }, [isUpdatingTask]);
+  }, [isUpdatingTask, isRemovingTask]);
 
   const remove = () => {
 
     setIsRemovingTask(true);
 
     deleteTask({
-      id: taskId
+      id: taskId,
     });
   
-  }
+  };
 
   return (
-    <TaskContainer>
+    <TaskContainer isDeleting={isRemovingTask && isUpdatingTask}>
       <div>
         <h1>{title}</h1>
         <p>{subTasks} Tasks</p>
@@ -87,6 +87,7 @@ const Task = ({
           ) : (
             <React.Fragment>
               <FontAwesomeIcon
+                role='img'
                 size='lg'
                 onClick={addSubTask}
                 icon={faPlus}
@@ -115,7 +116,7 @@ Task.propTypes = {
   addSubTask: PropTypes.func.isRequired,
   taskId: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
-  root: PropTypes.bool
+  root: PropTypes.bool,
 };
 
 Task.defaultProps = {
@@ -124,7 +125,7 @@ Task.defaultProps = {
   deleteTask: () => {},
   addSubTask: () => {},
   isUpdatingTask: false,
-  root: false
+  root: false,
 };
 
 export const TaskItem = connect(mapStateToProps, mapDispatchToProps)(Task);

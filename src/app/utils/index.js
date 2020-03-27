@@ -19,13 +19,13 @@ export function getDueDate(dueDate) {
 
   if (diffDuration.days() === 0 && diffDuration.hours() <= 23 && diffDuration.minutes() <= 59) {
 
-    return 'today'
+    return 'today';
   
   }
 
   if (diffDuration.days() > 0) {
 
-    return `in ${diffDuration.days()} days`
+    return `in ${diffDuration.days()} days`;
   
   }
 
@@ -104,7 +104,7 @@ export function getTask(id, isRoot, tasks) {
     const currentTask = tasks[i];
 
     const subTask = findFirst(currentTask, 'tasks', {
-      id: id
+      id: id,
     });
 
     if (subTask) {
@@ -113,6 +113,16 @@ export function getTask(id, isRoot, tasks) {
     
     }
     
+  }
+
+}
+
+export function handleKeyDown(e,func) {
+
+  if (e.keyCode === 13) {
+
+    typeof func === 'function' && func();
+  
   }
 
 }

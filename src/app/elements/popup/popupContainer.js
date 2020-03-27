@@ -9,7 +9,7 @@ import {
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  theme: state.theme,
 });
 
 const Container = styled.div`
@@ -25,7 +25,7 @@ const Container = styled.div`
   background-color: rgba(236, 240, 243, .5);
 
   .container {
-    background-color: ${props => props && props.isError && Colors.verySoftRed || Colors.verySoftCyan};
+    background-color: ${props => (props && props.isError && Colors.verySoftRed) || (Colors.verySoftCyan)};
     width: 400px;
     min-height: 359px;
     border-radius: 10px;

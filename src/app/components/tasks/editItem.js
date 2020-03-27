@@ -50,12 +50,12 @@ import {
 } from '../loader/loader';
 
 const mapStateToProps = state => ({
-  isUpdatingTask: state.isUpdatingTask
+  isUpdatingTask: state.isUpdatingTask,
 });
 
 const mapDispatchToProps = dispatch => ({
   deleteTask: payload => dispatch(removeTask(payload)),
-  updateSubTask: payload => dispatch(updateSubTask(payload))
+  updateSubTask: payload => dispatch(updateSubTask(payload)),
 });
 
 const Item = ({
@@ -69,7 +69,7 @@ const Item = ({
   taskId,
   isUpdatingTask,
   deleteTask,
-  task
+  task,
 }) => {
 
   const endDate = getDueDate(dueDate);
@@ -79,14 +79,14 @@ const Item = ({
 
     setUpdatingTask((isUpdatingTask && updatingTask) || false);
   
-  }, [isUpdatingTask]);
+  }, [isUpdatingTask, updatingTask]);
 
   const remove = () => {
 
     setUpdatingTask(true);
 
     deleteTask({
-      id: taskId
+      id: taskId,
     });
   
   };
@@ -99,7 +99,7 @@ const Item = ({
     
     updateSubTask(task);
 
-  }
+  };
 
   return (
     <EditItemContainer
@@ -162,7 +162,7 @@ Item.propTypes = {
   taskId: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
   deleteTask: PropTypes.func,
-  task: PropTypes.object.isRequired
+  task: PropTypes.object.isRequired,
 };
 
 Item.defaultProps = {
@@ -174,7 +174,8 @@ Item.defaultProps = {
   title: '',
   taskId: '',
   isUpdatingTask: false,
-  deleteTask: () => {}
+  deleteTask: () => {},
+  task: {},
 };
 
 export const EditItem = connect(

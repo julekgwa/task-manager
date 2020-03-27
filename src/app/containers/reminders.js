@@ -26,23 +26,23 @@ import {
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
-  tasks: state.tasks
+  tasks: state.tasks,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(getTasks())
+  getTasks: () => dispatch(getTasks()),
 });
 
 class TodoReminders extends Component {
 
   static propTypes = {
     getTasks: PropTypes.func,
-    tasks: PropTypes.array
+    tasks: PropTypes.array,
   }
 
   static defaultProps = {
     getTasks: () => {},
-    tasks: []
+    tasks: [],
   } 
 
   componentDidMount = () => {

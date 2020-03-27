@@ -9,7 +9,7 @@ import styled, {
 } from 'styled-components';
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  theme: state.theme,
 });
 
 const ButtonContainer = styled.button`
@@ -81,7 +81,7 @@ const ButtonContainer = styled.button`
 
 ButtonContainer.propTypes = {
   circle: PropTypes.bool,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
 };
 
 export const Button = connect(mapStateToProps)(ButtonContainer);

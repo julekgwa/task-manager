@@ -19,7 +19,7 @@ import {
   EditItem 
 } from './editItem';
 
-export const TaskReminder = ({ tasks }) => (
+export const TaskReminder = ({ tasks, }) => (
   <TaskContainer edit>
     <div className='add-task'>
       <div className='todo'>
@@ -40,6 +40,7 @@ export const TaskReminder = ({ tasks }) => (
         updateSubtasks={() => {}}
         key={task.id}
         title={task.title}
+        task={task}
         taskId={task.id}
         dueDate={task.dueDate}
         incomplete={!task.status}
@@ -49,5 +50,5 @@ export const TaskReminder = ({ tasks }) => (
 );
 
 TaskReminder.propTypes = {
-  tasks: PropTypes.array
-}
+  tasks: PropTypes.array,
+};

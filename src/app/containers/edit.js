@@ -52,14 +52,14 @@ const mapStateToProps = state => ({
   addTaskMessage: state.addTaskMessage,
   isError: state.isError,
   message: state.message,
-  showPopup: state.showPopup
+  showPopup: state.showPopup,
 });
 
 const mapDispatchToProps = dispatch => ({
   getTasks: () => dispatch(getTasks()),
   updateSubTask: payload => dispatch(updateSubTask(payload)),
   addTask: (payload, type) => dispatch(addTask(payload, type)),
-  closePopup: (type, payload) => dispatch(closePopup(type, payload))
+  closePopup: (type, payload) => dispatch(closePopup(type, payload)),
 });
 
 class TodoEdit extends Component {
@@ -78,7 +78,7 @@ class TodoEdit extends Component {
     isError: PropTypes.bool,
     showPopup: PropTypes.bool,
     message: PropTypes.string,
-    closePopup: PropTypes.func
+    closePopup: PropTypes.func,
   };
 
   static defaultProps = {
@@ -94,18 +94,18 @@ class TodoEdit extends Component {
     isLoading: false,
     isError: false,
     message: '',
-    showPopup: false
+    showPopup: false,
   };
 
   state = {
     showForm: false,
-    rootId: null
+    rootId: null,
   };
 
   showAddTaskForm = () => {
 
     this.setState({
-      showForm: true
+      showForm: true,
     });
   
   };
@@ -113,7 +113,7 @@ class TodoEdit extends Component {
   onCloseButton = () => {
 
     this.setState({
-      showForm: false
+      showForm: false,
     });
   
   }
@@ -132,7 +132,7 @@ class TodoEdit extends Component {
       dueDate: dueDate,
       rootId: this.state.rootId,
       tasks: [],
-      id: uuid()
+      id: uuid(),
     }, TASK_TYPE.subtask);
   
   };
@@ -141,17 +141,17 @@ class TodoEdit extends Component {
   static getDerivedStateFromProps(nextProps, prevState) {
 
     return nextProps.match.params.taskId !== prevState.rootId ? {
-      rootId : nextProps.match.params.taskId
+      rootId : nextProps.match.params.taskId,
     } : null;
   
   }
 
   componentDidMount = () => {
 
-    const { taskId } = this.props.match.params;
+    const { taskId, } = this.props.match.params;
 
     this.setState({
-      rootId: taskId
+      rootId: taskId,
     });
 
     this.props.getTasks();
@@ -169,7 +169,7 @@ class TodoEdit extends Component {
     const addTaskStatus = this.props.addTaskStatus;
     const addTaskMessage = this.props.addTaskMessage;
     const isLoading =this.props.isLoading;
-    const { type } = this.props.match.params;
+    const { type, } = this.props.match.params;
     const showPopup = this.props.showPopup;
     const message = this.props.message;
     const isError = this.props.isError;

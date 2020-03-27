@@ -12,7 +12,7 @@ import {
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  theme: state.theme,
 });
 
 const Container = styled.div`
@@ -32,6 +32,31 @@ const Container = styled.div`
   display: flex;
   align-items: flex-end;
   flex-wrap: wrap;
+
+  ${props =>
+    props.isDeleting &&
+    css`
+      animation-name: border-delete;
+      animation-duration: 0.9ms;
+      animation-iteration-count: infinite;
+      animation-timing-function: ease-in;
+      border: 2px solid transparent;
+
+      @keyframes border-delete {
+        0% {
+          border-top-color: red;
+        }
+        25% {
+          border-right-color: red;
+        }
+        50% {
+          border-bottom-color: red;
+        }
+        100% {
+          border-left-color: red;
+        }
+      }
+    `}
 
   h1 {
     margin: 0;
@@ -110,12 +135,14 @@ const Container = styled.div`
         display: flex;
         justify-content: flex-end;
         padding: 10px;
-        background-color: ${props => props && props.theme && props.theme.alternate};
+        background-color: ${props =>
+    props && props.theme && props.theme.alternate};
 
         p {
           font-size: 20px;
           font-family: 'Signika', sans-serif;
-          color: ${props => props && props.theme && props.theme.editParagraphColor};
+          color: ${props =>
+    props && props.theme && props.theme.editParagraphColor};
         }
       }
 
@@ -132,7 +159,7 @@ const Container = styled.div`
         padding: 30px;
         background-color: ${props =>
     (props && props.color) ||
-      (props.theme && props.theme.headerColor)};
+          (props.theme && props.theme.headerColor)};
       }
 
       svg {
@@ -141,9 +168,13 @@ const Container = styled.div`
 
       &:hover {
         box-shadow: 9px 9px 18px
-            ${props => props && props.theme && props.theme.primaryShadowColor},
+            ${props =>
+    props && props.theme && props.theme.primaryShadowColor},
           -9px -9px 18px
-            ${props => props && props.theme && props.theme.secondaryShadowColor};
+            ${props =>
+    props &&
+              props.theme &&
+              props.theme.secondaryShadowColor};
       }
     `}
 `;

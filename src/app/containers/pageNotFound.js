@@ -18,7 +18,7 @@ import {
   withLogger 
 } from "app/hoc/withLogger";
 
-const PageNotFound = ({ logger }) => {
+const PageNotFound = ({ logger, }) => {
 
   logger.error("/404", "Page not found");
 
@@ -33,7 +33,7 @@ const PageNotFound = ({ logger }) => {
 };
 
 PageNotFound.propTypes = {
-  logger: PropTypes.object
+  logger: PropTypes.object,
 };
 
 // eslint-disable-next-line import/no-default-export

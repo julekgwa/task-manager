@@ -31,7 +31,7 @@ export function setTheme(payload) {
 
   return {
     type: SET_THEME,
-    payload
+    payload,
   };
 
 }
@@ -40,7 +40,7 @@ export function setError(type, payload) {
 
   return {
     type,
-    payload
+    payload,
   };
 
 }
@@ -49,8 +49,8 @@ export function closePopup(type, payload) {
 
   return {
     type,
-    payload
-  }
+    payload,
+  };
 
 }
 
@@ -61,19 +61,19 @@ export function addTask(payload, type = TASK_TYPE.task) {
     const requestOptions = {
       url: type === TASK_TYPE.subtask ? ADD_SUB_TASK : ADD_NEW_TASK,
       method: REQUEST_METHOD.post,
-      body: JSON.stringify(payload)
-    }
+      body: JSON.stringify(payload),
+    };
 
     const action  = {
       type: ADD_TASK,
       loaderType: IS_ADDING_TASK,
       error: TASK_FAILED,
-      success: TASK_ADDED
-    }
+      success: TASK_ADDED,
+    };
 
     fetchItem(dispatch, requestOptions, true, action);
   
-  }
+  };
 
 }
 
@@ -84,18 +84,18 @@ export function updateSubTask(payload) {
     const requestOptions = {
       url: UPDATE_TASK_BY_ID,
       method: REQUEST_METHOD.put,
-      body: JSON.stringify(payload)
-    }
+      body: JSON.stringify(payload),
+    };
 
     const action = {
       type: UPDATE_TASK,
       loaderType: IS_UPDATING_TASK,
-      error: ERROR
-    }
+      error: ERROR,
+    };
 
     fetchItem(dispatch, requestOptions, true, action);
   
-  }
+  };
 
 }
 
@@ -105,18 +105,18 @@ export function removeTask(payload) {
 
     const requestOptions = {
       url: DELETE_TASK + payload.id,
-      method: REQUEST_METHOD.delete
+      method: REQUEST_METHOD.delete,
     };
 
     const action = {
       type: REMOVE_TASK,
       loaderType: IS_UPDATING_TASK,
-      error: ERROR
-    }
+      error: ERROR,
+    };
 
     fetchItem(dispatch, requestOptions, true, action);
     
-  }
+  };
 
 }
 
@@ -126,18 +126,18 @@ export function getTask(payload) {
 
     const requestOptions = {
       url: GET_TASK_BY_ID + payload.id,
-      method: REQUEST_METHOD.get
-    }
+      method: REQUEST_METHOD.get,
+    };
 
     const action = {
       type: GET_TASK,
       loaderType: SET_LOADER,
-      error: ERROR
-    }
+      error: ERROR,
+    };
 
     fetchItem(dispatch, requestOptions, true, action);
 
-  }
+  };
   
 }
 
@@ -147,14 +147,14 @@ export function getTasks() {
 
     const requestOptions = {
       url: GET_ALL_TASKS,
-      method: REQUEST_METHOD.get
-    }
+      method: REQUEST_METHOD.get,
+    };
 
     const action = {
       type: GET_TASKS,
       loaderType: SET_LOADER,
-      error: ERROR
-    }
+      error: ERROR,
+    };
 
     fetchItem(dispatch, requestOptions, true, action);
   

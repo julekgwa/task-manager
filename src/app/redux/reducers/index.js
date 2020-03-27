@@ -34,7 +34,7 @@ const initState = {
   isLoading: false,
   showPopup: false,
   isError: false,
-  isSubmittingTask: false
+  isSubmittingTask: false,
 };
 
 export function rootReducer(state = initState, action) {
@@ -48,20 +48,20 @@ export function rootReducer(state = initState, action) {
           state.currentTheme === PRIMARY
             ? Themes.neon
             : Themes.primary,
-      currentTheme: state.currentTheme === PRIMARY ? NEON : PRIMARY
+      currentTheme: state.currentTheme === PRIMARY ? NEON : PRIMARY,
     };
 
   case SET_LOADER:
     return {
       ...state,
-      isLoading: action.payload
+      isLoading: action.payload,
     };
 
   case ADD_TASK: {
 
     return {
       ...state,
-      tasks: action.payload
+      tasks: action.payload,
     };
   
   }
@@ -70,7 +70,7 @@ export function rootReducer(state = initState, action) {
 
     return {
       ...state,
-      tasks: action.payload
+      tasks: action.payload,
     };
   
   }
@@ -78,34 +78,34 @@ export function rootReducer(state = initState, action) {
   case CLOSE_POPUP:
     return {
       ...state,
-      showPopup: action.payload
-    }
+      showPopup: action.payload,
+    };
 
   case TASK_ADDED:
     return {
       ...state,
       message: "Yay, you've successfully added a new task",
       showPopup: true,
-      isError: false
-    }
+      isError: false,
+    };
 
   case TASK_FAILED:
     return {
       ...state,
       isError: action.payload.error,
       message: action.payload.message,
-      showPopup: true
-    }
+      showPopup: true,
+    };
 
   case IS_ADDING_TASK:
     return {
       ...state,
-      isSubmittingTask: action.payload
-    }
+      isSubmittingTask: action.payload,
+    };
 
   case UPDATE_SUBTASK: {
 
-    const { tasks, updatedTask } = updateSubTask(
+    const { tasks, updatedTask, } = updateSubTask(
       state.tasks,
       action.payload
     );
@@ -113,7 +113,7 @@ export function rootReducer(state = initState, action) {
     return {
       ...state,
       tasks: tasks,
-      task: updatedTask
+      task: updatedTask,
     };
   
   }
@@ -121,14 +121,14 @@ export function rootReducer(state = initState, action) {
   case IS_UPDATING_TASK:
     return {
       ...state,
-      isUpdatingTask: action.payload
+      isUpdatingTask: action.payload,
     };
 
   case GET_TASK: {
 
     return {
       ...state,
-      task: action.payload
+      task: action.payload,
     };
   
   }
@@ -138,8 +138,8 @@ export function rootReducer(state = initState, action) {
       ...state,
       isError: action.payload.error,
       message: action.payload.message,
-      showPopup: true
-    }
+      showPopup: true,
+    };
 
   case REMOVE_TASK: {
 
@@ -147,7 +147,7 @@ export function rootReducer(state = initState, action) {
 
     return {
       ...state,
-      tasks: tasks.filter(task => task)
+      tasks: tasks.filter(task => task),
     };
   
   }
@@ -155,7 +155,7 @@ export function rootReducer(state = initState, action) {
   case GET_TASKS:
     return {
       ...state,
-      tasks: action.payload
+      tasks: action.payload,
     };
 
   default:
