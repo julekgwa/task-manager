@@ -19,6 +19,10 @@ import {
 } from 'app/elements/popup/popupContainer';
 
 import {
+  handleKeyDown 
+} from 'app/utils';
+
+import {
   Loader 
 } from '../loader/loader';
 
@@ -32,7 +36,7 @@ export const Form = ({
   okButtonText,
   onCloseButton,
   onOkButton,
-  isLoading
+  isLoading,
 }) => {
 
   const [isInputEmpty, setIsInputEmpty] = useState(false);
@@ -64,7 +68,7 @@ export const Form = ({
     onCloseButton();
     setIsInputEmpty(false);
   
-  }
+  };
 
   return (
     <React.Fragment>
@@ -92,8 +96,8 @@ export const Form = ({
                   </div>
 
                   <div className='button'>
-                    <div onClick={closeForm}><p>{closeButtonText}</p></div>
-                    <div onClick={addTask}><p>{okButtonText}</p></div>
+                    <div onClick={closeForm} role='button' tabIndex='0'  onKeyDown={(e) => handleKeyDown(e, closeForm)}><p>{closeButtonText}</p></div>
+                    <div role='button' tabIndex='0' onKeyDown={(e) => handleKeyDown(e, addTask)} onClick={addTask}><p>{okButtonText}</p></div>
                   </div>
                 </React.Fragment>
               )}
@@ -114,7 +118,7 @@ Form.propTypes = {
   okButtonText: PropTypes.string,
   onCloseButton: PropTypes.func,
   isLoading: PropTypes.bool,
-  onOkButton: PropTypes.func.isRequired
+  onOkButton: PropTypes.func.isRequired,
 };
 
 Form.defaultProps = {
@@ -125,5 +129,5 @@ Form.defaultProps = {
   isLoading: false,
   requestStatus: '',
   message: '',
-  onOkButton: () => {}
+  onOkButton: () => {},
 };

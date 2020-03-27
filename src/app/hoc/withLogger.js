@@ -14,7 +14,7 @@ export const withLogger = WrappedComponent => {
 
       console.error(screen, logError);
     
-    }
+    },
   };
 
   return class WithLogger extends Component {

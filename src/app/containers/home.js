@@ -77,21 +77,21 @@ const mapStateToProps = state => ({
   addTaskMessage: state.addTaskMessage,
   isError: state.isError,
   message: state.message,
-  showPopup: state.showPopup
+  showPopup: state.showPopup,
 });
 
 const mapDispatchToProps = dispatch => ({
   getTasks: () => dispatch(getTasks()),
   addTask: (payload, type) => dispatch(addTask(payload, type)),
   removeTask: payload => dispatch(removeTask(payload)),
-  closePopup: (type, payload) => dispatch(closePopup(type, payload))
+  closePopup: (type, payload) => dispatch(closePopup(type, payload)),
 });
 
 class TodoHome extends Component {
 
   state = {
     showForm: false,
-    rootId: null
+    rootId: null,
   };
 
   static propTypes = {
@@ -105,7 +105,7 @@ class TodoHome extends Component {
     isError: PropTypes.bool,
     showPopup: PropTypes.bool,
     message: PropTypes.string,
-    closePopup: PropTypes.func
+    closePopup: PropTypes.func,
   };
 
   static defaultProps = {
@@ -119,7 +119,7 @@ class TodoHome extends Component {
     message: '',
     getTasks: () => {},
     addTask: () => {},
-    closePopup: () => {}
+    closePopup: () => {},
   };
 
   togglePopup = () => {
@@ -132,7 +132,7 @@ class TodoHome extends Component {
 
     this.setState({
       showForm: true,
-      rootId: rootId || null
+      rootId: rootId || null,
     });
   
   };
@@ -140,7 +140,7 @@ class TodoHome extends Component {
   closeForm = () => {
 
     this.setState({
-      showForm: false
+      showForm: false,
     });
   
   };
@@ -153,7 +153,7 @@ class TodoHome extends Component {
         status: false,
         dueDate: dueDate,
         rootId: this.state.rootId,
-        tasks: []
+        tasks: [],
       },
       this.state.rootId ? TASK_TYPE.subtask : TASK_TYPE.task
     );
@@ -188,7 +188,7 @@ class TodoHome extends Component {
           <div
             style={{
               display: 'flex',
-              flexWrap: 'wrap'
+              flexWrap: 'wrap',
             }}
           >
             <ListHeader>

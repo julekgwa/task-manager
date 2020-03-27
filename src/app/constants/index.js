@@ -15,14 +15,15 @@ export const IS_ADDING_TASK = 'IS_ADDING_TASK';
 export const TASK_ADDED = 'TASK_ADDED';
 export const TASK_FAILED = 'TASK_FAILED';
 export const IS_UPDATING_TASK = 'IS_UPDATING_TASK';
+export const GET_REMINDERS = 'GET_REMINDERS';
 
 export const TASK_TYPE = {
   task: 'task',
-  subtask: 'subtask'
-}
+  subtask: 'subtask',
+};
 export const REQUEST_METHOD = {
   get: 'GET',
   post: 'POST',
   put: 'PUT',
-  delete: 'DELETE'
-}
+  delete: 'DELETE',
+};

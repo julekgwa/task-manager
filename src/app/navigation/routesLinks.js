@@ -34,18 +34,18 @@ import {
 
 const mapStateToProps = state => ({
   theme: state.theme,
-  currentTheme: state.currentTheme
+  currentTheme: state.currentTheme,
 });
 
 const mapDispatchToProps = dispatch => ({
-  themeSwitcher: () => dispatch(setTheme())
+  themeSwitcher: () => dispatch(setTheme()),
 });
 
 const Links = ({
   toggleMenu,
   theme,
   themeSwitcher,
-  currentTheme
+  currentTheme,
 }) => (
   <React.Fragment>
     <NavLink exact strict to='/'>
@@ -61,14 +61,14 @@ const Links = ({
       <FontAwesomeIcon icon={faBell} />
       Reminders
     </NavLink>
-    <a style={styles.themeSwitcher} href='#'>
+    <a style={styles.themeSwitcher} href='#switch'>
       <Switch
         theme={theme}
         checked={currentTheme === PRIMARY ? false : true}
         onChange={themeSwitcher}
       />
     </a>
-    <a href='#' className='icon' onClick={toggleMenu}>
+    <a href='#mobile' className='icon' onClick={toggleMenu}>
       <FontAwesomeIcon icon={faBars} />
     </a>
   </React.Fragment>
@@ -78,7 +78,7 @@ Links.propTypes = {
   toggleMenu: PropTypes.func,
   theme: PropTypes.object,
   themeSwitcher: PropTypes.func,
-  currentTheme: PropTypes.string
+  currentTheme: PropTypes.string,
 };
 
 export const RoutesLinks = connect(
@@ -88,6 +88,6 @@ export const RoutesLinks = connect(
 
 const styles = {
   themeSwitcher: {
-    float: 'right'
-  }
+    float: 'right',
+  },
 };

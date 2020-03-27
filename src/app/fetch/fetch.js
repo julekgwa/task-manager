@@ -8,7 +8,7 @@ const validateResponse = (response) => {
 
   try {
 
-    const { message, error } = JSON.parse(response);
+    const { message, error, } = JSON.parse(response);
 
     return Promise.reject(new Error(message || error));
     
@@ -18,12 +18,12 @@ const validateResponse = (response) => {
   
   }
 
-}
+};
 
 export const fetchAPI = (options) => {
 
   options.headers = {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   };
 
   return fetch(options.url, options)
@@ -41,4 +41,4 @@ export const fetchAPI = (options) => {
     .then(validateResponse)
     .then(response => response.json());
 
-}
+};

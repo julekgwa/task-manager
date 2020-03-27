@@ -1,24 +1,33 @@
 import PropTypes from 'prop-types';
 
 import React, {
+
   Component 
-} from "react";
+} from 'react';
 
 import {
   connect 
 } from 'react-redux';
 
 import {
+  Loader 
+} from 'app/components/loader/loader';
+
+import {
   TaskReminder 
 } from 'app/components/tasks/reminder';
 
 import {
+  GET_REMINDERS 
+} from 'app/constants';
+
+import {
   Header 
-} from "app/elements/header/header";
+} from 'app/elements/header/header';
 
 import {
   withLogger 
-} from "app/hoc/withLogger";
+} from 'app/hoc/withLogger';
 
 import {
   getTasks 
@@ -26,37 +35,45 @@ import {
 
 const mapStateToProps = state => ({
   isLoading: state.isLoading,
-  tasks: state.tasks
+  reminderTasks: state.reminderTasks,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(getTasks())
+  getTasks: payload => dispatch(getTasks(payload)),
 });
 
 class TodoReminders extends Component {
 
   static propTypes = {
     getTasks: PropTypes.func,
-    tasks: PropTypes.array
-  }
+    reminderTasks: PropTypes.array,
+    isLoading: PropTypes.bool,
+  };
 
   static defaultProps = {
     getTasks: () => {},
-    tasks: []
-  } 
+    reminderTasks: [],
+    isLoading: false,
+  };
 
   componentDidMount = () => {
 
-    this.props.getTasks();
+    this.props.getTasks(GET_REMINDERS);
   
-  }
+  };
 
   render = () => {
+
+    const isLoading = this.props.isLoading;
+    const tasks = this.props.reminderTasks;
 
     return (
       <React.Fragment>
         <Header>Reminders</Header>
-        <TaskReminder tasks={this.props.tasks} />
+        {isLoading
+          ? <Loader size='5x' />
+          : <TaskReminder tasks={tasks} />
+        }
       </React.Fragment>
     );
   
@@ -64,4 +81,7 @@ class TodoReminders extends Component {
 
 }
 
-export const Reminders = connect(mapStateToProps, mapDispatchToProps)(withLogger(TodoReminders));
+export const Reminders = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withLogger(TodoReminders));

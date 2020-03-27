@@ -21,5 +21,5 @@ export const Loader = ({ size, ...props }) => (
 );
 
 Loader.propTypes = {
-  size: PropTypes.string
-}
+  size: PropTypes.string,
+};

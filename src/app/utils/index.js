@@ -19,17 +19,34 @@ export function getDueDate(dueDate) {
 
   if (diffDuration.days() === 0 && diffDuration.hours() <= 23 && diffDuration.minutes() <= 59) {
 
-    return 'today'
+    return 'today';
   
   }
 
   if (diffDuration.days() > 0) {
 
-    return `in ${diffDuration.days()} days`
+    return `in ${diffDuration.days()} days`;
   
   }
 
   return 'overdue';
+
+}
+
+export function isTaskDueIn24Hours(task) {
+
+  if (!parseInt(task.dueDate, 10)) {
+
+    return false;
+  
+  }
+
+  const startDate = moment(Date.now());
+  const timeEnd = moment(parseInt(task.dueDate, 10));
+  const diff = timeEnd.diff(startDate);
+  const diffDuration = moment.duration(diff);
+
+  return diffDuration.asHours() <= 24 && task && !task.status;
 
 }
 
@@ -104,7 +121,7 @@ export function getTask(id, isRoot, tasks) {
     const currentTask = tasks[i];
 
     const subTask = findFirst(currentTask, 'tasks', {
-      id: id
+      id: id,
     });
 
     if (subTask) {
@@ -113,6 +130,16 @@ export function getTask(id, isRoot, tasks) {
     
     }
     
+  }
+
+}
+
+export function handleKeyDown(e,func) {
+
+  if (e.keyCode === 13) {
+
+    typeof func === 'function' && func();
+  
   }
 
 }

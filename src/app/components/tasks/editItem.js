@@ -25,6 +25,10 @@ import {
 } from 'react-router-dom';
 
 import {
+  UPDATE_TASK 
+} from 'app/constants';
+
+import {
   Header 
 } from 'app/elements/header/header';
 
@@ -50,12 +54,12 @@ import {
 } from '../loader/loader';
 
 const mapStateToProps = state => ({
-  isUpdatingTask: state.isUpdatingTask
+  isUpdatingTask: state.isUpdatingTask,
 });
 
 const mapDispatchToProps = dispatch => ({
   deleteTask: payload => dispatch(removeTask(payload)),
-  updateSubTask: payload => dispatch(updateSubTask(payload))
+  updateSubTask: (payload, type) => dispatch(updateSubTask(payload, type)),
 });
 
 const Item = ({
@@ -69,7 +73,8 @@ const Item = ({
   taskId,
   isUpdatingTask,
   deleteTask,
-  task
+  task,
+  updateTaskAction,
 }) => {
 
   const endDate = getDueDate(dueDate);
@@ -79,14 +84,14 @@ const Item = ({
 
     setUpdatingTask((isUpdatingTask && updatingTask) || false);
   
-  }, [isUpdatingTask]);
+  }, [isUpdatingTask, updatingTask]);
 
   const remove = () => {
 
     setUpdatingTask(true);
 
     deleteTask({
-      id: taskId
+      id: taskId,
     });
   
   };
@@ -97,9 +102,9 @@ const Item = ({
 
     task.status = !task.status;
     
-    updateSubTask(task);
+    updateSubTask(task, updateTaskAction);
 
-  }
+  };
 
   return (
     <EditItemContainer
@@ -162,7 +167,8 @@ Item.propTypes = {
   taskId: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
   deleteTask: PropTypes.func,
-  task: PropTypes.object.isRequired
+  task: PropTypes.object.isRequired,
+  updateTaskAction: PropTypes.string,
 };
 
 Item.defaultProps = {
@@ -174,7 +180,9 @@ Item.defaultProps = {
   title: '',
   taskId: '',
   isUpdatingTask: false,
-  deleteTask: () => {}
+  deleteTask: () => {},
+  task: {},
+  updateTaskAction: UPDATE_TASK,
 };
 
 export const EditItem = connect(

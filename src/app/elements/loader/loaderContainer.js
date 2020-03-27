@@ -5,8 +5,8 @@ import {
 import styled from 'styled-components';
 
 const mapStateToProps = state => ({
-  theme: state.theme
-})
+  theme: state.theme,
+});
 
 const Container = styled.div`
   display: flex;

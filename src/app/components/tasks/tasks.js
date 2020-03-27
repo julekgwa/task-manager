@@ -10,7 +10,7 @@ import {
   TaskItem 
 } from './taskItem';
 
-export const Tasks = ({ tasks, onAddSubTask, root }) => {
+export const Tasks = ({ tasks, onAddSubTask, root, }) => {
 
   return (
     <React.Fragment>
@@ -38,9 +38,9 @@ export const Tasks = ({ tasks, onAddSubTask, root }) => {
 Tasks.propTypes = {
   tasks: PropTypes.array.isRequired,
   onAddSubTask: PropTypes.func.isRequired,
-  root: PropTypes.bool
+  root: PropTypes.bool,
 };
 
 Tasks.defaultProps = {
-  root: false
-}
+  root: false,
+};

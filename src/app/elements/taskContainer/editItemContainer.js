@@ -12,7 +12,7 @@ import {
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
-  theme: state.theme
+  theme: state.theme,
 });
 
 const Container = styled.div`

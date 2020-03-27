@@ -21,21 +21,26 @@
       }
     }
   },
-  "plugins": ["import", "eslint-plugin-import", "modules-newline", "no-unused-react-component-methods"],
+  "plugins": ["import", "eslint-plugin-import",  "jsx-a11y", "modules-newline", "no-unused-react-component-methods"],
   "extends": [
     "eslint:recommended",
     "plugin:eslint-plugin-import/recommended",
     "plugin:import/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
   "rules": {
+     "jsx-a11y/aria-role": [ 2, {
+            "ignoreNonDOM": true
+    }],
+    "semi": "error",
     "no-unused-react-component-methods/no-unused-react-component-methods": 2,
     "jsx-quotes": ["error", "prefer-single"],
     "no-var": "error",
     "newline-per-chained-call": "error",
     "modules-newline/import-declaration-newline": "error",
     "modules-newline/export-declaration-newline": "error",
-    "comma-dangle": ["error", { "objects": "never" }],
+    "comma-dangle": ["error", { "objects": "always" }],
     "object-property-newline": [
       "error",
       { "allowAllPropertiesOnSameLine": false }

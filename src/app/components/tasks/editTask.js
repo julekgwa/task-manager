@@ -40,7 +40,7 @@ export const EditTask = ({
   taskId,
   tasks,
   showAddTaskForm,
-  type
+  type,
 }) => {
 
   const [task, setTask] = useState([]);
@@ -109,11 +109,11 @@ EditTask.propTypes = {
   tasks: PropTypes.array,
   showAddTaskForm: PropTypes.func.isRequired,
   taskId: PropTypes.string,
-  isLoading: PropTypes.bool
+  isLoading: PropTypes.bool,
 };
 
 EditTask.defaultProps = {
   showAddTaskForm: () => {},
   isLoading: false,
-  tasks: []
+  tasks: [],
 };

@@ -11,7 +11,6 @@ export const useInput = props => {
       placeholder='Add task'
       className='task-input'
       type='text'
-      autoFocus
       id='task'
       value={value}
       onChange={e => setValue(e.target.value)}
