@@ -33,6 +33,23 @@ export function getDueDate(dueDate) {
 
 }
 
+export function isTaskDueIn24Hours(task) {
+
+  if (!parseInt(task.dueDate, 10)) {
+
+    return false;
+  
+  }
+
+  const startDate = moment(Date.now());
+  const timeEnd = moment(parseInt(task.dueDate, 10));
+  const diff = timeEnd.diff(startDate);
+  const diffDuration = moment.duration(diff);
+
+  return diffDuration.asHours() <= 24 && task && !task.status;
+
+}
+
 export function flatten(items) {
 
   const flat = [];

@@ -25,6 +25,10 @@ import {
 } from 'react-router-dom';
 
 import {
+  UPDATE_TASK 
+} from 'app/constants';
+
+import {
   Header 
 } from 'app/elements/header/header';
 
@@ -55,7 +59,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   deleteTask: payload => dispatch(removeTask(payload)),
-  updateSubTask: payload => dispatch(updateSubTask(payload)),
+  updateSubTask: (payload, type) => dispatch(updateSubTask(payload, type)),
 });
 
 const Item = ({
@@ -70,6 +74,7 @@ const Item = ({
   isUpdatingTask,
   deleteTask,
   task,
+  updateTaskAction,
 }) => {
 
   const endDate = getDueDate(dueDate);
@@ -97,7 +102,7 @@ const Item = ({
 
     task.status = !task.status;
     
-    updateSubTask(task);
+    updateSubTask(task, updateTaskAction);
 
   };
 
@@ -163,6 +168,7 @@ Item.propTypes = {
   isUpdatingTask: PropTypes.bool,
   deleteTask: PropTypes.func,
   task: PropTypes.object.isRequired,
+  updateTaskAction: PropTypes.string,
 };
 
 Item.defaultProps = {
@@ -176,6 +182,7 @@ Item.defaultProps = {
   isUpdatingTask: false,
   deleteTask: () => {},
   task: {},
+  updateTaskAction: UPDATE_TASK,
 };
 
 export const EditItem = connect(

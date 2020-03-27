@@ -24,12 +24,12 @@ function App() {
 
   return (
     <Provider store={store}>
-      <>
+      <React.Fragment>
         <GlobalStyle />
         <Container>
           <Navigation />
         </Container>
-      </>
+      </React.Fragment>
     </Provider>
   );
 

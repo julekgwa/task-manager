@@ -2,6 +2,7 @@ import {
   ADD_TASK,
   CLOSE_POPUP,
   ERROR,
+  GET_REMINDERS,
   GET_TASK,
   GET_TASKS,
   IS_ADDING_TASK,
@@ -22,6 +23,11 @@ import {
 } from 'app/theme/theme';
 
 import {
+  flatten,
+  isTaskDueIn24Hours 
+} from 'app/utils';
+
+import {
   updateSubTask 
 } from '../utils';
 
@@ -35,6 +41,7 @@ const initState = {
   showPopup: false,
   isError: false,
   isSubmittingTask: false,
+  reminderTasks: [],
 };
 
 export function rootReducer(state = initState, action) {
@@ -157,6 +164,19 @@ export function rootReducer(state = initState, action) {
       ...state,
       tasks: action.payload,
     };
+
+  case GET_REMINDERS: {
+
+    const tasks = action.payload || [];
+
+    const flattenedTasks = flatten(tasks);
+
+    return {
+      ...state,
+      reminderTasks: flattenedTasks.filter(isTaskDueIn24Hours),
+    };
+  
+  }
 
   default:
     return state;

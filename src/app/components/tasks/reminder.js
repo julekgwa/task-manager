@@ -12,6 +12,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
+  GET_REMINDERS 
+} from 'app/constants';
+
+import {
   TaskContainer 
 } from 'app/elements/taskContainer/taskContainer';
 
@@ -37,10 +41,10 @@ export const TaskReminder = ({ tasks, }) => (
     </div>
     {tasks && tasks.map(task => (
       <EditItem
-        updateSubtasks={() => {}}
         key={task.id}
         title={task.title}
         task={task}
+        updateTaskAction={GET_REMINDERS}
         taskId={task.id}
         dueDate={task.dueDate}
         incomplete={!task.status}

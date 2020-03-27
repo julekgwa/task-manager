@@ -77,7 +77,7 @@ export function addTask(payload, type = TASK_TYPE.task) {
 
 }
 
-export function updateSubTask(payload) {
+export function updateSubTask(payload, type = UPDATE_TASK) {
 
   return dispatch => {
 
@@ -88,7 +88,7 @@ export function updateSubTask(payload) {
     };
 
     const action = {
-      type: UPDATE_TASK,
+      type: type,
       loaderType: IS_UPDATING_TASK,
       error: ERROR,
     };
@@ -141,7 +141,7 @@ export function getTask(payload) {
   
 }
 
-export function getTasks() {
+export function getTasks(type = GET_TASKS) {
 
   return dispatch => {
 
@@ -151,7 +151,7 @@ export function getTasks() {
     };
 
     const action = {
-      type: GET_TASKS,
+      type: type,
       loaderType: SET_LOADER,
       error: ERROR,
     };
