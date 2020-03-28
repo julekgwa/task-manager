@@ -5,7 +5,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
@@ -15,21 +15,21 @@ import React from 'react';
 import Switch from 'react-neumorphic-toggle';
 
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import {
-  NavLink 
+  NavLink
 } from 'react-router-dom';
 
 import Logo from 'app/assets/logo.png';
 
 import {
-  PRIMARY 
+  PRIMARY
 } from 'app/constants';
 
 import {
-  setTheme 
+  setTheme
 } from 'app/redux/actions';
 
 const mapStateToProps = state => ({

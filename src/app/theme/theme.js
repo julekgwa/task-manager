@@ -1,5 +1,5 @@
 import {
-  Colors 
+  Colors
 } from "app/styles/colors";
 
 export const Themes = {

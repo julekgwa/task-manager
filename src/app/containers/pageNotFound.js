@@ -3,19 +3,19 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import {
-  Link 
+  Link
 } from 'react-router-dom';
 
 import {
-  Button 
+  Button
 } from 'app/elements/button/button';
 
 import {
-  Lost 
+  Lost
 } from 'app/elements/pageNotFound/lost';
 
 import {
-  withLogger 
+  withLogger
 } from "app/hoc/withLogger";
 
 const PageNotFound = ({ logger, }) => {

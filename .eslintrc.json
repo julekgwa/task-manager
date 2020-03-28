@@ -34,6 +34,7 @@
             "ignoreNonDOM": true
     }],
     "semi": "error",
+    "no-trailing-spaces": "error",
     "no-unused-react-component-methods/no-unused-react-component-methods": 2,
     "jsx-quotes": ["error", "prefer-single"],
     "no-var": "error",

@@ -1,9 +1,9 @@
 import {
-  faSpinner 
+  faSpinner
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
-  LoaderContainer 
+  LoaderContainer
 } from 'app/elements/loader/loaderContainer';
 
 export const Loader = ({ size, ...props }) => (

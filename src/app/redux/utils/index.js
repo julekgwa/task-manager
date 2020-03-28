@@ -1,5 +1,5 @@
 import {
-  findFirst 
+  findFirst
 } from 'obj-traverse/lib/obj-traverse';
 
 // export function getTask(id, isRoot, tasks) {
@@ -9,7 +9,7 @@ import {
 //     const rootTask = tasks.filter(t => t && t.id === id);
 
 //     return rootTask.length > 0 ? rootTask[0] : {};
-  
+
 //   }
 
 //   for (let i = 0; i < tasks.length; i++) {
@@ -23,9 +23,9 @@ import {
 //     if (subTask) {
 
 //       return subTask;
-    
+
 //     }
-    
+
 //   }
 
 // }
@@ -49,7 +49,7 @@ export function updateSubTask(tasks, subTaskId) {
       updatedTask = currentTask;
 
       break;
-    
+
     }
 
   }
@@ -76,11 +76,11 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
       currentTask.tasks.push(newTask);
 
       break;
-    
+
     }
 
     const rootTask = findFirst(currentTask, 'tasks', {
-      id: newTask.rootId, 
+      id: newTask.rootId,
     });
 
     if (rootTask) {
@@ -90,7 +90,7 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
       currentTask = rootTask;
 
       break;
-    
+
     }
 
   }
@@ -98,7 +98,7 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
   if (copyArrayOfNestedArrayObjects.length === 0 || newTask.rootId === null) {
 
     copyArrayOfNestedArrayObjects.push(newTask);
-  
+
   }
 
   return {

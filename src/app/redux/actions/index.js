@@ -16,7 +16,7 @@ import {
 } from 'app/constants';
 
 import {
-  fetchItem 
+  fetchItem
 } from './utils';
 
 const BASE_URL = process.env.REACT_APP_API_URL;
@@ -72,7 +72,7 @@ export function addTask(payload, type = TASK_TYPE.task) {
     };
 
     fetchItem(dispatch, requestOptions, true, action);
-  
+
   };
 
 }
@@ -94,7 +94,7 @@ export function updateSubTask(payload, type = UPDATE_TASK) {
     };
 
     fetchItem(dispatch, requestOptions, true, action);
-  
+
   };
 
 }
@@ -115,7 +115,7 @@ export function removeTask(payload) {
     };
 
     fetchItem(dispatch, requestOptions, true, action);
-    
+
   };
 
 }
@@ -138,7 +138,7 @@ export function getTask(payload) {
     fetchItem(dispatch, requestOptions, true, action);
 
   };
-  
+
 }
 
 export function getTasks(type = GET_TASKS) {
@@ -157,7 +157,7 @@ export function getTasks(type = GET_TASKS) {
     };
 
     fetchItem(dispatch, requestOptions, true, action);
-  
+
   };
 
 }

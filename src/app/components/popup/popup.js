@@ -4,11 +4,11 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 
 import {
-  faTimes 
+  faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
@@ -16,11 +16,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
-  PopupContainer 
+  PopupContainer
 } from 'app/elements/popup/popupContainer';
 
 import {
-  handleKeyDown 
+  handleKeyDown
 } from 'app/utils';
 
 export const Popup = ({

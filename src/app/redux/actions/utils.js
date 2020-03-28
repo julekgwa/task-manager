@@ -1,9 +1,9 @@
 import {
-  fetchAPI 
+  fetchAPI
 } from 'app/fetch/fetch';
 
 import {
-  setError 
+  setError
 } from './index';
 
 const dispatcher = (dispatch, type, payload) => dispatch({
@@ -14,22 +14,22 @@ const dispatcher = (dispatch, type, payload) => dispatch({
 export const fetchItem = (dispatch, requestOptions, isLoading, action) => {
 
   dispatcher(dispatch, action.loaderType, isLoading);
-  
+
   fetchAPI(requestOptions)
     .then(res => {
 
       dispatcher(dispatch, action.loaderType, !isLoading);
-      
+
       dispatcher(dispatch, action.type, res.result);
 
       dispatcher(dispatch, action.success || 'default', !isLoading);
-    
+
     })
     .catch(error => {
 
       dispatch(setError(action.error, {
         error: true,
-        message: error.message, 
+        message: error.message,
       }));
       dispatcher(dispatch, action.loaderType, !isLoading);
 

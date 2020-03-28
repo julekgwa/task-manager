@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
-  TaskContainer 
+  TaskContainer
 } from 'app/elements/taskContainer/taskContainer';
 
 import {
-  TaskItem 
+  TaskItem
 } from './taskItem';
 
 export const Tasks = ({ tasks, onAddSubTask, root, }) => {

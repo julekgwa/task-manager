@@ -1,9 +1,9 @@
 import {
-  connect 
+  connect
 } from "react-redux";
 
 import {
-  createGlobalStyle 
+  createGlobalStyle
 } from "styled-components";
 
 const mapStateToProps = state => ({

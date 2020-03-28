@@ -5,34 +5,34 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
 
 import React, {
   useEffect,
-  useState 
+  useState
 } from 'react';
 
 import {
-  TASK_TYPE 
+  TASK_TYPE
 } from 'app/constants';
 
 import {
-  TaskContainer 
+  TaskContainer
 } from 'app/elements/taskContainer/taskContainer';
 
 import {
-  getTask 
+  getTask
 } from 'app/utils';
 
 import {
-  Loader 
+  Loader
 } from '../loader/loader';
 
 import {
-  EditItem 
+  EditItem
 } from './editItem';
 
 export const EditTask = ({
@@ -48,7 +48,7 @@ export const EditTask = ({
   useEffect(() => {
 
     setTask(getTask(taskId, type === TASK_TYPE.task, tasks));
-  
+
   }, [tasks, taskId, type]);
 
   return (

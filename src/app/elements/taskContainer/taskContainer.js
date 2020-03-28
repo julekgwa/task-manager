@@ -1,14 +1,14 @@
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import styled, {
 
-  css 
+  css
 } from 'styled-components';
 
 import {
-  Colors 
+  Colors
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({

@@ -1,45 +1,45 @@
 import PropTypes from 'prop-types';
 
 import React, {
-  Component 
+  Component
 } from 'react';
 
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import {
-  v4 as uuid 
+  v4 as uuid
 } from 'uuid';
 
 import {
-  Form 
+  Form
 } from 'app/components/form/form';
 
 import {
-  Popup 
+  Popup
 } from 'app/components/popup/popup';
 
 import {
-  EditTask 
+  EditTask
 } from 'app/components/tasks/editTask';
 
 import {
   CLOSE_POPUP,
-  TASK_TYPE 
+  TASK_TYPE
 } from 'app/constants';
 
 import {
-  Header 
+  Header
 } from 'app/elements/header/header';
 
 import {
-  withLogger 
+  withLogger
 } from 'app/hoc/withLogger';
 
 import {
   addTask,
-  closePopup, 
+  closePopup,
   getTasks,
   updateSubTask
 } from 'app/redux/actions';
@@ -107,7 +107,7 @@ class TodoEdit extends Component {
     this.setState({
       showForm: true,
     });
-  
+
   };
 
   onCloseButton = () => {
@@ -115,13 +115,13 @@ class TodoEdit extends Component {
     this.setState({
       showForm: false,
     });
-  
+
   }
 
   togglePopup = () => {
 
     this.props.closePopup(CLOSE_POPUP, false);
-  
+
   };
 
   addTask = (task, dueDate) => {
@@ -134,7 +134,7 @@ class TodoEdit extends Component {
       tasks: [],
       id: uuid(),
     }, TASK_TYPE.subtask);
-  
+
   };
 
   // eslint-disable-next-line
@@ -143,7 +143,7 @@ class TodoEdit extends Component {
     return nextProps.match.params.taskId !== prevState.rootId ? {
       rootId : nextProps.match.params.taskId,
     } : null;
-  
+
   }
 
   componentDidMount = () => {
@@ -157,7 +157,7 @@ class TodoEdit extends Component {
     this.props.getTasks();
 
     this.props.logger.info('/edit', 'edit page: => ' + taskId);
-  
+
   };
 
   render = () => {
@@ -177,7 +177,7 @@ class TodoEdit extends Component {
     return (
       <React.Fragment>
         <Header>Edit</Header>
-        
+
         <EditTask
           tasks={tasks}
           taskId={this.state.rootId}
@@ -205,7 +205,7 @@ class TodoEdit extends Component {
 
       </React.Fragment>
     );
-  
+
   };
 
 }

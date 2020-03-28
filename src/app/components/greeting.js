@@ -1,11 +1,11 @@
 import React from 'react';
 
 import {
-  GreetingContainer 
+  GreetingContainer
 } from 'app/elements/greeting/greetingContainer';
 
 import {
-  Header 
+  Header
 } from 'app/elements/header/header';
 
 function getGreeting() {
@@ -39,13 +39,13 @@ function getGreeting() {
       greeting: 'Good evening.',
       date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
-  
+
   default:
     return {
       greeting:'ZZZZZZzzzzzzZZZZ',
       date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
-  
+
   }
 
 }

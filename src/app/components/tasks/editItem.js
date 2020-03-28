@@ -6,34 +6,34 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
 
 import React, {
   useEffect,
-  useState 
+  useState
 } from 'react';
 
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import {
-  Link 
+  Link
 } from 'react-router-dom';
 
 import {
-  UPDATE_TASK 
+  UPDATE_TASK
 } from 'app/constants';
 
 import {
-  Header 
+  Header
 } from 'app/elements/header/header';
 
 import {
-  EditItemContainer 
+  EditItemContainer
 } from 'app/elements/taskContainer/editItemContainer';
 
 import {
@@ -42,15 +42,15 @@ import {
 } from 'app/redux/actions';
 
 import {
-  getDueDate 
+  getDueDate
 } from 'app/utils';
 
 import {
-  IconColors 
+  IconColors
 } from '../constants';
 
 import {
-  Loader 
+  Loader
 } from '../loader/loader';
 
 const mapStateToProps = state => ({
@@ -83,7 +83,7 @@ const Item = ({
   useEffect(() => {
 
     setUpdatingTask((isUpdatingTask && updatingTask) || false);
-  
+
   }, [isUpdatingTask, updatingTask]);
 
   const remove = () => {
@@ -93,7 +93,7 @@ const Item = ({
     deleteTask({
       id: taskId,
     });
-  
+
   };
 
   const update = () => {
@@ -101,7 +101,7 @@ const Item = ({
     setUpdatingTask(true);
 
     task.status = !task.status;
-    
+
     updateSubTask(task, updateTaskAction);
 
   };
