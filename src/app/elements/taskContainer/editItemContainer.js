@@ -20,6 +20,23 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     border-top: 2px solid ${Colors.darkGrayishBlue};
+    animation-name: complete;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    flex-direction: column;
+    overflow: hidden;
+    position:relative;
+  }
+
+  .info {
+    display: flex;
+  }
+
+  .notify {
+    width: 100%;
+    bottom: 0px;
+    position:absolute;
+    background-color: blue
   }
 
   .icon {
@@ -110,9 +127,10 @@ const Container = styled.div`
       }
 
       .task-info {
-        width: 110%;
+        animation-name: incomplete;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
         box-shadow: 5px 5px 15px 5px ${Colors.black};
-        margin-left: -5%;
         background-color: ${props =>
     props && props.theme && props.theme.backgroundColor};
       }
@@ -120,6 +138,29 @@ const Container = styled.div`
 
     svg:hover {
     color: ${Colors.softOrange};
+  }
+
+  @keyframes incomplete {
+    from {
+      width: 100%;
+      margin-left: 0;
+    }
+    to { 
+      width: 110%;
+      margin-left: -5%;
+      }
+    };
+
+
+  @keyframes complete {
+    from { 
+      width: 110%;
+      margin-left: -5%;
+    }
+    to { 
+      width: 100%;
+      margin-left: 0;
+    }
   }
 `;
 
