@@ -19,16 +19,16 @@ import {
 } from 'app/constants';
 
 import {
-  Themes 
+  Themes
 } from 'app/theme/theme';
 
 import {
   flatten,
-  isTaskDueIn24Hours 
+  isTaskDueIn24Hours
 } from 'app/utils';
 
 import {
-  updateSubTask 
+  updateSubTask
 } from '../utils';
 
 const initState = {
@@ -70,7 +70,7 @@ export function rootReducer(state = initState, action) {
       ...state,
       tasks: action.payload,
     };
-  
+
   }
 
   case UPDATE_TASK: {
@@ -79,7 +79,7 @@ export function rootReducer(state = initState, action) {
       ...state,
       tasks: action.payload,
     };
-  
+
   }
 
   case CLOSE_POPUP:
@@ -122,7 +122,7 @@ export function rootReducer(state = initState, action) {
       tasks: tasks,
       task: updatedTask,
     };
-  
+
   }
 
   case IS_UPDATING_TASK:
@@ -137,7 +137,7 @@ export function rootReducer(state = initState, action) {
       ...state,
       task: action.payload,
     };
-  
+
   }
 
   case ERROR:
@@ -156,7 +156,7 @@ export function rootReducer(state = initState, action) {
       ...state,
       tasks: tasks.filter(task => task),
     };
-  
+
   }
 
   case GET_TASKS:
@@ -175,12 +175,12 @@ export function rootReducer(state = initState, action) {
       ...state,
       reminderTasks: flattenedTasks.filter(isTaskDueIn24Hours),
     };
-  
+
   }
 
   default:
     return state;
-  
+
   }
 
 }

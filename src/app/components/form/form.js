@@ -3,7 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import React, {
-  useState 
+  useState
 } from 'react';
 
 import DatePicker from 'react-datepicker';
@@ -11,23 +11,23 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {
-  FormContainer 
+  FormContainer
 } from 'app/elements/form/formContainer';
 
 import {
-  PopupContainer 
+  PopupContainer
 } from 'app/elements/popup/popupContainer';
 
 import {
-  handleKeyDown 
+  handleKeyDown
 } from 'app/utils';
 
 import {
-  Loader 
+  Loader
 } from '../loader/loader';
 
 import {
-  useInput 
+  useInput
 } from './useInput';
 
 export const Form = ({
@@ -50,7 +50,7 @@ export const Form = ({
       setIsInputEmpty(true);
 
       return;
-    
+
     }
 
     onOkButton(taskValue, moment(taskStartDate).endOf('day')
@@ -59,7 +59,7 @@ export const Form = ({
 
     resetValue('');
     setIsInputEmpty(false);
-  
+
   };
 
   const closeForm = () => {
@@ -67,7 +67,7 @@ export const Form = ({
     resetValue('');
     onCloseButton();
     setIsInputEmpty(false);
-  
+
   };
 
   return (

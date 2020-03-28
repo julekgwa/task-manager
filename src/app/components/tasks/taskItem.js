@@ -5,38 +5,38 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
 
 import React, {
   useEffect,
-  useState 
+  useState
 } from 'react';
 
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import {
-  Link 
+  Link
 } from 'react-router-dom';
 
 import {
-  TASK_TYPE 
+  TASK_TYPE
 } from 'app/constants';
 
 import {
-  TaskContainer 
+  TaskContainer
 } from 'app/elements/taskContainer/taskContainer';
 
 import {
-  removeTask 
+  removeTask
 } from 'app/redux/actions';
 
 import {
-  Loader 
+  Loader
 } from '../loader/loader';
 
 const mapStateToProps = state => ({
@@ -62,7 +62,7 @@ const Task = ({
   useEffect(() => {
 
     setIsRemovingTask((isUpdatingTask && isRemovingTask) || false);
-  
+
   }, [isUpdatingTask, isRemovingTask]);
 
   const remove = () => {
@@ -72,7 +72,7 @@ const Task = ({
     deleteTask({
       id: taskId,
     });
-  
+
   };
 
   return (

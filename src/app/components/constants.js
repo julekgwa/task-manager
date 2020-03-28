@@ -4,7 +4,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  Colors 
+  Colors
 } from 'app/styles/colors';
 
 export const Icons = {

@@ -1,9 +1,9 @@
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import styled, {
-  css 
+  css
 } from 'styled-components';
 
 const HeaderContainer = styled.h1`

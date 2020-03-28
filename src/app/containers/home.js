@@ -1,61 +1,61 @@
 import {
-  faPlus 
+  faPlus
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
 
 import React, {
 
-  Component 
+  Component
 } from 'react';
 
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import {
-  Form 
+  Form
 } from 'app/components/form/form';
 
 import {
-  Greeting 
+  Greeting
 } from 'app/components/greeting';
 
 import {
-  Loader 
+  Loader
 } from 'app/components/loader/loader';
 
 import {
-  Popup 
+  Popup
 } from 'app/components/popup/popup';
 
 import {
-  Tasks 
+  Tasks
 } from 'app/components/tasks/tasks';
 
 import {
   CLOSE_POPUP,
-  TASK_TYPE 
+  TASK_TYPE
 } from 'app/constants';
 
 import {
-  Button 
+  Button
 } from 'app/elements/button/button';
 
 import {
-  Header 
+  Header
 } from 'app/elements/header/header';
 
 import {
-  ListHeader 
+  ListHeader
 } from 'app/elements/listHeader/listHeader';
 
 import {
-  withLogger 
+  withLogger
 } from 'app/hoc/withLogger';
 
 import {
@@ -66,7 +66,7 @@ import {
 } from 'app/redux/actions';
 
 import {
-  Colors 
+  Colors
 } from 'app/styles/colors';
 
 const mapStateToProps = state => ({
@@ -125,7 +125,7 @@ class TodoHome extends Component {
   togglePopup = () => {
 
     this.props.closePopup(CLOSE_POPUP, false);
-  
+
   };
 
   showAddTaskForm = rootId => {
@@ -134,7 +134,7 @@ class TodoHome extends Component {
       showForm: true,
       rootId: rootId || null,
     });
-  
+
   };
 
   closeForm = () => {
@@ -142,7 +142,7 @@ class TodoHome extends Component {
     this.setState({
       showForm: false,
     });
-  
+
   };
 
   addTask = (task, dueDate) => {
@@ -157,13 +157,13 @@ class TodoHome extends Component {
       },
       this.state.rootId ? TASK_TYPE.subtask : TASK_TYPE.task
     );
-  
+
   };
 
   componentDidMount = () => {
 
     this.props.getTasks();
-  
+
   };
 
   render = () => {
@@ -223,7 +223,7 @@ class TodoHome extends Component {
         )}
       </React.Fragment>
     );
-  
+
   };
 
 }

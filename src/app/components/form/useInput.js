@@ -1,5 +1,5 @@
 import React, {
-  useState 
+  useState
 } from 'react';
 
 // use props to override default properties

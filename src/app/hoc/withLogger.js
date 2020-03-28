@@ -1,5 +1,5 @@
 import React, {
-  Component 
+  Component
 } from 'react';
 
 export const withLogger = WrappedComponent => {
@@ -8,12 +8,12 @@ export const withLogger = WrappedComponent => {
     info: (screen, logInfo) => {
 
       console.info(screen, logInfo);
-    
+
     },
     error: (screen, logError) => {
 
       console.error(screen, logError);
-    
+
     },
   };
 
@@ -22,9 +22,9 @@ export const withLogger = WrappedComponent => {
     render = () => {
 
       return <WrappedComponent {...this.props} logger={logger} />;
-    
+
     };
-  
+
   };
 
 };

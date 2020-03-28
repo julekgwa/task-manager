@@ -1,10 +1,10 @@
 import {
   faClipboardList,
-  faClock 
+  faClock
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
-  FontAwesomeIcon 
+  FontAwesomeIcon
 } from '@fortawesome/react-fontawesome';
 
 import PropTypes from 'prop-types';
@@ -12,15 +12,15 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import {
-  GET_REMINDERS 
+  GET_REMINDERS
 } from 'app/constants';
 
 import {
-  TaskContainer 
+  TaskContainer
 } from 'app/elements/taskContainer/taskContainer';
 
 import {
-  EditItem 
+  EditItem
 } from './editItem';
 
 export const TaskReminder = ({ tasks, }) => (

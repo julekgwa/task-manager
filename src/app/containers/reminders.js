@@ -2,35 +2,35 @@ import PropTypes from 'prop-types';
 
 import React, {
 
-  Component 
+  Component
 } from 'react';
 
 import {
-  connect 
+  connect
 } from 'react-redux';
 
 import {
-  Loader 
+  Loader
 } from 'app/components/loader/loader';
 
 import {
-  TaskReminder 
+  TaskReminder
 } from 'app/components/tasks/reminder';
 
 import {
-  GET_REMINDERS 
+  GET_REMINDERS
 } from 'app/constants';
 
 import {
-  Header 
+  Header
 } from 'app/elements/header/header';
 
 import {
-  withLogger 
+  withLogger
 } from 'app/hoc/withLogger';
 
 import {
-  getTasks 
+  getTasks
 } from 'app/redux/actions';
 
 const mapStateToProps = state => ({
@@ -59,7 +59,7 @@ class TodoReminders extends Component {
   componentDidMount = () => {
 
     this.props.getTasks(GET_REMINDERS);
-  
+
   };
 
   render = () => {
@@ -76,7 +76,7 @@ class TodoReminders extends Component {
         }
       </React.Fragment>
     );
-  
+
   };
 
 }
