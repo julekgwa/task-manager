@@ -33,6 +33,7 @@ import {
 export function updateSubTask(tasks, subTaskId) {
 
   const copyOfTasks = JSON.parse(JSON.stringify(tasks));
+
   let updatedTask;
 
   for (let i = 0; i < copyOfTasks.length; i++) {
@@ -65,6 +66,7 @@ export function updateNestedArrayObject(arrayOfNestedArrayObjects, newTask) {
 
   // spread operator doesn't deep copy
   const copyArrayOfNestedArrayObjects = JSON.parse(JSON.stringify(arrayOfNestedArrayObjects));
+
   let currentTask;
 
   for (let i = 0; i < copyArrayOfNestedArrayObjects.length; i++) {

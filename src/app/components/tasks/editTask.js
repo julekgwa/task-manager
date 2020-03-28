@@ -44,10 +44,15 @@ export const EditTask = ({
 }) => {
 
   const [task, setTask] = useState([]);
+  const [tasksToComplete, setTasksToComplete] = useState(0);
 
   useEffect(() => {
 
-    setTask(getTask(taskId, type === TASK_TYPE.task, tasks));
+    const currentTask = getTask(taskId, type === TASK_TYPE.task, tasks);
+    const toComplete = (currentTask.tasks && currentTask.tasks.filter(item => !item.status)) || [];
+
+    setTask(currentTask);
+    setTasksToComplete(toComplete.length);
 
   }, [tasks, taskId, type]);
 
@@ -70,15 +75,14 @@ export const EditTask = ({
             </div>
           </div>
           <div className='task-status'>
-            <p>{`You have ${task &&
-              task.tasks &&
-              task.tasks.length} tasks to finish today`}</p>
+            <p>{`You have ${tasksToComplete} tasks to finish today`}</p>
           </div>
           <div className='task-title'>
             <EditItem
               icon={faAngleDoubleRight}
               rootTask={true}
               title={task.title}
+              task={task}
               dueDate={task.dueDate}
               incomplete={false}
             />

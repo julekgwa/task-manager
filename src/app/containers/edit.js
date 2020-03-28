@@ -9,10 +9,6 @@ import {
 } from 'react-redux';
 
 import {
-  v4 as uuid
-} from 'uuid';
-
-import {
   Form
 } from 'app/components/form/form';
 
@@ -132,7 +128,6 @@ class TodoEdit extends Component {
       dueDate: dueDate,
       rootId: this.state.rootId,
       tasks: [],
-      id: uuid(),
     }, TASK_TYPE.subtask);
 
   };

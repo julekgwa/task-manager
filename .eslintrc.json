@@ -39,6 +39,7 @@
     "jsx-quotes": ["error", "prefer-single"],
     "no-var": "error",
     "newline-per-chained-call": "error",
+    "newline-after-var": ["error", "always"],
     "modules-newline/import-declaration-newline": "error",
     "modules-newline/export-declaration-newline": "error",
     "comma-dangle": ["error", { "objects": "always" }],

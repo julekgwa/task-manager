@@ -63,21 +63,18 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const Item = ({
-  title,
   rootTask,
   icon,
   incomplete,
   showDueDate,
   updateSubTask,
-  dueDate,
-  taskId,
   isUpdatingTask,
   deleteTask,
   task,
   updateTaskAction,
 }) => {
 
-  const endDate = getDueDate(dueDate);
+  const endDate = getDueDate(task.dueDate);
   const [updatingTask, setUpdatingTask] = useState(false);
 
   useEffect(() => {
@@ -91,7 +88,7 @@ const Item = ({
     setUpdatingTask(true);
 
     deleteTask({
-      id: taskId,
+      id: task.id,
     });
 
   };
@@ -114,41 +111,44 @@ const Item = ({
     >
       <div className='container'>
         <div className='task-info'>
-          <div className='icon'>
-            {updatingTask && isUpdatingTask ? (
-              <div className='loader'>
-                <Loader size='3x' />
-              </div>
-            ) : (
-              <React.Fragment>
-                <FontAwesomeIcon
-                  className='check'
-                  size='lg'
-                  onClick={update}
-                  icon={icon}
-                />
-                {!rootTask && (
-                  <div className='edit-sub'>
-                    <Link to={`/edit/${taskId}/subtask`}>
-                      <FontAwesomeIcon icon={faPencilAlt} />
-                    </Link>
-                  </div>
-                )}
-              </React.Fragment>
-            )}
-          </div>
-          <Header>{title}</Header>
-          {showDueDate && (
-            <div className='due-date'>
-              <FontAwesomeIcon size='1x' icon={faClock} />{' '}
-              <p>{endDate}</p>
-              {!rootTask && !updatingTask && (
-                <div className='delete-task'>
-                  <FontAwesomeIcon onClick={remove} icon={faTrash} />
+          <div className='info'>
+            <div className='icon'>
+              {updatingTask && isUpdatingTask ? (
+                <div className='loader'>
+                  <Loader size='3x' />
                 </div>
+              ) : (
+                <React.Fragment>
+                  <FontAwesomeIcon
+                    className='check'
+                    size='lg'
+                    onClick={update}
+                    icon={icon}
+                  />
+                  {!rootTask && (
+                    <div className='edit-sub'>
+                      <Link to={`/edit/${task.id}/subtask`}>
+                        <FontAwesomeIcon icon={faPencilAlt} />
+                      </Link>
+                    </div>
+                  )}
+                </React.Fragment>
               )}
             </div>
-          )}
+            <Header>{task.title}</Header>
+            {showDueDate && (
+              <div className='due-date'>
+                <FontAwesomeIcon size='1x' icon={faClock} />{' '}
+                <p>{endDate}</p>
+                {!rootTask && !updatingTask && (
+                  <div className='delete-task'>
+                    <FontAwesomeIcon onClick={remove} icon={faTrash} />
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          <div className='notify'><p>Task successfully marked as complete</p></div>
         </div>
       </div>
     </EditItemContainer>
@@ -157,14 +157,12 @@ const Item = ({
 };
 
 Item.propTypes = {
-  title: PropTypes.string.isRequired,
   rootTask: PropTypes.bool,
   icon: PropTypes.any,
   incomplete: PropTypes.bool,
   showDueDate: PropTypes.bool,
   updateSubTask: PropTypes.func,
   dueDate: PropTypes.string.isRequired,
-  taskId: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
   deleteTask: PropTypes.func,
   task: PropTypes.object.isRequired,
@@ -177,8 +175,6 @@ Item.defaultProps = {
   incomplete: true,
   showDueDate: true,
   dueDate: '',
-  title: '',
-  taskId: '',
   isUpdatingTask: false,
   deleteTask: () => {},
   task: {},
