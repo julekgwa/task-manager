@@ -14,10 +14,6 @@ import React, {
 } from 'react';
 
 import {
-  connect
-} from 'react-redux';
-
-import {
   Form
 } from 'app/components/form/form';
 
@@ -38,11 +34,6 @@ import {
 } from 'app/components/tasks/tasks';
 
 import {
-  CLOSE_POPUP,
-  TASK_TYPE
-} from 'app/constants';
-
-import {
   Button
 } from 'app/elements/button/button';
 
@@ -59,124 +50,60 @@ import {
 } from 'app/hoc/withLogger';
 
 import {
-  addTask,
-  closePopup,
-  getTasks,
-  removeTask
-} from 'app/redux/actions';
+  withReduxState
+} from 'app/hoc/withReduxState';
 
 import {
   Colors
 } from 'app/styles/colors';
 
-const mapStateToProps = state => ({
-  isLoading: state.isLoading,
-  tasks: state.tasks,
-  isSubmittingTask: state.isSubmittingTask,
-  addTaskStatus: state.addTaskStatus,
-  addTaskMessage: state.addTaskMessage,
-  isError: state.isError,
-  message: state.message,
-  showPopup: state.showPopup,
-});
-
-const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(getTasks()),
-  addTask: (payload, type) => dispatch(addTask(payload, type)),
-  removeTask: payload => dispatch(removeTask(payload)),
-  closePopup: (type, payload) => dispatch(closePopup(type, payload)),
-});
-
 class TodoHome extends Component {
-
-  state = {
-    showForm: false,
-    rootId: null,
-  };
 
   static propTypes = {
     isLoading: PropTypes.bool,
     tasks: PropTypes.array,
     getTasks: PropTypes.func,
-    isSubmittingTask: PropTypes.bool,
-    addTaskStatus: PropTypes.string,
-    addTaskMessage: PropTypes.string,
-    addTask: PropTypes.func,
+    showForm: PropTypes.bool,
+    addNewTask: PropTypes.func,
     isError: PropTypes.bool,
     showPopup: PropTypes.bool,
     message: PropTypes.string,
-    closePopup: PropTypes.func,
+    togglePopup: PropTypes.func,
+    closeForm: PropTypes.func,
+    showAddTaskForm: PropTypes.func,
+    isSubmittingTask: PropTypes.bool,
   };
 
   static defaultProps = {
-    addTaskStatus: '',
-    addTaskMessage: '',
-    isSubmittingTask: false,
     tasks: [],
     isLoading: false,
-    showPopup: false,
-    isError: false,
-    message: '',
     getTasks: () => {},
-    addTask: () => {},
-    closePopup: () => {},
-  };
-
-  togglePopup = () => {
-
-    this.props.closePopup(CLOSE_POPUP, false);
-
-  };
-
-  showAddTaskForm = rootId => {
-
-    this.setState({
-      showForm: true,
-      rootId: rootId || null,
-    });
-
-  };
-
-  closeForm = () => {
-
-    this.setState({
-      showForm: false,
-    });
-
-  };
-
-  addTask = (task, dueDate) => {
-
-    this.props.addTask(
-      {
-        title: task,
-        status: false,
-        dueDate: dueDate,
-        rootId: this.state.rootId,
-        tasks: [],
-      },
-      this.state.rootId ? TASK_TYPE.subtask : TASK_TYPE.task
-    );
-
+    showForm: false,
   };
 
   componentDidMount = () => {
 
-    this.props.getTasks();
+    const { getTasks, } = this.props;
+
+    getTasks();
 
   };
 
   render = () => {
 
-    const tasks = this.props.tasks || [];
-    const isLoading = this.props.isLoading;
-    const isSubmittingTask = this.props.isSubmittingTask;
-    const addTaskStatus = this.props.addTaskStatus;
-    const addTaskMessage = this.props.addTaskMessage;
-    const showPopup = this.props.showPopup;
-    const message = this.props.message;
-    const isError = this.props.isError;
-    const showForm = this.state.showForm;
+    const {
+      tasks = [],
+      addNewTask,
+      isError,
+      showPopup,
+      message,
+      togglePopup,
+      closeForm,
+      isLoading,
+      showForm,
+      showAddTaskForm,
+      isSubmittingTask,
+    } = this.props;
 
     return (
       <React.Fragment>
@@ -193,7 +120,7 @@ class TodoHome extends Component {
           >
             <ListHeader>
               <Header>Tasks</Header>
-              <Button onClick={() => this.showAddTaskForm()} circle>
+              <Button onClick={() => showAddTaskForm()} circle>
                 <FontAwesomeIcon icon={faPlus} />
               </Button>
             </ListHeader>
@@ -201,21 +128,19 @@ class TodoHome extends Component {
             <Form
               show={showForm}
               isLoading={isSubmittingTask}
-              requestStatus={addTaskStatus}
-              message={addTaskMessage}
-              onCloseButton={this.closeForm}
-              onOkButton={this.addTask}
+              onCloseButton={closeForm}
+              onOkButton={addNewTask}
             />
 
             <Popup
-              onButtonPress={this.togglePopup}
+              onButtonPress={togglePopup}
               isError={isError}
               show={showPopup}
               message={message}
             />
 
             <Tasks
-              onAddSubTask={this.showAddTaskForm}
+              onAddSubTask={showAddTaskForm}
               tasks={tasks}
               root={true}
             />
@@ -228,7 +153,4 @@ class TodoHome extends Component {
 
 }
 
-export const Home = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withLogger(TodoHome));
+export const Home = withReduxState(withLogger(TodoHome));

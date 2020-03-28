@@ -58,14 +58,15 @@ class TodoReminders extends Component {
 
   componentDidMount = () => {
 
-    this.props.getTasks(GET_REMINDERS);
+    const { getTasks, } = this.props;
+
+    getTasks(GET_REMINDERS);
 
   };
 
   render = () => {
 
-    const isLoading = this.props.isLoading;
-    const tasks = this.props.reminderTasks;
+    const { isLoading, reminderTasks: tasks, } = this.props;
 
     return (
       <React.Fragment>
