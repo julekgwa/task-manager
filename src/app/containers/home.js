@@ -107,7 +107,7 @@ class TodoHome extends Component {
     return (
       <React.Fragment>
         <Greeting />
-        <Header color={Colors.softOrange}>Home</Header>
+        <Header data-testid='home-header' color={Colors.softOrange}>Home</Header>
         {isLoading ? (
           <Loader size='7x' />
         ) : (

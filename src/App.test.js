@@ -1,17 +1,18 @@
 import {
-  render 
+  render
 } from '@testing-library/react';
 
 import React from 'react';
 
-import App from './App';
+import {
+  App
+} from './App';
 
 // eslint-disable-next-line no-undef
-test('renders learn react link', () => {
+test('renders without crashing', () => {
 
-  const { getByText, } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  // eslint-disable-next-line no-undef
-  expect(linkElement).toBeInTheDocument();
+  const { queryByTestId, } = render(<App />);
+
+  expect(queryByTestId('home-header')).toBeTruthy();
 
 });
