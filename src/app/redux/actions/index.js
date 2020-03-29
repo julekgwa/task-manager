@@ -5,8 +5,10 @@ import {
   GET_TASKS,
   IS_ADDING_TASK,
   IS_UPDATING_TASK,
+  NOTIFY,
   REMOVE_TASK,
   REQUEST_METHOD,
+  RESET_UPDATED_ID,
   SET_LOADER,
   SET_THEME,
   TASK_ADDED,
@@ -54,6 +56,15 @@ export function closePopup(type, payload) {
 
 }
 
+export function resetUpdatedId() {
+
+  return {
+    type: RESET_UPDATED_ID,
+    payload: '',
+  };
+
+}
+
 export function addTask(payload, type = TASK_TYPE.task) {
 
   return dispatch => {
@@ -91,6 +102,10 @@ export function updateSubTask(payload, type = UPDATE_TASK) {
       type: type,
       loaderType: IS_UPDATING_TASK,
       error: ERROR,
+      notify: {
+        type: NOTIFY,
+        id: payload.id,
+      },
     };
 
     fetchItem(dispatch, requestOptions, true, action);
@@ -112,6 +127,10 @@ export function removeTask(payload) {
       type: REMOVE_TASK,
       loaderType: IS_UPDATING_TASK,
       error: ERROR,
+      notify: {
+        type: NOTIFY,
+        id: payload.id,
+      },
     };
 
     fetchItem(dispatch, requestOptions, true, action);

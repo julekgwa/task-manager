@@ -16,6 +16,8 @@ export const TASK_ADDED = 'TASK_ADDED';
 export const TASK_FAILED = 'TASK_FAILED';
 export const IS_UPDATING_TASK = 'IS_UPDATING_TASK';
 export const GET_REMINDERS = 'GET_REMINDERS';
+export const NOTIFY = 'NOTIFY';
+export const RESET_UPDATED_ID = 'RESET_UPDATED_ID';
 
 export const TASK_TYPE = {
   task: 'task',
@@ -26,4 +28,15 @@ export const REQUEST_METHOD = {
   post: 'POST',
   put: 'PUT',
   delete: 'DELETE',
+};
+
+export const NOTIFICATION_TYPE = {
+  deleted: 'DELETE',
+  updated: 'UPDATED',
+};
+
+export const NOTIFICATION_MESSAGE = {
+  deleted: 'Task successfully removed',
+  updated: 'Task successfully marked as complete',
+  incomplete: 'Task successfully marked as incomplete',
 };

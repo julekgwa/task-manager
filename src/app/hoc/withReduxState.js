@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 
 import React, {
-
   Component
 } from 'react';
 
@@ -33,19 +32,20 @@ const mapStateToProps = state => ({
   isError: state.isError,
   message: state.message,
   showPopup: state.showPopup,
+  reminderTasks: state.reminderTasks,
 });
 
 const mapDispatchToProps = dispatch => ({
-  getTasks: () => dispatch(getTasks()),
+  getTasks: (payload) => dispatch(getTasks(payload)),
   addTask: (payload, type) => dispatch(addTask(payload, type)),
   removeTask: payload => dispatch(removeTask(payload)),
   closePopup: (type, payload) => dispatch(closePopup(type, payload)),
   updateSubTask: payload => dispatch(updateSubTask(payload)),
 });
 
-const HOC = WrappedComponent => {
+const withRedux = WrappedComponent => {
 
-  return class WithFormAndPopup extends Component {
+  return class WithRedux extends Component {
 
     static propTypes = {
       getTasks: PropTypes.func,
@@ -143,5 +143,5 @@ const HOC = WrappedComponent => {
 
 export const withReduxState = compose(
   connect(mapStateToProps, mapDispatchToProps),
-  HOC
+  withRedux
 );

@@ -49,7 +49,7 @@ export const EditTask = ({
   useEffect(() => {
 
     const currentTask = getTask(taskId, type === TASK_TYPE.task, tasks);
-    const toComplete = (currentTask && currentTask.tasks && currentTask.tasks.filter(item => !item.status)) || [];
+    const toComplete = (currentTask && currentTask.tasks && currentTask.tasks.filter(item => item && !item.status)) || [];
 
     setTask(currentTask);
     setTasksToComplete(toComplete.length);

@@ -6,12 +6,12 @@ import React, {
 } from 'react';
 
 import {
-  connect
-} from 'react-redux';
-
-import {
   Loader
 } from 'app/components/loader/loader';
+
+import {
+  Popup
+} from 'app/components/popup/popup';
 
 import {
   TaskReminder
@@ -30,17 +30,8 @@ import {
 } from 'app/hoc/withLogger';
 
 import {
-  getTasks
-} from 'app/redux/actions';
-
-const mapStateToProps = state => ({
-  isLoading: state.isLoading,
-  reminderTasks: state.reminderTasks,
-});
-
-const mapDispatchToProps = dispatch => ({
-  getTasks: payload => dispatch(getTasks(payload)),
-});
+  withReduxState
+} from 'app/hoc/withReduxState';
 
 class TodoReminders extends Component {
 
@@ -48,6 +39,10 @@ class TodoReminders extends Component {
     getTasks: PropTypes.func,
     reminderTasks: PropTypes.array,
     isLoading: PropTypes.bool,
+    togglePopup: PropTypes.func,
+    isError: PropTypes.bool,
+    showPopup: PropTypes.bool,
+    message: PropTypes.string,
   };
 
   static defaultProps = {
@@ -66,15 +61,30 @@ class TodoReminders extends Component {
 
   render = () => {
 
-    const { isLoading, reminderTasks: tasks, } = this.props;
+    const {
+      isLoading,
+      reminderTasks: tasks,
+      togglePopup,
+      isError,
+      showPopup,
+      message,
+    } = this.props;
 
     return (
       <React.Fragment>
         <Header>Reminders</Header>
-        {isLoading
-          ? <Loader size='5x' />
-          : <TaskReminder tasks={tasks} />
-        }
+        {isLoading ? (
+          <Loader size='5x' />
+        ) : (
+          <TaskReminder tasks={tasks} />
+        )}
+
+        <Popup
+          onButtonPress={togglePopup}
+          isError={isError}
+          show={showPopup}
+          message={message}
+        />
       </React.Fragment>
     );
 
@@ -82,7 +92,4 @@ class TodoReminders extends Component {
 
 }
 
-export const Reminders = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withLogger(TodoReminders));
+export const Reminders = withReduxState(withLogger(TodoReminders));
