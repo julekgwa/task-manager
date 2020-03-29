@@ -85,6 +85,7 @@
     "react/no-unused-prop-types": [2],
     // "react/jsx-no-useless-fragment": "error",
     "react/jsx-fragments": ["error", "element"],
+    "react/destructuring-assignment": [2, "always"],
     "react/no-unused-state": [2],
     "import/no-default-export": "error",
     "import/newline-after-import": "error",

@@ -25,31 +25,44 @@ import {
 
 export const TaskReminder = ({ tasks, }) => (
   <TaskContainer edit>
+
     <div className='add-task'>
+
       <div className='todo'>
         <FontAwesomeIcon size='2x' icon={faClipboardList} />
       </div>
+
       <div className='add-todo'>
         <FontAwesomeIcon size='2x' icon={faClock} />
       </div>
+
     </div>
+
     <div className='task-status'>
-      <p>{`You have ${tasks && tasks.length} tasks to finish in next 24 hours`}</p>
+      <p>{`You have ${tasks &&
+        tasks.length} tasks to finish in next 24 hours`}</p>
     </div>
+
     <div className='task-title'>
-      <h1>Tasks</h1>
+      <h1>Due soon</h1>
     </div>
-    {tasks && tasks.map(task => (
-      <EditItem
-        key={task.id}
-        title={task.title}
-        task={task}
-        updateTaskAction={GET_REMINDERS}
-        taskId={task.id}
-        dueDate={task.dueDate}
-        incomplete={!task.status}
-      />
-    ))}
+
+    {tasks && tasks.length <= 0 && (
+      <h3 className='no-due-task'>No Tasks</h3>
+    )}
+
+    {tasks &&
+      tasks.map(task => (
+        <EditItem
+          key={task.id}
+          title={task.title}
+          task={task}
+          updateTaskAction={GET_REMINDERS}
+          taskId={task.id}
+          dueDate={task.dueDate}
+          incomplete={!task.status}
+        />
+      ))}
   </TaskContainer>
 );
 

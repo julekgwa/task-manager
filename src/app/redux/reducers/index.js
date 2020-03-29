@@ -8,8 +8,10 @@ import {
   IS_ADDING_TASK,
   IS_UPDATING_TASK,
   NEON,
+  NOTIFY,
   PRIMARY,
   REMOVE_TASK,
+  RESET_UPDATED_ID,
   SET_LOADER,
   SET_THEME,
   TASK_ADDED,
@@ -42,6 +44,7 @@ const initState = {
   isError: false,
   isSubmittingTask: false,
   reminderTasks: [],
+  updatedId: '',
 };
 
 export function rootReducer(state = initState, action) {
@@ -81,6 +84,18 @@ export function rootReducer(state = initState, action) {
     };
 
   }
+
+  case RESET_UPDATED_ID:
+    return {
+      ...state,
+      updatedId: action.payload,
+    };
+
+  case NOTIFY:
+    return {
+      ...state,
+      updatedId: action.payload,
+    };
 
   case CLOSE_POPUP:
     return {

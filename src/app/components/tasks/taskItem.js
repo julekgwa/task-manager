@@ -41,6 +41,7 @@ import {
 
 const mapStateToProps = state => ({
   isUpdatingTask: state.isUpdatingTask,
+  updatedId: state.updatedId,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -55,6 +56,7 @@ const Task = ({
   taskId,
   isUpdatingTask,
   root,
+  updatedId,
 }) => {
 
   const [isRemovingTask, setIsRemovingTask] = useState(false);
@@ -76,8 +78,8 @@ const Task = ({
   };
 
   return (
-    <TaskContainer isDeleting={isRemovingTask && isUpdatingTask}>
-      <div>
+    <TaskContainer wasRemoved={taskId === updatedId} isDeleting={isRemovingTask && isUpdatingTask}>
+      <div className='container'>
         <h1>{title}</h1>
         <p>{subTasks} Tasks</p>
         <hr />
@@ -117,6 +119,7 @@ Task.propTypes = {
   taskId: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
   root: PropTypes.bool,
+  updatedId: PropTypes.string,
 };
 
 Task.defaultProps = {
@@ -126,6 +129,7 @@ Task.defaultProps = {
   addSubTask: () => {},
   isUpdatingTask: false,
   root: false,
+  updatedId: '',
 };
 
 export const TaskItem = connect(mapStateToProps, mapDispatchToProps)(Task);

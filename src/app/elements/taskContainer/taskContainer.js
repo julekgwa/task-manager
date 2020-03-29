@@ -37,10 +37,10 @@ const Container = styled.div`
     props.isDeleting &&
     css`
       animation-name: border-delete;
-      animation-duration: 0.9ms;
+      animation-duration: 1s;
       animation-iteration-count: infinite;
       animation-timing-function: ease-in;
-      border: 2px solid transparent;
+      border: 3px solid transparent;
 
       @keyframes border-delete {
         0% {
@@ -98,6 +98,52 @@ const Container = styled.div`
         color: ${Colors.red};
       }
     }
+  }
+
+  ${props =>
+    props &&
+    props.wasRemoved &&
+    css`
+
+    border: 3px solid ${Colors.red};
+    padding: 0;
+      .container {
+        background-size: 100% 200%;
+        background-image: linear-gradient(
+          to bottom,
+          ${props => props.theme.backgroundColor} 50%,
+          ${Colors.red} 50%
+        );
+        transition: background-position 0.2s ease-in-out,
+          color 0.2s ease-in-out;
+        animation-name: removed;
+        animation-duration: 4s;
+        border-bottom-left-radius: 25px;
+        border-bottom-right-radius: 25px;
+      }
+    `}
+
+  @keyframes removed {
+    from {
+      background-position: 0 0;
+    }
+
+    to {
+      background-position: 0 100%;
+    }
+  }
+
+  .task-title {
+    padding: 10px 10px 20px 10px;
+
+    h1 {
+      text-transform: uppercase;
+    }
+  }
+
+  .no-due-task {
+    text-align: center;
+    width: 100%;
   }
 
   &:hover {

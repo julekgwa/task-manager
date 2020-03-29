@@ -1,4 +1,8 @@
 import {
+  RESET_UPDATED_ID
+} from 'app/constants';
+
+import {
   fetchAPI
 } from 'app/fetch/fetch';
 
@@ -20,7 +24,34 @@ export const fetchItem = (dispatch, requestOptions, isLoading, action) => {
 
       dispatcher(dispatch, action.loaderType, !isLoading);
 
-      dispatcher(dispatch, action.type, res.result);
+      if (action.notify) {
+
+        dispatch({
+          type: action.notify.type,
+          payload: action.notify.id,
+        });
+
+        const timeout= setTimeout(() => {
+
+          dispatcher(dispatch, action.type, res.result);
+          dispatch({
+            type: RESET_UPDATED_ID,
+            payload: '',
+          });
+
+          if (timeout !== null) {
+
+            clearTimeout(timeout);
+
+          }
+
+        }, 1600);
+
+      } else {
+
+        dispatcher(dispatch, action.type, res.result);
+
+      }
 
       dispatcher(dispatch, action.success || 'default', !isLoading);
 

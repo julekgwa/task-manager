@@ -8,6 +8,10 @@ import styled, {
 } from 'styled-components';
 
 import {
+  NOTIFICATION_TYPE
+} from 'app/constants';
+
+import {
   Colors
 } from 'app/styles/colors';
 
@@ -25,18 +29,32 @@ const Container = styled.div`
     animation-fill-mode: forwards;
     flex-direction: column;
     overflow: hidden;
-    position:relative;
+    position: relative;
   }
 
   .info {
     display: flex;
   }
 
+  .notify-container {
+    bottom: -50px;
+    position: absolute;
+    display: flex;
+  }
+
   .notify {
-    width: 100%;
-    bottom: 0px;
-    position:absolute;
-    background-color: blue
+    bottom: -50px;
+    position: absolute;
+    display: flex;
+
+    p {
+      color: ${Colors.white};
+      margin-left: 2px;
+    }
+    animation-name: notify;
+    animation-duration: 3s;
+    animation-direction: alternate;
+    background-color: ${props => props.notifyType === NOTIFICATION_TYPE.deleted ? Colors.red : Colors.darkGreen}
   }
 
   .icon {
@@ -67,6 +85,10 @@ const Container = styled.div`
     svg {
       margin-left: 10px;
     }
+  }
+
+  .incomplete {
+    background-color: ${Colors.softOrange}
   }
 
   .due-date {
@@ -145,23 +167,43 @@ const Container = styled.div`
       width: 100%;
       margin-left: 0;
     }
-    to { 
-      width: 110%;
-      margin-left: -5%;
-      }
-    };
-
-
-  @keyframes complete {
-    from { 
+    to {
       width: 110%;
       margin-left: -5%;
     }
-    to { 
+  }
+
+  @keyframes complete {
+    from {
+      width: 110%;
+      margin-left: -5%;
+    }
+    to {
       width: 100%;
       margin-left: 0;
     }
   }
+
+  @keyframes notify {
+
+    0%, 25% {
+      /* opacity: .5; */
+      bottom: -25px;
+      background-color: transparent;
+    }
+
+    50%,
+    75% {
+      bottom: 0;
+      /* opacity: 1; */
+    }
+
+    100% {
+      /* opacity: 0; */
+      bottom: -50px;
+    }
+  }
+  
 `;
 
 export const EditItemContainer = connect(mapStateToProps)(Container);
