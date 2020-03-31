@@ -25,7 +25,7 @@ import {
 
 export const Popup = ({ show, message, isError, onButtonPress, }) => (
   <React.Fragment>
-    {show ? (
+    {show && message ? (
       <PopupContainer isError={isError}>
         <div className='container'>
           <FontAwesomeIcon

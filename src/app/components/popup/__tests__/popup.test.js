@@ -54,6 +54,14 @@ describe('Popup Component', () => {
 
   });
 
+  it('should not render popup when message is not provided',() => {
+
+    const { container, } = render(<Provider store={store}><Popup show={true} isError={false} /></Provider>);
+
+    expect(container.firstChild).toBeNull();
+
+  });
+
   it('should render a success popup', () => {
 
     const onButtonPress = jest.fn();
@@ -72,7 +80,7 @@ describe('Popup Component', () => {
 
   });
 
-  it('should render a error popup', () => {
+  it('should render error popup', () => {
 
     const onButtonPress = jest.fn();
 
