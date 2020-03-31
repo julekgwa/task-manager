@@ -89,7 +89,7 @@ export const Form = ({
                     <label htmlFor='date'>Due date</label>
                     <DatePicker
                       id='date'
-                      data-testid='date-picker'
+                      role='dialog'
                       selected={taskStartDate}
                       onChange={setTaskStartDate}
                       dateFormat='d MMMM yyyy'
