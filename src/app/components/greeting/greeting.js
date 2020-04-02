@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import React from 'react';
 
 import {
@@ -8,10 +10,9 @@ import {
   Header
 } from 'app/elements/header/header';
 
-function getGreeting() {
+function getGreeting(now = new Date()) {
 
   const weekDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-  const now = new Date();
   const hours = now.getHours();
 
   switch (true) {
@@ -19,48 +20,52 @@ function getGreeting() {
   case hours >= 5 && hours <= 11:
     return {
       greeting: 'Good morning.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+      dateString: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
 
   case hours === 12:
     return {
       greeting: 'It is high noon.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+      dateString: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
 
   case hours >= 13 && hours <= 17:
     return {
       greeting: 'Good afternoon.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+      dateString: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
 
   case hours >= 18 && hours <= 22:
     return {
       greeting: 'Good evening.',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+      dateString: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
 
   default:
     return {
       greeting:'ZZZZZZzzzzzzZZZZ',
-      date: `${weekDays[now.getDay()]}, ${now.getDate()}`,
+      dateString: `${weekDays[now.getDay()]}, ${now.getDate()}`,
     };
 
   }
 
 }
 
-export const Greeting = () => {
+export const Greeting = ({ date, }) => {
 
-  const { date, greeting, } = getGreeting();
+  const { dateString, greeting, } = getGreeting(date);
 
   return (
     <GreetingContainer>
       <div>
         <Header>{greeting}</Header>
-        <p>{date}</p>
+        <p>{dateString}</p>
       </div>
     </GreetingContainer>
   );
 
+};
+
+Greeting.propTypes = {
+  date: PropTypes.instanceOf(Date),
 };

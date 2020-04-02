@@ -68,6 +68,7 @@ export const EditTask = ({
             </div>
             <div className='add-todo'>
               <FontAwesomeIcon
+                data-testid='show-form'
                 onClick={showAddTaskForm}
                 size='2x'
                 icon={faPlus}

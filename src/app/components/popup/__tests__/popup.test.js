@@ -98,4 +98,31 @@ describe('Popup Component', () => {
 
   });
 
+  it('should handle keydown event', () => {
+
+    const onButtonPress = jest.fn();
+
+    const { getByRole, } = render(<Provider store={store}><Popup onButtonPress={onButtonPress} show={true} isError={false} message='something went wrong' /></Provider>);
+
+    fireEvent.keyDown(getByRole('button'), {
+      key: 'Enter',
+      keyCode: 13,
+    });
+
+    expect(onButtonPress).toHaveBeenCalled();
+
+  });
+
+  it('should call default function without crashing', () => {
+
+    const { getByRole, } = render(<Provider store={store}><Popup show={true} isError={false} message='something went wrong' /></Provider>);
+
+    // will crash if default function is not a function
+    fireEvent.keyDown(getByRole('button'), {
+      key: 'Enter',
+      keyCode: 13,
+    });
+
+  });
+
 });

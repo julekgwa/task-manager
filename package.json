@@ -27,10 +27,11 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
     "lint": "eslint src/app",
-    "auto-fix": "eslint --fix src/app"
+    "auto-fix": "eslint --fix src/app",
+    "coverage": "npm test -- --coverage --watchAll=false"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -60,6 +61,8 @@
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-redux": "^3.0.3",
     "husky": "^4.2.3",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "jest-fetch-mock": "^3.0.3",
     "prettier": "^1.19.1",
     "react-test-renderer": "^16.13.1",
     "redux-mock-store": "^1.5.4"
@@ -74,5 +77,23 @@
     "hooks": {
       "pre-commit": "npm run lint"
     }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text",
+      "html"
+    ]
   }
 }

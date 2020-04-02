@@ -18,7 +18,7 @@ import {
 
 import {
   Greeting
-} from 'app/components/greeting';
+} from 'app/components/greeting/greeting';
 
 import {
   Loader

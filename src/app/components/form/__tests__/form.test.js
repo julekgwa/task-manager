@@ -1,4 +1,5 @@
 import {
+  act,
   cleanup,
   fireEvent,
   render
@@ -53,6 +54,7 @@ jest.mock('react-datepicker', () => props => (
 ));
 
 const mockStore = configureStore();
+const store = mockStore(initState);
 
 describe('Add Task form', () => {
 
@@ -71,8 +73,6 @@ describe('Add Task form', () => {
   let onCloseButton = jest.fn();
 
   let onOkButton = jest.fn();
-
-  const store = mockStore(initState);
 
   beforeEach(() => {
 
@@ -108,6 +108,7 @@ describe('Add Task form', () => {
     it('should render the form', () => {
 
       expect(getByLabelText(/task/i)).toBeTruthy();
+      // this is the custom hook useInput()
       expect(queryByPlaceholderText(/add task/i)).toBeTruthy();
 
       expect(getByLabelText(/due date/i)).toBeTruthy();
@@ -117,6 +118,18 @@ describe('Add Task form', () => {
       expect(queryByTestId('add-button')).toBeTruthy();
       expect(getByText(/close/i)).toBeTruthy();
       expect(getByText(/add task/i)).toBeTruthy();
+
+    });
+
+  });
+
+  describe('Loader', () => {
+
+    it('should show a Loader when isLoading is true', () => {
+
+      const { queryByTestId, } = render(<Provider store={store}><Form show={true} isLoading={true} /></Provider>);
+
+      expect(queryByTestId('loader')).toBeTruthy();
 
     });
 
@@ -154,6 +167,21 @@ describe('Add Task form', () => {
 
   });
 
+  describe('Close button with keydown event', () => {
+
+    it('should close the form using keydown', () => {
+
+      fireEvent.keyDown(getByTestId('close-button'), {
+        key: 'Enter',
+        keyCode: 13,
+      });
+
+      expect(onCloseButton).toHaveBeenCalledTimes(2);
+
+    });
+
+  });
+
   describe('Add task button', () => {
 
     it('should not add task when input is empty', () => {
@@ -178,6 +206,53 @@ describe('Add Task form', () => {
       expect(onOkButton).toHaveBeenCalled();
 
     });
+
+    it('should handle keydown event', () => {
+
+      const addTaskInput = getByPlaceholderText(/add task/i);
+
+      fireEvent.change(addTaskInput, {
+        target: {
+          value: 'keydown',
+        },
+      });
+
+      fireEvent.keyDown(getByTestId('add-button'), {
+        key: 'Enter',
+        keyCode: 13,
+      });
+
+      expect(onOkButton).toHaveBeenCalledTimes(2);
+
+    });
+
+  });
+
+});
+
+describe('Default functions', () => {
+
+  it('should not crash when prop functions are not provided', () => {
+
+    const { getByTestId, getByPlaceholderText, } = render(<Provider store={store}><Form show={true} isLoading={false} /></Provider>);
+
+    const addTaskInput = getByPlaceholderText(/add task/i);
+
+    const closeButton = getByTestId('close-button');
+    const addButton = getByTestId('add-button');
+
+    act(() => {
+
+      fireEvent.change(addTaskInput, {
+        target: {
+          value: 'should not break',
+        },
+      });
+
+    });
+
+    fireEvent.click(addButton);
+    fireEvent.click(closeButton);
 
   });
 

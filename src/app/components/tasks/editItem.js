@@ -164,6 +164,7 @@ const Item = ({
                   <FontAwesomeIcon
                     className='check'
                     size='lg'
+                    data-testid='update'
                     onClick={update}
                     icon={icon}
                   />
@@ -179,12 +180,13 @@ const Item = ({
             </div>
             <Header>{task.title}</Header>
             {showDueDate && (
-              <div className='due-date'>
+              <div data-testid='due-date-container' className='due-date'>
                 <FontAwesomeIcon size='1x' icon={faClock} />{' '}
-                <p>{endDate}</p>
+                <p data-testid='due-date'>{endDate}</p>
                 {!rootTask && !updatingTask && (
                   <div className='delete-task'>
                     <FontAwesomeIcon
+                      data-testid='trash-button'
                       onClick={remove}
                       icon={faTrash}
                     />
