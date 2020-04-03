@@ -69,3 +69,7 @@ export const TaskReminder = ({ tasks, }) => (
 TaskReminder.propTypes = {
   tasks: PropTypes.array,
 };
+
+TaskReminder.defaultProps = {
+  tasks: [],
+};

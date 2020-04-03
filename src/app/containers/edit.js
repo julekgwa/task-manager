@@ -88,7 +88,7 @@ class TodoEdit extends Component {
   render = () => {
 
     const {
-      tasks = [],
+      tasks,
       addNewTask,
       isError,
       showPopup,

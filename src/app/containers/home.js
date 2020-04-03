@@ -91,7 +91,7 @@ class TodoHome extends Component {
   render = () => {
 
     const {
-      tasks = [],
+      tasks,
       addNewTask,
       isError,
       showPopup,
@@ -119,7 +119,7 @@ class TodoHome extends Component {
           >
             <ListHeader>
               <Header>Tasks</Header>
-              <Button onClick={() => showAddTaskForm()} circle>
+              <Button data-testid='show-task-form' onClick={() => showAddTaskForm()} circle>
                 <FontAwesomeIcon icon={faPlus} />
               </Button>
             </ListHeader>

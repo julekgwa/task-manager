@@ -90,6 +90,7 @@ const Task = ({
             <React.Fragment>
               <FontAwesomeIcon
                 role='img'
+                data-testid='add'
                 size='lg'
                 onClick={addSubTask}
                 icon={faPlus}
@@ -98,6 +99,7 @@ const Task = ({
                 <FontAwesomeIcon size='lg' icon={faPencilAlt} />
               </Link>
               <FontAwesomeIcon
+                data-testid='remove'
                 size='lg'
                 onClick={remove}
                 icon={faTrash}

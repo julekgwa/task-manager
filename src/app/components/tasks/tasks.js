@@ -26,7 +26,7 @@ export const Tasks = ({ tasks, onAddSubTask, root, }) => {
             taskId={task.id}
             title={task.title}
             root={root}
-            subTasks={task.tasks.length}
+            subTasks={task.tasks && task.tasks.length || 0}
           />
         ))
       )}
@@ -43,4 +43,6 @@ Tasks.propTypes = {
 
 Tasks.defaultProps = {
   root: false,
+  tasks: [],
+  onAddSubTask: () =>{},
 };
