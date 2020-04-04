@@ -1,14 +1,13 @@
 import {
   ADD_TASK,
   ERROR,
-  GET_TASK,
+  // GET_TASK,
   GET_TASKS,
   IS_ADDING_TASK,
   IS_UPDATING_TASK,
   NOTIFY,
   REMOVE_TASK,
   REQUEST_METHOD,
-  RESET_UPDATED_ID,
   SET_LOADER,
   SET_THEME,
   TASK_ADDED,
@@ -23,7 +22,7 @@ import {
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 const GET_ALL_TASKS = BASE_URL + process.env.REACT_APP_GET_TASKS;
-const GET_TASK_BY_ID = BASE_URL + process.env.REACT_APP_GET_TASK_BY_ID;
+// const GET_TASK_BY_ID = BASE_URL + process.env.REACT_APP_GET_TASK_BY_ID;
 const ADD_NEW_TASK = BASE_URL + process.env.REACT_APP_ADD_NEW_TASK;
 const DELETE_TASK = BASE_URL + process.env.REACT_APP_DELETE_TASK;
 const ADD_SUB_TASK = BASE_URL + process.env.REACT_APP_ADD_SUB_TASK;
@@ -56,16 +55,7 @@ export function closePopup(type, payload) {
 
 }
 
-export function resetUpdatedId() {
-
-  return {
-    type: RESET_UPDATED_ID,
-    payload: '',
-  };
-
-}
-
-export function addTask(payload, type = TASK_TYPE.task) {
+export function addTask(payload, type) {
 
   return dispatch => {
 
@@ -139,26 +129,26 @@ export function removeTask(payload) {
 
 }
 
-export function getTask(payload) {
+// export function getTask(payload) {
 
-  return dispatch => {
+//   return dispatch => {
 
-    const requestOptions = {
-      url: GET_TASK_BY_ID + payload.id,
-      method: REQUEST_METHOD.get,
-    };
+//     const requestOptions = {
+//       url: GET_TASK_BY_ID + payload.id,
+//       method: REQUEST_METHOD.get,
+//     };
 
-    const action = {
-      type: GET_TASK,
-      loaderType: SET_LOADER,
-      error: ERROR,
-    };
+//     const action = {
+//       type: GET_TASK,
+//       loaderType: SET_LOADER,
+//       error: ERROR,
+//     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+//     fetchItem(dispatch, requestOptions, true, action);
 
-  };
+//   };
 
-}
+// }
 
 export function getTasks(type = GET_TASKS) {
 

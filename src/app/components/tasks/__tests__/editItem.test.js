@@ -22,7 +22,6 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 import {
-  NOTIFICATION_MESSAGE,
   PRIMARY
 } from 'app/constants';
 
@@ -63,23 +62,20 @@ describe('EditItem', () => {
 
   describe('Tick arrow', () => {
 
-    jest.useFakeTimers();
     it('should update task when clicked', () => {
 
-      const { getByTestId, queryByText, } = render(<Provider store={store}><Router><EditItem incomplete={false} task={task} /></Router></Provider>);
+      const { getByTestId, } = render(<Provider store={store}><Router><EditItem incomplete={false} task={task} /></Router></Provider>);
 
       const checkButton = getByTestId('update');
 
       act(() => {
 
-        jest.advanceTimersByTime(1500);
         fireEvent.click(checkButton);
 
       });
 
       // no expect, will throw an error if id doesn't exists
       getByTestId('loader');
-      expect(queryByText(NOTIFICATION_MESSAGE.updated)).toBeTruthy();
 
     });
 
@@ -113,21 +109,33 @@ describe('EditItem', () => {
 
   describe('Delete task button', () => {
 
+    fetch.mockResponseOnce(JSON.stringify([{
+      title: 'fake',
+      id: 'anotherFake',
+      status: false,
+      dueDate: 'fakeFake',
+    }]));
+
     it('should change notification message', () => {
 
-      const { queryByText, getByTestId, } = render(<Provider store={store}><Router><EditItem rootTask={false} task={task} showDueDate={true} /></Router></Provider>);
+      const { getByTestId, } = render(<Provider store={store}><Router><EditItem rootTask={false} task={task} showDueDate={true} /></Router></Provider>);
 
       const trashButton = getByTestId('trash-button');
 
       fireEvent.click(trashButton);
-
-      expect(queryByText(NOTIFICATION_MESSAGE.deleted)).toBeTruthy();
 
     });
 
   });
 
   describe('mapDispatchToProps', () => {
+
+    fetch.mockResponseOnce(JSON.stringify([{
+      title: 'fake',
+      id: 'anotherFake',
+      status: false,
+      dueDate: 'fakeFake',
+    }]));
 
     it('should render without crashing', () => {
 

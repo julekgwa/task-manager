@@ -1,5 +1,10 @@
 import {
-  RESET_UPDATED_ID
+  toast
+} from 'react-toastify';
+
+import {
+  NOTIFICATION_MESSAGE,
+  REQUEST_METHOD
 } from 'app/constants';
 
 import {
@@ -26,32 +31,11 @@ export const fetchItem = (dispatch, requestOptions, isLoading, action) => {
 
       if (action.notify) {
 
-        dispatch({
-          type: action.notify.type,
-          payload: action.notify.id,
-        });
-
-        const timeout= setTimeout(() => {
-
-          dispatcher(dispatch, action.type, res.result);
-          dispatch({
-            type: RESET_UPDATED_ID,
-            payload: '',
-          });
-
-          if (timeout !== null) {
-
-            clearTimeout(timeout);
-
-          }
-
-        }, 1600);
-
-      } else {
-
-        dispatcher(dispatch, action.type, res.result);
+        toast(requestOptions.method === REQUEST_METHOD.delete ? NOTIFICATION_MESSAGE.deleted: NOTIFICATION_MESSAGE.updated);
 
       }
+
+      dispatcher(dispatch, action.type, res.result);
 
       dispatcher(dispatch, action.success || 'default', !isLoading);
 

@@ -13,6 +13,12 @@ import React, {
 } from 'react';
 
 import {
+  ToastContainer
+} from 'react-toastify';
+
+import "react-toastify/dist/ReactToastify.css";
+
+import {
   Form
 } from 'app/components/form/form';
 
@@ -142,6 +148,8 @@ class TodoHome extends Component {
               tasks={tasks}
               root={true}
             />
+
+            <ToastContainer autoClose={2000} />
           </div>
         )}
       </React.Fragment>

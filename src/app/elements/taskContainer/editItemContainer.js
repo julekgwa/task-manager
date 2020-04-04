@@ -8,10 +8,6 @@ import styled, {
 } from 'styled-components';
 
 import {
-  NOTIFICATION_TYPE
-} from 'app/constants';
-
-import {
   Colors
 } from 'app/styles/colors';
 
@@ -34,27 +30,6 @@ const Container = styled.div`
 
   .info {
     display: flex;
-  }
-
-  .notify-container {
-    bottom: -50px;
-    position: absolute;
-    display: flex;
-  }
-
-  .notify {
-    bottom: -50px;
-    position: absolute;
-    display: flex;
-
-    p {
-      color: ${Colors.white};
-      margin-left: 2px;
-    }
-    animation-name: notify;
-    animation-duration: 3s;
-    animation-direction: alternate;
-    background-color: ${props => props.notifyType === NOTIFICATION_TYPE.deleted ? Colors.red : Colors.darkGreen}
   }
 
   .icon {
@@ -181,26 +156,6 @@ const Container = styled.div`
     to {
       width: 100%;
       margin-left: 0;
-    }
-  }
-
-  @keyframes notify {
-
-    0%, 25% {
-      /* opacity: .5; */
-      bottom: -25px;
-      background-color: transparent;
-    }
-
-    50%,
-    75% {
-      bottom: 0;
-      /* opacity: 1; */
-    }
-
-    100% {
-      /* opacity: 0; */
-      bottom: -50px;
     }
   }
   

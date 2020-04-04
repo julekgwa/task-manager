@@ -5,6 +5,10 @@ import React, {
 } from 'react';
 
 import {
+  ToastContainer
+} from 'react-toastify';
+
+import {
   Form
 } from 'app/components/form/form';
 
@@ -27,6 +31,8 @@ import {
 import {
   withReduxState
 } from 'app/hoc/withReduxState';
+
+import "react-toastify/dist/ReactToastify.css";
 
 class TodoEdit extends Component {
 
@@ -126,7 +132,7 @@ class TodoEdit extends Component {
           show={showPopup}
           message={message}
         />
-
+        <ToastContainer autoClose={2000} />
       </React.Fragment>
     );
 

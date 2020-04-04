@@ -163,7 +163,7 @@ describe('Home', () => {
 
       fireEvent.change(addTaskInput, {
         target: {
-          value: 'todo',
+          value: 'todo home',
         },
       });
 

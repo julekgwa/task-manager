@@ -64,12 +64,13 @@ const Links = ({
     <a style={styles.themeSwitcher} href='#switch'>
       <Switch
         theme={theme}
+        data-testid='switch-theme'
         checked={currentTheme === PRIMARY ? false : true}
         onChange={themeSwitcher}
       />
     </a>
     <a href='#mobile' className='icon' onClick={toggleMenu}>
-      <FontAwesomeIcon icon={faBars} />
+      <FontAwesomeIcon data-testid='mobile' icon={faBars} />
     </a>
   </React.Fragment>
 );

@@ -6,6 +6,10 @@ import React, {
 } from 'react';
 
 import {
+  ToastContainer
+} from 'react-toastify';
+
+import {
   Loader
 } from 'app/components/loader/loader';
 
@@ -32,6 +36,8 @@ import {
 import {
   withReduxState
 } from 'app/hoc/withReduxState';
+
+import "react-toastify/dist/ReactToastify.css";
 
 class TodoReminders extends Component {
 
@@ -84,6 +90,7 @@ class TodoReminders extends Component {
           show={showPopup}
           message={message}
         />
+        <ToastContainer autoClose={2000} />
       </React.Fragment>
     );
 
