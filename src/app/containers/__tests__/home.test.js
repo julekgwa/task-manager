@@ -1,11 +1,9 @@
 import {
+  act,
   cleanup,
   fireEvent,
   render
 } from '@testing-library/react';
-
-// eslint-disable-next-line no-unused-vars
-import enableMocks from 'jest-fetch-mock';
 
 import React from 'react';
 
@@ -124,6 +122,8 @@ describe('Home', () => {
 
     fireEvent.click(button);
 
+    const closeButton = getByTestId('close-button');
+
     expect(getByLabelText(/task/i)).toBeTruthy();
     expect(queryByPlaceholderText(/add task/i)).toBeTruthy();
 
@@ -133,6 +133,45 @@ describe('Home', () => {
     expect(queryByTestId('add-button')).toBeTruthy();
     expect(getByText(/close/i)).toBeTruthy();
     expect(getByText(/add task/i)).toBeTruthy();
+
+    fireEvent.click(closeButton);
+
+  });
+
+  it('should add root task', () => {
+
+    const initState = {
+      theme: Themes.primary,
+      currentTheme: PRIMARY,
+      tasks: tasks,
+      showPopup: false,
+      isError: false,
+      isLoading: false,
+      message: 'Something went wrong',
+    };
+
+    const store = mockStore(initState);
+
+    const { getByTestId, getByPlaceholderText, } = render(<Provider store={store}><Router><Home /></Router></Provider>);
+
+    const addButton = getByTestId('show-task-form');
+
+    fireEvent.click(addButton);
+    const addTaskInput = getByPlaceholderText(/add task/i);
+
+    act(() => {
+
+      fireEvent.change(addTaskInput, {
+        target: {
+          value: 'todo',
+        },
+      });
+
+    });
+
+    fireEvent.click(getByTestId('add-button'));
+    // after adding the task, input value is empty
+    expect(addTaskInput.value).toBe('');
 
   });
 

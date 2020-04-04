@@ -36,8 +36,8 @@ import {
 class TodoReminders extends Component {
 
   static propTypes = {
-    getTasks: PropTypes.func,
-    reminderTasks: PropTypes.array,
+    getTasks: PropTypes.func.isRequired,
+    reminderTasks: PropTypes.array.isRequired,
     isLoading: PropTypes.bool,
     togglePopup: PropTypes.func,
     isError: PropTypes.bool,
@@ -46,7 +46,6 @@ class TodoReminders extends Component {
   };
 
   static defaultProps = {
-    getTasks: () => {},
     reminderTasks: [],
     isLoading: false,
   };

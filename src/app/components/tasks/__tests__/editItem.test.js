@@ -127,5 +127,22 @@ describe('EditItem', () => {
 
   });
 
+  describe('mapDispatchToProps', () => {
+
+    it('should render without crashing', () => {
+
+      const { getByTestId, } = render(<Provider store={store}><Router><EditItem task={task} showDueDate={true} /></Router></Provider>);
+
+      const update = getByTestId('update');
+      const remove = getByTestId('trash-button');
+
+      //  will crash the app, if the functions are not defined in mapDispatchToProps
+      fireEvent.click(update);
+      fireEvent.click(remove);
+
+    });
+
+  });
+
 });
 

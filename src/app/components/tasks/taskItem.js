@@ -127,7 +127,6 @@ Task.propTypes = {
 Task.defaultProps = {
   title: 'No Title',
   subTasks: 0,
-  deleteTask: () => {},
   addSubTask: () => {},
   isUpdatingTask: false,
   root: false,

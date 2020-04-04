@@ -16,7 +16,6 @@ import {
   SET_THEME,
   TASK_ADDED,
   TASK_FAILED,
-  UPDATE_SUBTASK,
   UPDATE_TASK
 } from 'app/constants';
 
@@ -28,10 +27,6 @@ import {
   flatten,
   isTaskDueIn24Hours
 } from 'app/utils';
-
-import {
-  updateSubTask
-} from '../utils';
 
 const initState = {
   theme: Themes.primary,
@@ -124,21 +119,6 @@ export function rootReducer(state = initState, action) {
       ...state,
       isSubmittingTask: action.payload,
     };
-
-  case UPDATE_SUBTASK: {
-
-    const { tasks, updatedTask, } = updateSubTask(
-      state.tasks,
-      action.payload
-    );
-
-    return {
-      ...state,
-      tasks: tasks,
-      task: updatedTask,
-    };
-
-  }
 
   case IS_UPDATING_TASK:
     return {

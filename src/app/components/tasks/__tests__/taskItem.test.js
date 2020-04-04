@@ -89,11 +89,23 @@ describe('TaskItem', () => {
 
   });
 
-  it('should call default function addSubTask', () => {
+  describe('Default functions',()=>{
 
-    const { getByTestId, } = render(<Provider store={store}><Router><TaskItem title='Testing' root={true} taskId='789' subTasks={44} /></Router></Provider>);
+    it('should call default function addSubTask', () => {
 
-    fireEvent.click(getByTestId('add'));
+      const { getByTestId, } = render(<Provider store={store}><Router><TaskItem title='Testing' root={true} taskId='789' subTasks={44} /></Router></Provider>);
+
+      fireEvent.click(getByTestId('add'));
+
+    });
+
+    it('should call mapStateToProps deleteTask function without crashing', () => {
+
+      const { getByTestId, } = render(<Provider store={store}><Router><TaskItem title='Testing' root={true} taskId='789' subTasks={44} /></Router></Provider>);
+
+      fireEvent.click(getByTestId('remove'));
+
+    });
 
   });
 

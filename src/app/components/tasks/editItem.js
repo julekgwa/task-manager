@@ -107,11 +107,7 @@ const Item = ({
 
         setNotifyClass('');
 
-        if (timeoutRef.current !== null) {
-
-          clearTimeout(timeoutRef.current);
-
-        }
+        timeoutRef.current && clearTimeout(timeoutRef.current);
 
       }, 1500);
 
@@ -233,11 +229,9 @@ Item.defaultProps = {
   showDueDate: true,
   dueDate: '',
   isUpdatingTask: false,
-  deleteTask: () => {},
   task: {},
   updateTaskAction: UPDATE_TASK,
   updatedId: '',
-  resetUpdatedId: () => {},
 };
 
 export const EditItem = connect(

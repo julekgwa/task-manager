@@ -61,7 +61,7 @@ class TodoHome extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     tasks: PropTypes.array,
-    getTasks: PropTypes.func,
+    getTasks: PropTypes.func.isRequired,
     showForm: PropTypes.bool,
     addNewTask: PropTypes.func,
     isError: PropTypes.bool,
@@ -76,7 +76,6 @@ class TodoHome extends Component {
   static defaultProps = {
     tasks: [],
     isLoading: false,
-    getTasks: () => {},
     showForm: false,
   };
 

@@ -136,7 +136,7 @@ describe('Edit', () => {
       },
     };
 
-    const { getByTestId, getByPlaceholderText, } =render(<Provider store={store}><Router><Edit match={match} /></Router></Provider>);
+    const { getByTestId, getByPlaceholderText, } = render(<Provider store={store}><Router><Edit match={match} /></Router></Provider>);
 
     const addButton = getByTestId('show-form');
 
