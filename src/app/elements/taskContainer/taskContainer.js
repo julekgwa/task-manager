@@ -60,6 +60,12 @@ const Container = styled.div`
       (props.theme && props.theme.headerColor)};
   }
 
+  h3 {
+    color: ${props =>
+    (props && props.color) ||
+      (props.theme && props.theme.headerColor)};
+  }
+
   div {
     width: 100%;
   }
@@ -194,6 +200,22 @@ const Container = styled.div`
               props.theme.secondaryShadowColor};
       }
     `}
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+   width: 100%;
+   margin: 0;
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+   margin: 0;
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+   box-sizing: border-box;
+  }
 `;
 
 export const TaskContainer = connect(mapStateToProps)(Container);

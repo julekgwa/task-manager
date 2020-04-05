@@ -63,7 +63,7 @@ const Container = styled.div`
   }
 
   .incomplete {
-    background-color: ${Colors.softOrange}
+    background-color: ${Colors.softOrange};
   }
 
   .due-date {
@@ -148,6 +148,17 @@ const Container = styled.div`
     }
   }
 
+  @keyframes incomplete-mobile {
+    from {
+      width: 90%;
+      margin-left: 0;
+    }
+    to {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
   @keyframes complete {
     from {
       width: 110%;
@@ -158,7 +169,20 @@ const Container = styled.div`
       margin-left: 0;
     }
   }
-  
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    margin: 0;
+
+    h1 {
+      font-size: 20px;
+    }
+
+    .task-info {
+      animation-name: incomplete-mobile;
+    }
+  }
 `;
 
 export const EditItemContainer = connect(mapStateToProps)(Container);

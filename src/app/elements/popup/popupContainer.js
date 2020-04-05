@@ -22,10 +22,12 @@ const Container = styled.div`
   bottom: 0;
   margin: auto;
   opacity: 1;
-  background-color: rgba(236, 240, 243, .5);
+  background-color: rgba(236, 240, 243, 0.5);
 
   .container {
-    background-color: ${props => (props && props.isError && Colors.verySoftRed) || (Colors.verySoftCyan)};
+    background-color: ${props =>
+    (props && props.isError && Colors.verySoftRed) ||
+      Colors.verySoftCyan};
     width: 400px;
     min-height: 359px;
     border-radius: 10px;
@@ -39,9 +41,7 @@ const Container = styled.div`
     props && props.theme && props.theme.primaryShadowColor},
       -9px -9px 18px
         ${props =>
-    props &&
-          props.theme &&
-          props.theme.secondaryShadowColor};
+    props && props.theme && props.theme.secondaryShadowColor};
   }
 
   .form {
@@ -91,6 +91,13 @@ const Container = styled.div`
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    .container {
+      width: 100%;
     }
   }
 `;

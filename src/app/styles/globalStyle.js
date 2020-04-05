@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    color: white;
+    color: ${props => props && props.theme && props.theme.headerColor};
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
