@@ -8,7 +8,6 @@ import {
   NOTIFY,
   REMOVE_TASK,
   REQUEST_METHOD,
-  RESET_UPDATED_ID,
   SET_LOADER,
   SET_THEME,
   TASK_ADDED,
@@ -29,11 +28,10 @@ const DELETE_TASK = BASE_URL + process.env.REACT_APP_DELETE_TASK;
 const ADD_SUB_TASK = BASE_URL + process.env.REACT_APP_ADD_SUB_TASK;
 const UPDATE_TASK_BY_ID = BASE_URL + process.env.REACT_APP_UPDATE_TASK;
 
-export function setTheme(payload) {
+export function setTheme() {
 
   return {
     type: SET_THEME,
-    payload,
   };
 
 }
@@ -56,16 +54,7 @@ export function closePopup(type, payload) {
 
 }
 
-export function resetUpdatedId() {
-
-  return {
-    type: RESET_UPDATED_ID,
-    payload: '',
-  };
-
-}
-
-export function addTask(payload, type = TASK_TYPE.task) {
+export function addTask(payload, type) {
 
   return dispatch => {
 
@@ -82,13 +71,13 @@ export function addTask(payload, type = TASK_TYPE.task) {
       success: TASK_ADDED,
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 
 }
 
-export function updateSubTask(payload, type = UPDATE_TASK) {
+export function updateTask(payload, type = UPDATE_TASK) {
 
   return dispatch => {
 
@@ -108,7 +97,7 @@ export function updateSubTask(payload, type = UPDATE_TASK) {
       },
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 
@@ -133,7 +122,7 @@ export function removeTask(payload) {
       },
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 
@@ -154,7 +143,7 @@ export function getTask(payload) {
       error: ERROR,
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 
@@ -175,7 +164,7 @@ export function getTasks(type = GET_TASKS) {
       error: ERROR,
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 

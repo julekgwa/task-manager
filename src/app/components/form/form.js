@@ -89,6 +89,7 @@ export const Form = ({
                     <label htmlFor='date'>Due date</label>
                     <DatePicker
                       id='date'
+                      role='dialog'
                       selected={taskStartDate}
                       onChange={setTaskStartDate}
                       dateFormat='d MMMM yyyy'
@@ -96,8 +97,8 @@ export const Form = ({
                   </div>
 
                   <div className='button'>
-                    <div onClick={closeForm} role='button' tabIndex='0'  onKeyDown={(e) => handleKeyDown(e, closeForm)}><p>{closeButtonText}</p></div>
-                    <div role='button' tabIndex='0' onKeyDown={(e) => handleKeyDown(e, addTask)} onClick={addTask}><p>{okButtonText}</p></div>
+                    <div data-testid='close-button' onClick={closeForm} role='button' tabIndex='0'  onKeyDown={(e) => handleKeyDown(e, closeForm)}><p>{closeButtonText}</p></div>
+                    <div data-testid='add-button' role='button' tabIndex='0' onKeyDown={(e) => handleKeyDown(e, addTask)} onClick={addTask}><p>{okButtonText}</p></div>
                   </div>
                 </React.Fragment>
               )}

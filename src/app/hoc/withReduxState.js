@@ -20,9 +20,7 @@ import {
 import {
   addTask,
   closePopup,
-  getTasks,
-  removeTask,
-  updateSubTask
+  getTasks
 } from 'app/redux/actions';
 
 const mapStateToProps = state => ({
@@ -38,9 +36,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getTasks: (payload) => dispatch(getTasks(payload)),
   addTask: (payload, type) => dispatch(addTask(payload, type)),
-  removeTask: payload => dispatch(removeTask(payload)),
   closePopup: (type, payload) => dispatch(closePopup(type, payload)),
-  updateSubTask: payload => dispatch(updateSubTask(payload)),
 });
 
 const withRedux = WrappedComponent => {
@@ -49,7 +45,7 @@ const withRedux = WrappedComponent => {
 
     static propTypes = {
       getTasks: PropTypes.func,
-      updateSubTask: PropTypes.func,
+      updateTask: PropTypes.func,
       tasks: PropTypes.array,
       isSubmittingTask: PropTypes.bool,
       addTask: PropTypes.func,
@@ -62,9 +58,6 @@ const withRedux = WrappedComponent => {
 
     static defaultProps = {
       tasks: [],
-      getTasks: () => {},
-      updateSubTask: () => {},
-      closePopup: () => {},
       isSubmittingTask: false,
       isLoading: false,
       isError: false,

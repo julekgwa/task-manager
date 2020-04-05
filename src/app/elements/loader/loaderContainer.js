@@ -12,7 +12,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   
-  ${`svg`} {
+  ${'svg'} {
       color: ${props => props && props.theme && props.theme.defaultColor}
   }
 `;

@@ -13,7 +13,6 @@ import PropTypes from 'prop-types';
 
 import React, {
   useEffect,
-  useRef,
   useState
 } from 'react';
 
@@ -26,12 +25,6 @@ import {
 } from 'react-router-dom';
 
 import {
-  NOTIFICATION_MESSAGE,
-  NOTIFICATION_TYPE,
-  UPDATE_TASK
-} from 'app/constants';
-
-import {
   Header
 } from 'app/elements/header/header';
 
@@ -41,8 +34,7 @@ import {
 
 import {
   removeTask,
-  resetUpdatedId,
-  updateSubTask
+  updateTask
 } from 'app/redux/actions';
 
 import {
@@ -64,9 +56,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   deleteTask: payload => dispatch(removeTask(payload)),
-  updateSubTask: (payload, type) =>
-    dispatch(updateSubTask(payload, type)),
-  resetUpdatedId: () => dispatch(resetUpdatedId()),
+  updateTask: (payload, type) =>
+    dispatch(updateTask(payload, type)),
 });
 
 const Item = ({
@@ -74,22 +65,15 @@ const Item = ({
   icon,
   incomplete,
   showDueDate,
-  updateSubTask,
+  updateTask,
   isUpdatingTask,
   deleteTask,
   task,
   updateTaskAction,
-  updatedId,
-  resetUpdatedId,
 }) => {
 
   const endDate = getDueDate(task.dueDate);
   const [updatingTask, setUpdatingTask] = useState(false);
-  const [notifyClass, setNotifyClass] = useState('');
-  const timeoutRef = useRef(null);
-  const [notificationType, setNotificationType] = useState(
-    NOTIFICATION_TYPE.updated
-  );
 
   useEffect(() => {
 
@@ -97,33 +81,9 @@ const Item = ({
 
   }, [isUpdatingTask, updatingTask]);
 
-  useEffect(() => {
-
-    if (updatedId === task.id) {
-
-      setNotifyClass('notify');
-
-      timeoutRef.current = setTimeout(() => {
-
-        setNotifyClass('');
-
-        if (timeoutRef.current !== null) {
-
-          clearTimeout(timeoutRef.current);
-
-        }
-
-      }, 1500);
-
-    }
-
-  }, [updatedId, task.id]);
-
   const remove = () => {
 
-    resetUpdatedId();
     setUpdatingTask(true);
-    setNotificationType(NOTIFICATION_TYPE.deleted);
 
     deleteTask({
       id: task.id,
@@ -133,13 +93,11 @@ const Item = ({
 
   const update = () => {
 
-    resetUpdatedId();
     setUpdatingTask(true);
-    setNotificationType(NOTIFICATION_TYPE.updated);
 
     task.status = !task.status;
 
-    updateSubTask(task, updateTaskAction);
+    updateTask(task, updateTaskAction);
 
   };
 
@@ -148,8 +106,6 @@ const Item = ({
       color={incomplete ? '' : IconColors.complete}
       incomplete={incomplete}
       rootTask={rootTask}
-      wasUpdated={updatedId === task.id}
-      notifyType={notificationType}
     >
       <div className='container'>
         <div className='task-info'>
@@ -164,6 +120,7 @@ const Item = ({
                   <FontAwesomeIcon
                     className='check'
                     size='lg'
+                    data-testid='update'
                     onClick={update}
                     icon={icon}
                   />
@@ -179,12 +136,13 @@ const Item = ({
             </div>
             <Header>{task.title}</Header>
             {showDueDate && (
-              <div className='due-date'>
+              <div data-testid='due-date-container' className='due-date'>
                 <FontAwesomeIcon size='1x' icon={faClock} />{' '}
-                <p>{endDate}</p>
+                <p data-testid='due-date'>{endDate}</p>
                 {!rootTask && !updatingTask && (
                   <div className='delete-task'>
                     <FontAwesomeIcon
+                      data-testid='trash-button'
                       onClick={remove}
                       icon={faTrash}
                     />
@@ -192,15 +150,6 @@ const Item = ({
                 )}
               </div>
             )}
-          </div>
-          <div className={`notify-container ${notifyClass}`}>
-            <p>
-              {notificationType === NOTIFICATION_TYPE.deleted
-                ? NOTIFICATION_MESSAGE.deleted
-                : incomplete
-                  ? NOTIFICATION_MESSAGE.incomplete
-                  : NOTIFICATION_MESSAGE.updated}
-            </p>
           </div>
         </div>
       </div>
@@ -214,14 +163,12 @@ Item.propTypes = {
   icon: PropTypes.any,
   incomplete: PropTypes.bool,
   showDueDate: PropTypes.bool,
-  updateSubTask: PropTypes.func,
+  updateTask: PropTypes.func,
   dueDate: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
   deleteTask: PropTypes.func,
   task: PropTypes.object.isRequired,
   updateTaskAction: PropTypes.string,
-  updatedId: PropTypes.string,
-  resetUpdatedId: PropTypes.func,
 };
 
 Item.defaultProps = {
@@ -231,11 +178,7 @@ Item.defaultProps = {
   showDueDate: true,
   dueDate: '',
   isUpdatingTask: false,
-  deleteTask: () => {},
   task: {},
-  updateTaskAction: UPDATE_TASK,
-  updatedId: '',
-  resetUpdatedId: () => {},
 };
 
 export const EditItem = connect(

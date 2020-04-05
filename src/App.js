@@ -1,26 +1,26 @@
 import React from 'react';
 
 import {
-  Provider 
+  Provider
 } from 'react-redux';
 
 import {
-  Container 
+  Container
 } from 'app/containers/container';
 
 import {
-  Navigation 
+  Navigation
 } from 'app/navigation/navigation';
 
 import {
-  store 
+  store
 } from 'app/redux/store';
 
 import {
-  GlobalStyle 
+  GlobalStyle
 } from 'app/styles/globalStyle';
 
-function App() {
+export function App() {
 
   return (
     <Provider store={store}>
@@ -34,6 +34,3 @@ function App() {
   );
 
 }
-
-// eslint-disable-next-line import/no-default-export
-export default App;

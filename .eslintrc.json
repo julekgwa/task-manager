@@ -9,7 +9,8 @@
   "env": {
     "node": true,
     "es6": true,
-    "browser": true
+    "browser": true,
+    "jest": true
   },
   "settings": {
     "react": {
@@ -34,6 +35,7 @@
             "ignoreNonDOM": true
     }],
     "semi": "error",
+    "quotes":["error", "single"],
     "no-trailing-spaces": "error",
     "no-unused-react-component-methods/no-unused-react-component-methods": 2,
     "jsx-quotes": ["error", "prefer-single"],

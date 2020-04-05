@@ -1,17 +1,53 @@
 import {
-  render 
+  act,
+  fireEvent,
+  render
 } from '@testing-library/react';
 
 import React from 'react';
 
-import App from './App';
+import {
+  NEON
+} from 'app/constants';
 
-// eslint-disable-next-line no-undef
-test('renders learn react link', () => {
+import {
+  store
+} from 'app/redux/store';
 
-  const { getByText, } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  // eslint-disable-next-line no-undef
-  expect(linkElement).toBeInTheDocument();
+import {
+  App
+} from './App';
+
+fetch.mockResponseOnce(JSON.stringify({
+  result: [],
+}, {
+  status: 200,
+}));
+
+describe('App', () => {
+
+  it('renders without crashing', () => {
+
+    const { queryByTestId, } = render(<App />);
+
+    expect(queryByTestId('home-header')).toBeTruthy();
+
+  });
+
+  it('should change the theme of the page', () => {
+
+    const { getByTestId, } = render(<App />);
+
+    const switcher = getByTestId('switch-theme');
+
+    act(() => {
+
+      fireEvent.click(switcher);
+
+    });
+
+    expect(store.getState().currentTheme).toBe(NEON);
+
+  });
 
 });

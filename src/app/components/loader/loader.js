@@ -16,7 +16,7 @@ import {
 
 export const Loader = ({ size, ...props }) => (
   <LoaderContainer {...props}>
-    <FontAwesomeIcon size={size} icon={faSpinner} spin />
+    <FontAwesomeIcon data-testid='loader' size={size} icon={faSpinner} spin />
   </LoaderContainer>
 );
 

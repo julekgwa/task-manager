@@ -6,6 +6,10 @@ import React, {
 } from 'react';
 
 import {
+  ToastContainer
+} from 'react-toastify';
+
+import {
   Loader
 } from 'app/components/loader/loader';
 
@@ -33,11 +37,13 @@ import {
   withReduxState
 } from 'app/hoc/withReduxState';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 class TodoReminders extends Component {
 
   static propTypes = {
-    getTasks: PropTypes.func,
-    reminderTasks: PropTypes.array,
+    getTasks: PropTypes.func.isRequired,
+    reminderTasks: PropTypes.array.isRequired,
     isLoading: PropTypes.bool,
     togglePopup: PropTypes.func,
     isError: PropTypes.bool,
@@ -46,7 +52,6 @@ class TodoReminders extends Component {
   };
 
   static defaultProps = {
-    getTasks: () => {},
     reminderTasks: [],
     isLoading: false,
   };
@@ -85,6 +90,7 @@ class TodoReminders extends Component {
           show={showPopup}
           message={message}
         />
+        <ToastContainer autoClose={2000} />
       </React.Fragment>
     );
 

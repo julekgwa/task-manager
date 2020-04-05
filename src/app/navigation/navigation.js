@@ -1,34 +1,34 @@
 import React, {
   useState
-} from "react";
+} from 'react';
 
 import {
   BrowserRouter,
   Route,
   Switch
-} from "react-router-dom";
+} from 'react-router-dom';
 
 import {
   Edit
-} from "app/containers/edit";
+} from 'app/containers/edit';
 
 import {
   Home
-} from "app/containers/home";
+} from 'app/containers/home';
 
-import PageNotFound from "app/containers/pageNotFound";
+import PageNotFound from 'app/containers/pageNotFound';
 
 import {
   Reminders
-} from "app/containers/reminders";
+} from 'app/containers/reminders';
 
 import {
   NavBar
-} from "./navbar";
+} from './navbar';
 
 import {
   RoutesLinks
-} from "./routesLinks";
+} from './routesLinks';
 
 export const Navigation = () => {
 

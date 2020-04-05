@@ -23,29 +23,37 @@ import {
   handleKeyDown
 } from 'app/utils';
 
-export const Popup = ({
-  show,
-  message,
-  isError,
-  onButtonPress,
-}) => (
+export const Popup = ({ show, message, isError, onButtonPress, }) => (
   <React.Fragment>
-    {show ? (
+    {show && message ? (
       <PopupContainer isError={isError}>
         <div className='container'>
-          <FontAwesomeIcon onClick={onButtonPress} className='icon' icon={faTimes} />
+          <FontAwesomeIcon
+            onClick={onButtonPress}
+            className='icon'
+            icon={faTimes}
+          />
           <div className='message-area'>
-            <FontAwesomeIcon size='6x' icon={isError ? faFrown : faSmile} />
-            <p className='status'>{isError ? 'Error': 'Success'}</p>
+            <FontAwesomeIcon
+              size='6x'
+              icon={isError ? faFrown : faSmile}
+            />
+            <p className='status'>{isError ? 'Error' : 'Success'}</p>
             <p className='message'>{message}</p>
           </div>
-          <div tabIndex='0' role='button' onKeyDown={(e) => handleKeyDown(e, onButtonPress)} onClick={onButtonPress} className='button'>
+          <div
+            tabIndex='0'
+            role='button'
+            onKeyDown={e => handleKeyDown(e, onButtonPress)}
+            onClick={onButtonPress}
+            className='button'
+          >
             <p>{isError ? 'OK!' : 'Cool beans!'}</p>
           </div>
         </div>
       </PopupContainer>
     ) : (
-      <div />
+      <React.Fragment></React.Fragment>
     )}
   </React.Fragment>
 );

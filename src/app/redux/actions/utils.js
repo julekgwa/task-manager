@@ -1,5 +1,10 @@
 import {
-  RESET_UPDATED_ID
+  toast
+} from 'react-toastify';
+
+import {
+  NOTIFICATION_MESSAGE,
+  REQUEST_METHOD
 } from 'app/constants';
 
 import {
@@ -10,6 +15,17 @@ import {
   setError
 } from './index';
 
+import 'react-toastify/dist/ReactToastify.css';
+
+const toastConfig = {
+  position: 'top-center',
+  autoClose: 2000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+};
+
 const dispatcher = (dispatch, type, payload) => dispatch({
   type,
   payload,
@@ -19,41 +35,22 @@ export const fetchItem = (dispatch, requestOptions, isLoading, action) => {
 
   dispatcher(dispatch, action.loaderType, isLoading);
 
-  fetchAPI(requestOptions)
+  return fetchAPI(requestOptions)
     .then(res => {
 
       dispatcher(dispatch, action.loaderType, !isLoading);
 
       if (action.notify) {
 
-        dispatch({
-          type: action.notify.type,
-          payload: action.notify.id,
-        });
-
-        const timeout= setTimeout(() => {
-
-          dispatcher(dispatch, action.type, res.result);
-          dispatch({
-            type: RESET_UPDATED_ID,
-            payload: '',
-          });
-
-          if (timeout !== null) {
-
-            clearTimeout(timeout);
-
-          }
-
-        }, 1600);
-
-      } else {
-
-        dispatcher(dispatch, action.type, res.result);
+        requestOptions.method === REQUEST_METHOD.delete
+          ? toast.error(NOTIFICATION_MESSAGE.deleted, toastConfig)
+          : toast.success(NOTIFICATION_MESSAGE.updated, toastConfig);
 
       }
 
-      dispatcher(dispatch, action.success || 'default', !isLoading);
+      dispatcher(dispatch, action.type, res.result);
+
+      dispatcher(dispatch, action.success || 'default', true);
 
     })
     .catch(error => {

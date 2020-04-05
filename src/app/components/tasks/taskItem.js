@@ -41,7 +41,6 @@ import {
 
 const mapStateToProps = state => ({
   isUpdatingTask: state.isUpdatingTask,
-  updatedId: state.updatedId,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -56,7 +55,6 @@ const Task = ({
   taskId,
   isUpdatingTask,
   root,
-  updatedId,
 }) => {
 
   const [isRemovingTask, setIsRemovingTask] = useState(false);
@@ -78,7 +76,7 @@ const Task = ({
   };
 
   return (
-    <TaskContainer wasRemoved={taskId === updatedId} isDeleting={isRemovingTask && isUpdatingTask}>
+    <TaskContainer isDeleting={isRemovingTask && isUpdatingTask}>
       <div className='container'>
         <h1>{title}</h1>
         <p>{subTasks} Tasks</p>
@@ -90,6 +88,7 @@ const Task = ({
             <React.Fragment>
               <FontAwesomeIcon
                 role='img'
+                data-testid='add'
                 size='lg'
                 onClick={addSubTask}
                 icon={faPlus}
@@ -98,6 +97,7 @@ const Task = ({
                 <FontAwesomeIcon size='lg' icon={faPencilAlt} />
               </Link>
               <FontAwesomeIcon
+                data-testid='remove'
                 size='lg'
                 onClick={remove}
                 icon={faTrash}
@@ -119,17 +119,14 @@ Task.propTypes = {
   taskId: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
   root: PropTypes.bool,
-  updatedId: PropTypes.string,
 };
 
 Task.defaultProps = {
   title: 'No Title',
   subTasks: 0,
-  deleteTask: () => {},
   addSubTask: () => {},
   isUpdatingTask: false,
   root: false,
-  updatedId: '',
 };
 
 export const TaskItem = connect(mapStateToProps, mapDispatchToProps)(Task);

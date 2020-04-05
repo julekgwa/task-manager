@@ -8,10 +8,6 @@ import styled, {
 } from 'styled-components';
 
 import {
-  NOTIFICATION_TYPE
-} from 'app/constants';
-
-import {
   Colors
 } from 'app/styles/colors';
 
@@ -34,27 +30,6 @@ const Container = styled.div`
 
   .info {
     display: flex;
-  }
-
-  .notify-container {
-    bottom: -50px;
-    position: absolute;
-    display: flex;
-  }
-
-  .notify {
-    bottom: -50px;
-    position: absolute;
-    display: flex;
-
-    p {
-      color: ${Colors.white};
-      margin-left: 2px;
-    }
-    animation-name: notify;
-    animation-duration: 3s;
-    animation-direction: alternate;
-    background-color: ${props => props.notifyType === NOTIFICATION_TYPE.deleted ? Colors.red : Colors.darkGreen}
   }
 
   .icon {
@@ -88,7 +63,7 @@ const Container = styled.div`
   }
 
   .incomplete {
-    background-color: ${Colors.softOrange}
+    background-color: ${Colors.softOrange};
   }
 
   .due-date {
@@ -173,6 +148,17 @@ const Container = styled.div`
     }
   }
 
+  @keyframes incomplete-mobile {
+    from {
+      width: 90%;
+      margin-left: 0;
+    }
+    to {
+      width: 100%;
+      margin-left: 0;
+    }
+  }
+
   @keyframes complete {
     from {
       width: 110%;
@@ -184,26 +170,19 @@ const Container = styled.div`
     }
   }
 
-  @keyframes notify {
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+    width: 100%;
+    margin: 0;
 
-    0%, 25% {
-      /* opacity: .5; */
-      bottom: -25px;
-      background-color: transparent;
+    h1 {
+      font-size: 20px;
     }
 
-    50%,
-    75% {
-      bottom: 0;
-      /* opacity: 1; */
-    }
-
-    100% {
-      /* opacity: 0; */
-      bottom: -50px;
+    .task-info {
+      animation-name: incomplete-mobile;
     }
   }
-  
 `;
 
 export const EditItemContainer = connect(mapStateToProps)(Container);

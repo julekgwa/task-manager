@@ -36,31 +36,31 @@ const Container = styled.div`
   ${props =>
     props.isDeleting &&
     css`
-      animation-name: border-delete;
-      animation-duration: 1s;
+      animation-name: removed;
+      animation-duration: 1.5s;
       animation-iteration-count: infinite;
       animation-timing-function: ease-in;
-      border: 3px solid transparent;
-
-      @keyframes border-delete {
-        0% {
-          border-top-color: red;
-        }
-        25% {
-          border-right-color: red;
-        }
-        50% {
-          border-bottom-color: red;
-        }
-        100% {
-          border-left-color: red;
-        }
-      }
+      background-size: 100% 200%;
+        background-image: linear-gradient(
+          to bottom,
+          ${props => props.theme.backgroundColor} 50%,
+          ${Colors.red} 50%
+        );
+        transition: background-position 0.2s ease-in-out,
+          color 0.2s ease-in-out;
+        animation-name: removed;
+      border: 3px solid red;
     `}
 
   h1 {
     margin: 0;
     font-size: 27px;
+    color: ${props =>
+    (props && props.color) ||
+      (props.theme && props.theme.headerColor)};
+  }
+
+  h3 {
     color: ${props =>
     (props && props.color) ||
       (props.theme && props.theme.headerColor)};
@@ -87,7 +87,7 @@ const Container = styled.div`
       margin: 5px;
     }
 
-    ${`svg`} {
+    ${'svg'} {
       &:hover {
         color: ${Colors.softOrange};
       }
@@ -99,29 +99,6 @@ const Container = styled.div`
       }
     }
   }
-
-  ${props =>
-    props &&
-    props.wasRemoved &&
-    css`
-
-    border: 3px solid ${Colors.red};
-    padding: 0;
-      .container {
-        background-size: 100% 200%;
-        background-image: linear-gradient(
-          to bottom,
-          ${props => props.theme.backgroundColor} 50%,
-          ${Colors.red} 50%
-        );
-        transition: background-position 0.2s ease-in-out,
-          color 0.2s ease-in-out;
-        animation-name: removed;
-        animation-duration: 4s;
-        border-bottom-left-radius: 25px;
-        border-bottom-right-radius: 25px;
-      }
-    `}
 
   @keyframes removed {
     from {
@@ -223,6 +200,22 @@ const Container = styled.div`
               props.theme.secondaryShadowColor};
       }
     `}
+
+  /* Extra small devices (phones, 600px and down) */
+  @media only screen and (max-width: 600px) {
+   width: 100%;
+   margin: 0;
+  }
+
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+   margin: 0;
+  }
+
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+   box-sizing: border-box;
+  }
 `;
 
 export const TaskContainer = connect(mapStateToProps)(Container);

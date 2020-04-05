@@ -83,7 +83,7 @@ export function flatten(items) {
 
 export function getObjectTasksDepth(obj, level = 0) {
 
-  if (!obj || obj.tasks.length === 0) {
+  if (!obj || typeof obj !== 'object' || Object.keys(obj).length === 0 || obj.tasks && obj.tasks.length === 0) {
 
     return level;
 

@@ -8,15 +8,12 @@ import {
   IS_ADDING_TASK,
   IS_UPDATING_TASK,
   NEON,
-  NOTIFY,
   PRIMARY,
   REMOVE_TASK,
-  RESET_UPDATED_ID,
   SET_LOADER,
   SET_THEME,
   TASK_ADDED,
   TASK_FAILED,
-  UPDATE_SUBTASK,
   UPDATE_TASK
 } from 'app/constants';
 
@@ -29,10 +26,6 @@ import {
   isTaskDueIn24Hours
 } from 'app/utils';
 
-import {
-  updateSubTask
-} from '../utils';
-
 const initState = {
   theme: Themes.primary,
   currentTheme: PRIMARY,
@@ -44,7 +37,6 @@ const initState = {
   isError: false,
   isSubmittingTask: false,
   reminderTasks: [],
-  updatedId: '',
 };
 
 export function rootReducer(state = initState, action) {
@@ -85,18 +77,6 @@ export function rootReducer(state = initState, action) {
 
   }
 
-  case RESET_UPDATED_ID:
-    return {
-      ...state,
-      updatedId: action.payload,
-    };
-
-  case NOTIFY:
-    return {
-      ...state,
-      updatedId: action.payload,
-    };
-
   case CLOSE_POPUP:
     return {
       ...state,
@@ -106,7 +86,7 @@ export function rootReducer(state = initState, action) {
   case TASK_ADDED:
     return {
       ...state,
-      message: "Yay, you've successfully added a new task",
+      message: 'Yay, you\'ve successfully added a new task',
       showPopup: true,
       isError: false,
     };
@@ -124,21 +104,6 @@ export function rootReducer(state = initState, action) {
       ...state,
       isSubmittingTask: action.payload,
     };
-
-  case UPDATE_SUBTASK: {
-
-    const { tasks, updatedTask, } = updateSubTask(
-      state.tasks,
-      action.payload
-    );
-
-    return {
-      ...state,
-      tasks: tasks,
-      task: updatedTask,
-    };
-
-  }
 
   case IS_UPDATING_TASK:
     return {
@@ -165,7 +130,7 @@ export function rootReducer(state = initState, action) {
 
   case REMOVE_TASK: {
 
-    const tasks = action.payload || [];
+    const tasks = action.payload;
 
     return {
       ...state,
@@ -182,7 +147,7 @@ export function rootReducer(state = initState, action) {
 
   case GET_REMINDERS: {
 
-    const tasks = action.payload || [];
+    const tasks = action.payload;
 
     const flattenedTasks = flatten(tasks);
 

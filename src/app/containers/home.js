@@ -13,12 +13,18 @@ import React, {
 } from 'react';
 
 import {
+  ToastContainer
+} from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
+
+import {
   Form
 } from 'app/components/form/form';
 
 import {
   Greeting
-} from 'app/components/greeting';
+} from 'app/components/greeting/greeting';
 
 import {
   Loader
@@ -61,7 +67,7 @@ class TodoHome extends Component {
   static propTypes = {
     isLoading: PropTypes.bool,
     tasks: PropTypes.array,
-    getTasks: PropTypes.func,
+    getTasks: PropTypes.func.isRequired,
     showForm: PropTypes.bool,
     addNewTask: PropTypes.func,
     isError: PropTypes.bool,
@@ -76,7 +82,6 @@ class TodoHome extends Component {
   static defaultProps = {
     tasks: [],
     isLoading: false,
-    getTasks: () => {},
     showForm: false,
   };
 
@@ -91,7 +96,7 @@ class TodoHome extends Component {
   render = () => {
 
     const {
-      tasks = [],
+      tasks,
       addNewTask,
       isError,
       showPopup,
@@ -107,7 +112,7 @@ class TodoHome extends Component {
     return (
       <React.Fragment>
         <Greeting />
-        <Header color={Colors.softOrange}>Home</Header>
+        <Header data-testid='home-header' color={Colors.softOrange}>Home</Header>
         {isLoading ? (
           <Loader size='7x' />
         ) : (
@@ -119,7 +124,7 @@ class TodoHome extends Component {
           >
             <ListHeader>
               <Header>Tasks</Header>
-              <Button onClick={() => showAddTaskForm()} circle>
+              <Button data-testid='show-task-form' onClick={() => showAddTaskForm()} circle>
                 <FontAwesomeIcon icon={faPlus} />
               </Button>
             </ListHeader>
@@ -143,6 +148,8 @@ class TodoHome extends Component {
               tasks={tasks}
               root={true}
             />
+
+            <ToastContainer autoClose={2000} />
           </div>
         )}
       </React.Fragment>

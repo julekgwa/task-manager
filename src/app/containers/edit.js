@@ -5,6 +5,10 @@ import React, {
 } from 'react';
 
 import {
+  ToastContainer
+} from 'react-toastify';
+
+import {
   Form
 } from 'app/components/form/form';
 
@@ -28,6 +32,8 @@ import {
   withReduxState
 } from 'app/hoc/withReduxState';
 
+import 'react-toastify/dist/ReactToastify.css';
+
 class TodoEdit extends Component {
 
   state = {
@@ -38,8 +44,8 @@ class TodoEdit extends Component {
     logger: PropTypes.object,
     match: PropTypes.object,
     isLoading: PropTypes.bool,
-    tasks: PropTypes.array,
-    getTasks: PropTypes.func,
+    tasks: PropTypes.array.isRequired,
+    getTasks: PropTypes.func.isRequired,
     showForm: PropTypes.bool,
     addNewTask: PropTypes.func,
     isError: PropTypes.bool,
@@ -49,13 +55,10 @@ class TodoEdit extends Component {
     closeForm: PropTypes.func,
     showAddTaskForm: PropTypes.func,
     isSubmittingTask: PropTypes.bool,
-    updateSubTask: PropTypes.func,
   };
 
   static defaultProps = {
     tasks: [],
-    getTasks: () => {},
-    updateSubTask: () => {},
     showForm: false,
     logger: {},
     match: {},
@@ -88,7 +91,7 @@ class TodoEdit extends Component {
   render = () => {
 
     const {
-      tasks = [],
+      tasks,
       addNewTask,
       isError,
       showPopup,
@@ -99,7 +102,6 @@ class TodoEdit extends Component {
       showForm,
       showAddTaskForm,
       isSubmittingTask,
-      updateSubTask,
     } = this.props;
 
     const { rootId, } = this.state;
@@ -114,7 +116,6 @@ class TodoEdit extends Component {
           taskId={rootId}
           type={type}
           isLoading={isLoading}
-          updateSubTask={updateSubTask}
           showAddTaskForm={() => showAddTaskForm(rootId)}
         />
 
@@ -131,7 +132,7 @@ class TodoEdit extends Component {
           show={showPopup}
           message={message}
         />
-
+        <ToastContainer />
       </React.Fragment>
     );
 

@@ -19,11 +19,6 @@ export const Lost = styled.div`
   a {
     text-decoration: none;
   }
-
-  button {
-    color: #000;
-  }
-
   /* Extra small devices (phones, 600px and down) */
   @media only screen and (max-width: 600px) {
   }

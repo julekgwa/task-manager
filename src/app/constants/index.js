@@ -1,7 +1,7 @@
-export const PAUSE_PLAY = "PAUSE_PLAY";
-export const SET_THEME = "SET_THEME";
-export const PRIMARY = "PRIMARY";
-export const NEON = "NEON";
+export const PAUSE_PLAY = 'PAUSE_PLAY';
+export const SET_THEME = 'SET_THEME';
+export const PRIMARY = 'PRIMARY';
+export const NEON = 'NEON';
 export const SET_LOADER = 'SET_LOADER';
 export const GET_TASKS = 'GET_TASKS';
 export const ADD_TASK = 'ADD_TASK';
@@ -37,6 +37,6 @@ export const NOTIFICATION_TYPE = {
 
 export const NOTIFICATION_MESSAGE = {
   deleted: 'Task successfully removed',
-  updated: 'Task successfully marked as complete',
+  updated: 'Task successfully updated',
   incomplete: 'Task successfully marked as incomplete',
 };
