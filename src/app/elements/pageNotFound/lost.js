@@ -21,6 +21,14 @@ export const Lost = styled.div`
   }
   /* Extra small devices (phones, 600px and down) */
   @media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 150px;
+    }
+
+    p {
+      font-size: 30px;
+      text-align: center;
+    }
   }
 
   /* Small devices (portrait tablets and large phones, 600px and up) */
