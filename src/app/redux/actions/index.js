@@ -1,7 +1,7 @@
 import {
   ADD_TASK,
   ERROR,
-  // GET_TASK,
+  GET_TASK,
   GET_TASKS,
   IS_ADDING_TASK,
   IS_UPDATING_TASK,
@@ -22,17 +22,16 @@ import {
 
 const BASE_URL = process.env.REACT_APP_API_URL;
 const GET_ALL_TASKS = BASE_URL + process.env.REACT_APP_GET_TASKS;
-// const GET_TASK_BY_ID = BASE_URL + process.env.REACT_APP_GET_TASK_BY_ID;
+const GET_TASK_BY_ID = BASE_URL + process.env.REACT_APP_GET_TASK_BY_ID;
 const ADD_NEW_TASK = BASE_URL + process.env.REACT_APP_ADD_NEW_TASK;
 const DELETE_TASK = BASE_URL + process.env.REACT_APP_DELETE_TASK;
 const ADD_SUB_TASK = BASE_URL + process.env.REACT_APP_ADD_SUB_TASK;
 const UPDATE_TASK_BY_ID = BASE_URL + process.env.REACT_APP_UPDATE_TASK;
 
-export function setTheme(payload) {
+export function setTheme() {
 
   return {
     type: SET_THEME,
-    payload,
   };
 
 }
@@ -72,13 +71,13 @@ export function addTask(payload, type) {
       success: TASK_ADDED,
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 
 }
 
-export function updateSubTask(payload, type = UPDATE_TASK) {
+export function updateTask(payload, type = UPDATE_TASK) {
 
   return dispatch => {
 
@@ -98,7 +97,7 @@ export function updateSubTask(payload, type = UPDATE_TASK) {
       },
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 
@@ -123,32 +122,32 @@ export function removeTask(payload) {
       },
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 
 }
 
-// export function getTask(payload) {
+export function getTask(payload) {
 
-//   return dispatch => {
+  return dispatch => {
 
-//     const requestOptions = {
-//       url: GET_TASK_BY_ID + payload.id,
-//       method: REQUEST_METHOD.get,
-//     };
+    const requestOptions = {
+      url: GET_TASK_BY_ID + payload.id,
+      method: REQUEST_METHOD.get,
+    };
 
-//     const action = {
-//       type: GET_TASK,
-//       loaderType: SET_LOADER,
-//       error: ERROR,
-//     };
+    const action = {
+      type: GET_TASK,
+      loaderType: SET_LOADER,
+      error: ERROR,
+    };
 
-//     fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
-//   };
+  };
 
-// }
+}
 
 export function getTasks(type = GET_TASKS) {
 
@@ -165,7 +164,7 @@ export function getTasks(type = GET_TASKS) {
       error: ERROR,
     };
 
-    fetchItem(dispatch, requestOptions, true, action);
+    return fetchItem(dispatch, requestOptions, true, action);
 
   };
 

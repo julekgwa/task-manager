@@ -34,7 +34,7 @@ import {
 
 import {
   removeTask,
-  updateSubTask
+  updateTask
 } from 'app/redux/actions';
 
 import {
@@ -56,8 +56,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   deleteTask: payload => dispatch(removeTask(payload)),
-  updateSubTask: (payload, type) =>
-    dispatch(updateSubTask(payload, type)),
+  updateTask: (payload, type) =>
+    dispatch(updateTask(payload, type)),
 });
 
 const Item = ({
@@ -65,7 +65,7 @@ const Item = ({
   icon,
   incomplete,
   showDueDate,
-  updateSubTask,
+  updateTask,
   isUpdatingTask,
   deleteTask,
   task,
@@ -97,7 +97,7 @@ const Item = ({
 
     task.status = !task.status;
 
-    updateSubTask(task, updateTaskAction);
+    updateTask(task, updateTaskAction);
 
   };
 
@@ -163,7 +163,7 @@ Item.propTypes = {
   icon: PropTypes.any,
   incomplete: PropTypes.bool,
   showDueDate: PropTypes.bool,
-  updateSubTask: PropTypes.func,
+  updateTask: PropTypes.func,
   dueDate: PropTypes.string.isRequired,
   isUpdatingTask: PropTypes.bool,
   deleteTask: PropTypes.func,

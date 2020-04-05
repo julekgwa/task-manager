@@ -37,7 +37,6 @@ const initState = {
   isError: false,
   isSubmittingTask: false,
   reminderTasks: [],
-  updatedId: '',
 };
 
 export function rootReducer(state = initState, action) {
@@ -87,7 +86,7 @@ export function rootReducer(state = initState, action) {
   case TASK_ADDED:
     return {
       ...state,
-      message: "Yay, you've successfully added a new task",
+      message: 'Yay, you\'ve successfully added a new task',
       showPopup: true,
       isError: false,
     };
@@ -131,7 +130,7 @@ export function rootReducer(state = initState, action) {
 
   case REMOVE_TASK: {
 
-    const tasks = action.payload || [];
+    const tasks = action.payload;
 
     return {
       ...state,
@@ -148,7 +147,7 @@ export function rootReducer(state = initState, action) {
 
   case GET_REMINDERS: {
 
-    const tasks = action.payload || [];
+    const tasks = action.payload;
 
     const flattenedTasks = flatten(tasks);
 

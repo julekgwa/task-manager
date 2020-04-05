@@ -1,12 +1,12 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 import {
   connect
-} from "react-redux";
+} from 'react-redux';
 
 import styled, {
   css
-} from "styled-components";
+} from 'styled-components';
 
 const mapStateToProps = state => ({
   theme: state.theme,
@@ -27,7 +27,7 @@ const NavbarContainer = styled.nav`
     text-transform: uppercase;
   }
 
-  a:hover ${`svg`} {
+  a:hover ${'svg'} {
     color: ${props => props && props.theme && props.theme.anchorHover};
   }
 

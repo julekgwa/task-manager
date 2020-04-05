@@ -4,9 +4,6 @@ import {
   render
 } from '@testing-library/react';
 
-// eslint-disable-next-line no-unused-vars
-import enableMocks from 'jest-fetch-mock';
-
 import React from 'react';
 
 import {
@@ -89,7 +86,7 @@ describe('Edit', () => {
 
   });
 
-  it('should display no tasks when the provided task is doesn\'t exists', () => {
+  it('should display no tasks when the provided task doesn\'t exists', () => {
 
     const match = {
       params: {
@@ -128,7 +125,7 @@ describe('Edit', () => {
 
   });
 
-  it('should add a task and close form', () => {
+  it('should click add task and close form buttons', () => {
 
     const match = {
       params: {

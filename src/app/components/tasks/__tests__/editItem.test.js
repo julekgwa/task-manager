@@ -101,7 +101,7 @@ describe('EditItem', () => {
 
       render(<Provider store={store}><Router><EditItem rootTask={false} task={task} showDueDate={true} /></Router></Provider>);
 
-      expect(document.querySelector("a").getAttribute("href")).toBe('/edit/subId/subtask');
+      expect(document.querySelector('a').getAttribute('href')).toBe('/edit/subId/subtask');
 
     });
 
@@ -116,7 +116,7 @@ describe('EditItem', () => {
       dueDate: 'fakeFake',
     }]));
 
-    it('should change notification message', () => {
+    it('should be able to click delete button', () => {
 
       const { getByTestId, } = render(<Provider store={store}><Router><EditItem rootTask={false} task={task} showDueDate={true} /></Router></Provider>);
 

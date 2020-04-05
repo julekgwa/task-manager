@@ -15,6 +15,17 @@ import {
   setError
 } from './index';
 
+import 'react-toastify/dist/ReactToastify.css';
+
+const toastConfig = {
+  position: 'top-center',
+  autoClose: 2000,
+  hideProgressBar: true,
+  closeOnClick: true,
+  pauseOnHover: true,
+  draggable: true,
+};
+
 const dispatcher = (dispatch, type, payload) => dispatch({
   type,
   payload,
@@ -24,20 +35,22 @@ export const fetchItem = (dispatch, requestOptions, isLoading, action) => {
 
   dispatcher(dispatch, action.loaderType, isLoading);
 
-  fetchAPI(requestOptions)
+  return fetchAPI(requestOptions)
     .then(res => {
 
       dispatcher(dispatch, action.loaderType, !isLoading);
 
       if (action.notify) {
 
-        toast(requestOptions.method === REQUEST_METHOD.delete ? NOTIFICATION_MESSAGE.deleted: NOTIFICATION_MESSAGE.updated);
+        requestOptions.method === REQUEST_METHOD.delete
+          ? toast.error(NOTIFICATION_MESSAGE.deleted, toastConfig)
+          : toast.success(NOTIFICATION_MESSAGE.updated, toastConfig);
 
       }
 
       dispatcher(dispatch, action.type, res.result);
 
-      dispatcher(dispatch, action.success || 'default', !isLoading);
+      dispatcher(dispatch, action.success || 'default', true);
 
     })
     .catch(error => {

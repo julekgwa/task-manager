@@ -1,10 +1,10 @@
 import {
   connect
-} from "react-redux";
+} from 'react-redux';
 
 import {
   createGlobalStyle
-} from "styled-components";
+} from 'styled-components';
 
 const mapStateToProps = state => ({
   theme: state.theme,
@@ -32,7 +32,6 @@ const GlobalStyles = createGlobalStyle`
     border-style: none;
     font-size: 16px;
     cursor: pointer;
-    width: 150px;
     display: block;
   }
 `;

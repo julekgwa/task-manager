@@ -37,7 +37,7 @@ import {
   withReduxState
 } from 'app/hoc/withReduxState';
 
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 class TodoReminders extends Component {
 

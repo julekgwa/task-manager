@@ -32,7 +32,7 @@ import {
   withReduxState
 } from 'app/hoc/withReduxState';
 
-import "react-toastify/dist/ReactToastify.css";
+import 'react-toastify/dist/ReactToastify.css';
 
 class TodoEdit extends Component {
 
@@ -132,7 +132,7 @@ class TodoEdit extends Component {
           show={showPopup}
           message={message}
         />
-        <ToastContainer autoClose={2000} />
+        <ToastContainer />
       </React.Fragment>
     );
 

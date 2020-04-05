@@ -81,7 +81,7 @@ const Container = styled.div`
       margin: 5px;
     }
 
-    ${`svg`} {
+    ${'svg'} {
       &:hover {
         color: ${Colors.softOrange};
       }

@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
-import React from "react";
+import React from 'react';
 
 import {
   Link
@@ -16,11 +16,11 @@ import {
 
 import {
   withLogger
-} from "app/hoc/withLogger";
+} from 'app/hoc/withLogger';
 
 const PageNotFound = ({ logger, }) => {
 
-  logger.error("/404", "Page not found");
+  logger.error('/404', 'Page not found');
 
   return (
     <Lost>

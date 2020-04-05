@@ -1,6 +1,6 @@
 import {
   Colors
-} from "app/styles/colors";
+} from 'app/styles/colors';
 
 export const Themes = {
   neon: {

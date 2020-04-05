@@ -45,7 +45,7 @@ const withRedux = WrappedComponent => {
 
     static propTypes = {
       getTasks: PropTypes.func,
-      updateSubTask: PropTypes.func,
+      updateTask: PropTypes.func,
       tasks: PropTypes.array,
       isSubmittingTask: PropTypes.bool,
       addTask: PropTypes.func,

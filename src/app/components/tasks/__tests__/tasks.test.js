@@ -76,7 +76,7 @@ const tasks = [{
 
 describe('Tasks', ()=> {
 
-  it('should display no tasks when tasks is not provided', () => {
+  it('should display no tasks when tasks are not provided', () => {
 
     const { queryByText, } = render(<Provider store={store}><Router><Tasks onAddSubTask={()=>{}} /></Router></Provider>);
 
