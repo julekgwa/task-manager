@@ -62,7 +62,7 @@ describe('Add Task form', () => {
 
   let queryByTestId;
 
-  let  queryByPlaceholderText;
+  let queryByPlaceholderText;
 
   let getByLabelText;
 

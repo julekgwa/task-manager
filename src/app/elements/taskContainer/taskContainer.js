@@ -41,14 +41,14 @@ const Container = styled.div`
       animation-iteration-count: infinite;
       animation-timing-function: ease-in;
       background-size: 100% 200%;
-        background-image: linear-gradient(
-          to bottom,
-          ${props => props.theme.backgroundColor} 50%,
-          ${Colors.red} 50%
-        );
-        transition: background-position 0.2s ease-in-out,
-          color 0.2s ease-in-out;
-        animation-name: removed;
+      background-image: linear-gradient(
+        to bottom,
+        ${props => props.theme.backgroundColor} 50%,
+        ${Colors.red} 50%
+      );
+      transition: background-position 0.2s ease-in-out,
+        color 0.2s ease-in-out;
+      animation-name: removed;
       border: 3px solid red;
     `}
 
@@ -72,6 +72,12 @@ const Container = styled.div`
 
   p {
     margin: 0;
+  }
+
+  .todo {
+    svg {
+      color: ${Colors.white};
+    }
   }
 
   .buttons {
@@ -172,6 +178,19 @@ const Container = styled.div`
       .add-todo {
         display: flex;
         justify-content: flex-end;
+
+        svg {
+          color: ${Colors.white};
+        }
+      }
+
+      .disable-button {
+        display: flex;
+        justify-content: flex-end;
+
+        svg {
+          color: ${Colors.grayishBlue};
+        }
       }
 
       .add-task {
@@ -183,10 +202,6 @@ const Container = styled.div`
         background-color: ${props =>
     (props && props.color) ||
           (props.theme && props.theme.headerColor)};
-      }
-
-      svg {
-        color: ${Colors.white};
       }
 
       &:hover {
@@ -203,7 +218,7 @@ const Container = styled.div`
 
   /* Extra small devices (phones, 600px and down) */
   @media only screen and (max-width: 600px) {
-   width: 100%;
+    width: 100%;
   }
 `;
 

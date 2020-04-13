@@ -97,7 +97,7 @@ export const Form = ({
                   </div>
 
                   <div className='button'>
-                    <div data-testid='close-button' onClick={closeForm} role='button' tabIndex='0'  onKeyDown={(e) => handleKeyDown(e, closeForm)}><p>{closeButtonText}</p></div>
+                    <div data-testid='close-button' onClick={closeForm} role='button' tabIndex='0' onKeyDown={(e) => handleKeyDown(e, closeForm)}><p>{closeButtonText}</p></div>
                     <div data-testid='add-button' role='button' tabIndex='0' onKeyDown={(e) => handleKeyDown(e, addTask)} onClick={addTask}><p>{okButtonText}</p></div>
                   </div>
                 </React.Fragment>

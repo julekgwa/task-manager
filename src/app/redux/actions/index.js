@@ -64,7 +64,7 @@ export function addTask(payload, type) {
       body: JSON.stringify(payload),
     };
 
-    const action  = {
+    const action = {
       type: ADD_TASK,
       loaderType: IS_ADDING_TASK,
       error: TASK_FAILED,

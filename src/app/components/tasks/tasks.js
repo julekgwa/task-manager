@@ -19,16 +19,19 @@ export const Tasks = ({ tasks, onAddSubTask, root, }) => {
           <p>No tasks</p>
         </TaskContainer>
       ) : (
-        tasks.map(task => task && (
-          <TaskItem
-            addSubTask={() => onAddSubTask(task.id)}
-            key={task.id}
-            taskId={task.id}
-            title={task.title}
-            root={root}
-            subTasks={task.tasks && task.tasks.length || 0}
-          />
-        ))
+        tasks.map(
+          task =>
+            task && (
+              <TaskItem
+                addSubTask={() => onAddSubTask(task.id)}
+                key={task.id}
+                taskId={task.id}
+                title={task.title}
+                root={root}
+                subTasks={(task.tasks && task.tasks.length) || 0}
+              />
+            )
+        )
       )}
     </React.Fragment>
   );
@@ -44,5 +47,5 @@ Tasks.propTypes = {
 Tasks.defaultProps = {
   root: false,
   tasks: [],
-  onAddSubTask: () =>{},
+  onAddSubTask: () => {},
 };

@@ -17,7 +17,11 @@ export function getDueDate(dueDate) {
   const diff = timeEnd.diff(startDate);
   const diffDuration = moment.duration(diff);
 
-  if (diffDuration.days() === 0 && diffDuration.hours() <= 23 && diffDuration.minutes() <= 59) {
+  if (
+    diffDuration.days() === 0 &&
+    diffDuration.hours() <= 23 &&
+    diffDuration.minutes() <= 59
+  ) {
 
     return 'today';
 
@@ -83,7 +87,12 @@ export function flatten(items) {
 
 export function getObjectTasksDepth(obj, level = 0) {
 
-  if (!obj || typeof obj !== 'object' || Object.keys(obj).length === 0 || obj.tasks && obj.tasks.length === 0) {
+  if (
+    !obj ||
+    typeof obj !== 'object' ||
+    Object.keys(obj).length === 0 ||
+    (obj.tasks && obj.tasks.length === 0)
+  ) {
 
     return level;
 
@@ -144,7 +153,40 @@ export function getTask(id, isRoot, tasks) {
 
 }
 
-export function handleKeyDown(e,func) {
+export function objectDepth(id, tasks) {
+
+  if (!id || !Array.isArray(tasks)) {
+
+    return 0;
+
+  }
+
+  // spread operator doesn't deep copy
+  const todoTasks = JSON.parse(JSON.stringify(tasks));
+
+  for (let index = 0; index < todoTasks.length; index++) {
+
+    const currentTask = todoTasks[index];
+
+    const subTask = findFirst(currentTask, 'tasks', {
+      id: id,
+    });
+
+    if (subTask) {
+
+      subTask.tasks = [];
+
+      return getObjectTasksDepth(currentTask);
+
+    }
+
+  }
+
+  return 0;
+
+}
+
+export function handleKeyDown(e, func) {
 
   if (e.keyCode === 13) {
 

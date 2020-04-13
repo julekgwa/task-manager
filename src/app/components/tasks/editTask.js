@@ -41,6 +41,7 @@ export const EditTask = ({
   tasks,
   showAddTaskForm,
   type,
+  disableAddButton,
 }) => {
 
   const [task, setTask] = useState([]);
@@ -66,10 +67,10 @@ export const EditTask = ({
             <div className='todo'>
               <FontAwesomeIcon size='2x' icon={faClipboardList} />
             </div>
-            <div className='add-todo'>
+            <div className={`${ disableAddButton ? 'disable-button' : 'add-todo'}`}>
               <FontAwesomeIcon
                 data-testid='show-form'
-                onClick={showAddTaskForm}
+                onClick={disableAddButton ? () => {} : showAddTaskForm}
                 size='2x'
                 icon={faPlus}
               />
@@ -115,6 +116,7 @@ EditTask.propTypes = {
   showAddTaskForm: PropTypes.func.isRequired,
   taskId: PropTypes.string,
   isLoading: PropTypes.bool,
+  disableAddButton: PropTypes.bool,
 };
 
 EditTask.defaultProps = {

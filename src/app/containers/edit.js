@@ -34,6 +34,10 @@ import {
 
 import 'react-toastify/dist/ReactToastify.css';
 
+import {
+  objectDepth
+} from 'app/utils';
+
 class TodoEdit extends Component {
 
   state = {
@@ -64,6 +68,14 @@ class TodoEdit extends Component {
     match: {},
     isLoading: false,
   };
+
+  getObjectDepth = (tasks) => {
+
+    const { rootId, } = this.state;
+
+    return objectDepth(rootId, tasks);
+
+  }
 
   // eslint-disable-next-line
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -106,6 +118,7 @@ class TodoEdit extends Component {
 
     const { rootId, } = this.state;
     const { match: { params: { type, }, }, } = this.props;
+    const taskDepth = this.getObjectDepth(tasks);
 
     return (
       <React.Fragment>
@@ -115,6 +128,7 @@ class TodoEdit extends Component {
           tasks={tasks}
           taskId={rootId}
           type={type}
+          disableAddButton={taskDepth >= 5}
           isLoading={isLoading}
           showAddTaskForm={() => showAddTaskForm(rootId)}
         />

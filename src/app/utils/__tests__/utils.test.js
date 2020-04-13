@@ -155,7 +155,7 @@ describe('getObjectTasksDepth', () => {
 
   it('should return the depth of an object', () => {
 
-    const obj =      {
+    const obj = {
       title: 'Root Task',
       test: undefined,
       arr: [],

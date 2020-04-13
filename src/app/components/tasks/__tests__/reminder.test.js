@@ -81,7 +81,7 @@ describe('Reminders', () => {
 
   it('should display number of tasks due in the next 24 hours',() => {
 
-    const { queryByText, } =  render(<Provider store={store}><Router><TaskReminder tasks={tasks} /></Router></Provider>);
+    const { queryByText, } = render(<Provider store={store}><Router><TaskReminder tasks={tasks} /></Router></Provider>);
 
     expect(queryByText(/you have 2 tasks/i)).toBeTruthy();
 
