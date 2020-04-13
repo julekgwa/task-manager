@@ -1,6 +1,6 @@
 import {
   faAngleDoubleRight,
-  faClipboardList,
+  faPencilAlt,
   faPlus
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -42,6 +42,7 @@ export const EditTask = ({
   showAddTaskForm,
   type,
   disableAddButton,
+  updateTaskInfo,
 }) => {
 
   const [task, setTask] = useState([]);
@@ -65,7 +66,7 @@ export const EditTask = ({
         <TaskContainer edit>
           <div className='add-task'>
             <div className='todo'>
-              <FontAwesomeIcon size='2x' icon={faClipboardList} />
+              <FontAwesomeIcon onClick={() => updateTaskInfo(task)} size='2x' icon={faPencilAlt} />
             </div>
             <div className={`${ disableAddButton ? 'disable-button' : 'add-todo'}`}>
               <FontAwesomeIcon
@@ -117,6 +118,7 @@ EditTask.propTypes = {
   taskId: PropTypes.string,
   isLoading: PropTypes.bool,
   disableAddButton: PropTypes.bool,
+  updateTaskInfo: PropTypes.func.isRequired,
 };
 
 EditTask.defaultProps = {

@@ -244,6 +244,7 @@ describe('todos reducers', () => {
       )
     ).toEqual({
       tasks: [todo],
+      reminderTasks: [],
     });
 
   });

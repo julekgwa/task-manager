@@ -3,6 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 
 import React, {
+  useEffect,
   useState
 } from 'react';
 
@@ -37,11 +38,15 @@ export const Form = ({
   onCloseButton,
   onOkButton,
   isLoading,
+  taskTitle,
+  taskDueDate,
 }) => {
 
   const [isInputEmpty, setIsInputEmpty] = useState(false);
-  const [taskValue, TaskInput, resetValue] = useInput();
-  const [taskStartDate, setTaskStartDate] = useState(new Date());
+  const [taskValue, TaskInput, resetValue] = useInput({
+    value: taskTitle,
+  });
+  const [taskStartDate, setTaskStartDate] = useState(taskDueDate);
 
   const addTask = () => {
 
@@ -69,6 +74,13 @@ export const Form = ({
     setIsInputEmpty(false);
 
   };
+
+  useEffect(() => {
+
+    setTaskStartDate(taskDueDate);
+    resetValue(taskTitle);
+
+  }, [taskDueDate, taskTitle, resetValue]);
 
   return (
     <React.Fragment>
@@ -120,6 +132,8 @@ Form.propTypes = {
   onCloseButton: PropTypes.func,
   isLoading: PropTypes.bool,
   onOkButton: PropTypes.func.isRequired,
+  taskTitle: PropTypes.string,
+  taskDueDate: PropTypes.instanceOf(Date),
 };
 
 Form.defaultProps = {
@@ -131,4 +145,6 @@ Form.defaultProps = {
   requestStatus: '',
   message: '',
   onOkButton: () => {},
+  taskTitle: '',
+  taskDueDate: new Date(),
 };

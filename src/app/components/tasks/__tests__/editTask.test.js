@@ -78,7 +78,7 @@ describe('EditTask', () => {
 
   it('should show loading spinner', () => {
 
-    const { getByTestId, } = render(<Provider store={store}><EditTask isLoading={true} /></Provider>);
+    const { getByTestId, } = render(<Provider store={store}><EditTask updateTaskInfo={() => {}} isLoading={true} /></Provider>);
 
     // no expect, will throw an error if id doesn't exists
     getByTestId('loader');
@@ -87,7 +87,7 @@ describe('EditTask', () => {
 
   it('should show no tasks', () => {
 
-    const { queryByText, } = render(<Provider store={store}><EditTask isLoading={false} /></Provider>);
+    const { queryByText, } = render(<Provider store={store}><EditTask updateTaskInfo={() => {}} isLoading={false} /></Provider>);
 
     expect(queryByText(/no task/i)).toBeTruthy();
 
@@ -95,7 +95,7 @@ describe('EditTask', () => {
 
   it('should show incomplete tasks', () => {
 
-    const { queryByText, } = render(<Provider store={store}><Router><EditTask tasks={tasks} taskId='test' type={TASK_TYPE.task} isLoading={false} /></Router></Provider>);
+    const { queryByText, } = render(<Provider store={store}><Router><EditTask updateTaskInfo={() => {}} tasks={tasks} taskId='test' type={TASK_TYPE.task} isLoading={false} /></Router></Provider>);
 
     expect(queryByText(/editTask/i)).toBeTruthy();
     expect(queryByText(/hello/i)).toBeTruthy();
@@ -104,7 +104,7 @@ describe('EditTask', () => {
 
   it('should call default showAddTaskForm function', () => {
 
-    const { getByTestId, } = render(<Provider store={store}><Router><EditTask tasks={tasks} taskId='test' type={TASK_TYPE.task} isLoading={false} /></Router></Provider>);
+    const { getByTestId, } = render(<Provider store={store}><Router><EditTask updateTaskInfo={() => {}} tasks={tasks} taskId='test' type={TASK_TYPE.task} isLoading={false} /></Router></Provider>);
 
     const showForm = getByTestId(/show-form/i);
 

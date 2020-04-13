@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 
 import React, {
+
   Component
 } from 'react';
 
@@ -19,6 +20,10 @@ import {
 import {
   EditTask
 } from 'app/components/tasks/editTask';
+
+import {
+  ADD_TASK
+} from 'app/constants';
 
 import {
   Header
@@ -42,7 +47,11 @@ class TodoEdit extends Component {
 
   state = {
     rootId: null,
-  }
+    title: '',
+    dueDate: new Date(),
+    isUpdateTask: false,
+    task: {},
+  };
 
   static propTypes = {
     logger: PropTypes.object,
@@ -59,6 +68,7 @@ class TodoEdit extends Component {
     closeForm: PropTypes.func,
     showAddTaskForm: PropTypes.func,
     isSubmittingTask: PropTypes.bool,
+    updateTask: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -69,26 +79,79 @@ class TodoEdit extends Component {
     isLoading: false,
   };
 
-  getObjectDepth = (tasks) => {
+  updateInfo = (task) => {
+
+    const { showAddTaskForm, } = this.props;
+    const { rootId, } = this.state;
+
+    this.setState({
+      title: task.title,
+      isUpdateTask: true,
+      task: task,
+      dueDate: parseInt(task.dueDate, 10) ? new Date(parseInt(task.dueDate, 10)) : new Date(),
+    }, () => {
+
+      showAddTaskForm(rootId);
+
+    });
+
+  };
+
+  updateTaskInfo = (title, dueDate) => {
+
+    const { task, } = this.state;
+    const { updateTask, } = this.props;
+
+    task.title = title;
+    task.dueDate = dueDate;
+
+    updateTask(task, ADD_TASK);
+
+    this.setState({
+      isUpdateTask: false,
+      title: '',
+      dueDate: new Date(),
+    });
+
+  }
+
+  updateTaskCloseForm = () => {
+
+    const { closeForm, } = this.props;
+
+    this.setState({
+      isUpdateTask: false,
+    });
+
+    closeForm();
+
+  }
+
+  getObjectDepth = tasks => {
 
     const { rootId, } = this.state;
 
     return objectDepth(rootId, tasks);
 
-  }
+  };
 
   // eslint-disable-next-line
   static getDerivedStateFromProps(nextProps, prevState) {
-
-    return nextProps.match.params.taskId !== prevState.rootId ? {
-      rootId : nextProps.match.params.taskId,
-    } : null;
+    return nextProps.match.params.taskId !== prevState.rootId
+      ? {
+        rootId: nextProps.match.params.taskId,
+      }
+      : null;
 
   }
 
   componentDidMount = () => {
 
-    const { match: { params: { taskId, }, }, getTasks, logger, } = this.props;
+    const {
+      match: { params: { taskId, }, },
+      getTasks,
+      logger,
+    } = this.props;
 
     this.setState({
       rootId: taskId,
@@ -116,7 +179,7 @@ class TodoEdit extends Component {
       isSubmittingTask,
     } = this.props;
 
-    const { rootId, } = this.state;
+    const { rootId, title, dueDate, isUpdateTask, } = this.state;
     const { match: { params: { type, }, }, } = this.props;
     const taskDepth = this.getObjectDepth(tasks);
 
@@ -128,6 +191,7 @@ class TodoEdit extends Component {
           tasks={tasks}
           taskId={rootId}
           type={type}
+          updateTaskInfo={this.updateInfo}
           disableAddButton={taskDepth >= 5}
           isLoading={isLoading}
           showAddTaskForm={() => showAddTaskForm(rootId)}
@@ -136,8 +200,11 @@ class TodoEdit extends Component {
         <Form
           show={showForm}
           isLoading={isSubmittingTask}
-          onCloseButton={closeForm}
-          onOkButton={addNewTask}
+          onCloseButton={isUpdateTask ? this.updateTaskCloseForm : closeForm}
+          taskTitle={title}
+          taskDueDate={dueDate}
+          okButtonText={isUpdateTask ? 'update' : 'add task'}
+          onOkButton={isUpdateTask ? this.updateTaskInfo : addNewTask}
         />
 
         <Popup

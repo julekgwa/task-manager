@@ -131,10 +131,12 @@ export function rootReducer(state = initState, action) {
   case REMOVE_TASK: {
 
     const tasks = action.payload;
+    const flattenedTasks = flatten(tasks);
 
     return {
       ...state,
       tasks: tasks.filter(task => task),
+      reminderTasks: flattenedTasks.filter(isTaskDueIn24Hours),
     };
 
   }

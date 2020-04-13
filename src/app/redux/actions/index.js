@@ -89,7 +89,7 @@ export function updateTask(payload, type = UPDATE_TASK) {
 
     const action = {
       type: type,
-      loaderType: IS_UPDATING_TASK,
+      loaderType: type === ADD_TASK ? IS_ADDING_TASK : IS_UPDATING_TASK,
       error: ERROR,
       notify: {
         type: NOTIFY,

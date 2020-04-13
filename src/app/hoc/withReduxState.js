@@ -20,7 +20,8 @@ import {
 import {
   addTask,
   closePopup,
-  getTasks
+  getTasks,
+  updateTask
 } from 'app/redux/actions';
 
 const mapStateToProps = state => ({
@@ -37,6 +38,7 @@ const mapDispatchToProps = dispatch => ({
   getTasks: (payload) => dispatch(getTasks(payload)),
   addTask: (payload, type) => dispatch(addTask(payload, type)),
   closePopup: (type, payload) => dispatch(closePopup(type, payload)),
+  updateTask: (payload,type) => dispatch(updateTask(payload, type)),
 });
 
 const withRedux = WrappedComponent => {
@@ -73,6 +75,10 @@ const withRedux = WrappedComponent => {
     togglePopup = () => {
 
       const { closePopup, } = this.props;
+
+      this.setState({
+        showForm: false,
+      });
 
       closePopup(CLOSE_POPUP, false);
 

@@ -39,7 +39,7 @@ export function getDueDate(dueDate) {
 
 export function isTaskDueIn24Hours(task) {
 
-  if (!parseInt(task.dueDate, 10)) {
+  if (!task || !parseInt(task.dueDate, 10)) {
 
     return false;
 
@@ -70,14 +70,13 @@ export function flatten(items) {
 
     flat.push(item);
 
-    if (Array.isArray(item.tasks) && item.tasks.length > 0) {
+    if (item && Array.isArray(item.tasks) && item.tasks.length > 0) {
 
       flat.push(...flatten(item.tasks));
-      delete item.tasks;
 
     }
 
-    delete item.tasks;
+    item && delete item.tasks;
 
   }
 
