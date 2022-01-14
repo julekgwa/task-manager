@@ -1,0 +1,9 @@
+{
+  "name": "Todo API documentation",
+  "version": "1.0.0",
+  "description": "Todo list api",
+  "apidoc": {
+    "title": "Todo list service api",
+    "url" : "http://localhost:8080"
+  }
+}
