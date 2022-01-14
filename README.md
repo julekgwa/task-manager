@@ -1,4 +1,4 @@
-
+![hack](images/hackathon.png)
 ## MongoDB Atlas Hackathon
 
 ### Running the project

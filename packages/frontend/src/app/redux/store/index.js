@@ -8,6 +8,10 @@ import {
 import thunk from 'redux-thunk';
 
 import {
+  Themes
+} from 'app/theme/theme';
+
+import {
   rootReducer
 } from '../reducers';
 
@@ -50,7 +54,10 @@ const saveState = (state) => {
 };
 
 const persistedState = {
-  ...loadState(),
+  ...loadState() || {
+    theme: Themes.primary,
+    currentTheme: 'PRIMARY',
+  },
   user: loadState('login') || {},
 };
 
