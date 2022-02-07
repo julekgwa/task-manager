@@ -2,7 +2,7 @@ import moment from 'moment';
 
 import {
   findFirst
-} from 'obj-traverse/lib/obj-traverse';
+} from 'obj-traverse';
 
 export function getDueDate(dueDate) {
 
