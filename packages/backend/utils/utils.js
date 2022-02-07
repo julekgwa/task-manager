@@ -1,5 +1,4 @@
 const HttpStatus = require('http-status-codes');
-const config = require('config');
 const mongoose = require('mongoose');
 
 const PASSWORD = process.env.PASSWORD
