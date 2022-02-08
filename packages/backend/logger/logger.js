@@ -6,8 +6,7 @@ const LOG_LEVEL = process.env.LOG_LEVEL || 'info';
 function reqSerializer(req) {
   return {
     method: req.method,
-    url: req.url,
-    time: formatTime(req.time())
+    url: req.url
   };
 }
 

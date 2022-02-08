@@ -16,7 +16,7 @@ module.exports = app => {
   app.post('/v1/todo/login', validateLogin, userLogin)
 // /v1/todo/task
   app.post('/v1/todo/:userID/task', bodyPayloadValidator, addTask);
-  app.del('/v1/todo/:userID/task/:id', pathParamsValidator, deleteTask);
+  app.delete('/v1/todo/:userID/task/:id', pathParamsValidator, deleteTask);
   app.get('/v1/todo/:userID/task/:id', pathParamsValidator, getTask);
   app.put('/v1/todo/:userID/task', bodyPayloadValidator, updateTask);
   // '/v1/todo/tasks'
